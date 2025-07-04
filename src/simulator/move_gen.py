@@ -50,9 +50,13 @@ class MoveGenerator:
     while maintaining high performance for search algorithms.
     """
     
-    def __init__(self):
-        """Initialize move generator."""
-        pass
+    def __init__(self, enable_diagnostics: bool = False):
+        """Initialize move generator.
+        
+        Args:
+            enable_diagnostics: Enable diagnostic logging
+        """
+        self.enable_diagnostics = enable_diagnostics
     
     def generate_legal_moves(self, state: GameState) -> List[Move]:
         """
@@ -64,11 +68,59 @@ class MoveGenerator:
         Returns:
             List of all legal moves from this position
         """
+        import time
+        start_time = time.time()
+        
         legal_moves = []
         gaps = state.get_gaps()
         immutable_positions = state.get_immutable_positions()
         
-        for gap_row, gap_col in gaps:
+        # Handle first position gaps specially to allow any available 2
+        first_position_gaps = [(r, c) for (r, c) in gaps if c == 0]
+        other_gaps = [(r, c) for (r, c) in gaps if c != 0]
+        
+        # For first position gaps, find all available 2s
+        if first_position_gaps:
+            # Find which suits already have 2s in first column
+            occupied_first_column_suits = set()
+            for row in range(state.ROWS):
+                first_card = state.get_card(row, 0)
+                if first_card is not None and first_card.rank.value == 2:  # Rank.TWO
+                    occupied_first_column_suits.add(first_card.suit)
+            
+            # For each first position gap, find the best available 2
+            # (preferring one that's not already in a first position)
+            for gap_row, gap_col in first_position_gaps:
+                best_two = None
+                best_position = None
+                
+                # Look for available 2s (prefer ones not in first column)
+                from .game_state import Rank, Suit
+                for suit in Suit:
+                    if suit in occupied_first_column_suits:
+                        continue  # This suit's 2 is already in first column
+                    
+                    two_card = Card(Rank.TWO, suit)
+                    card_pos = self._find_card_position(state, two_card)
+                    if card_pos is not None and card_pos[1] != 0:  # Found 2 not in first column
+                        # Check if it's movable (not immutable)
+                        if card_pos not in immutable_positions:
+                            best_two = two_card
+                            best_position = card_pos
+                            break  # Take the first available one
+                
+                if best_two and best_position:
+                    move = Move(
+                        from_row=best_position[0],
+                        from_col=best_position[1], 
+                        to_row=gap_row,
+                        to_col=gap_col,
+                        card=best_two
+                    )
+                    legal_moves.append(move)
+        
+        # Handle other gaps with normal logic
+        for gap_row, gap_col in other_gaps:
             # Find what card can legally fill this gap
             target_card = self._get_required_card_for_gap(state, gap_row, gap_col)
             
@@ -97,6 +149,18 @@ class MoveGenerator:
             )
             legal_moves.append(move)
         
+        # Diagnostic logging
+        if self.enable_diagnostics:
+            try:
+                from .diagnostics import create_diagnostics, DiagnosticMetrics
+                diagnostics = create_diagnostics()
+                metrics = DiagnosticMetrics()
+                metrics.move_generation_time = time.time() - start_time
+                diagnostics.log_move_generation(state, legal_moves, metrics)
+                diagnostics.log_edge_case_handling(state, self)
+            except ImportError:
+                pass  # Diagnostics not available
+        
         return legal_moves
     
     def _get_required_card_for_gap(self, state: GameState, gap_row: int, gap_col: int) -> Optional[Card]:
@@ -112,12 +176,22 @@ class MoveGenerator:
             Card that can fill the gap, or None if gap cannot be filled
         """
         if gap_col == 0:
-            # First column gaps can only be filled with 2s
-            # We need to determine which suit's 2 to return
-            # For now, we'll check all suits and return the first 2 we find on the board
+            # First column gaps can only be filled with 2s that are not already in first positions
+            # Check which 2s are available (not already in first column)
+            occupied_first_column_suits = set()
+            for row in range(state.ROWS):
+                first_card = state.get_card(row, 0)
+                if first_card is not None and first_card.rank == Rank.TWO:
+                    occupied_first_column_suits.add(first_card.suit)
+            
+            # Find available 2s not in first column
             for suit in Suit:
+                if suit in occupied_first_column_suits:
+                    continue  # This suit's 2 is already in first column
+                
                 two_card = Card(Rank.TWO, suit)
-                if self._find_card_position(state, two_card) is not None:
+                card_pos = self._find_card_position(state, two_card)
+                if card_pos is not None and card_pos[1] != 0:  # Found 2 not in first column
                     return two_card
             return None
         
@@ -250,14 +324,17 @@ class MoveGenerator:
         return count
 
 
-def create_move_generator() -> MoveGenerator:
+def create_move_generator(enable_diagnostics: bool = False) -> MoveGenerator:
     """
     Factory function to create a MoveGenerator instance.
     
     This follows the dependency injection principle for better testability
     and future extensibility.
     
+    Args:
+        enable_diagnostics: Enable diagnostic logging
+    
     Returns:
         Configured MoveGenerator instance
     """
-    return MoveGenerator()
+    return MoveGenerator(enable_diagnostics=enable_diagnostics)

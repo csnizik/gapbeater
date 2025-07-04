@@ -42,47 +42,88 @@ class GameManager:
             exit(0)
 
     def analyze_layout(self, layout, handler, validator, game_id):
-        print("Analyzing...")
+        """
+        Analyze the current game layout using core game state representation and move generator.
         
-        # Initialize simulator components following PROJECT_CONTEXT.md principles
-        try:
-            from src.simulator.optimizer import create_strategic_optimizer
-            optimizer = create_strategic_optimizer()
-            
-            # Convert current board to simulator format
-            board_cards = []
-            for card in self.current_game[0]:
-                if card == "" or card is None:
-                    board_cards.append("--")
-                else:
-                    board_cards.append(card)
-            
-            # Perform blind strategy analysis (Phase 1)
-            phase_result = optimizer.analyze_blind_strategy(board_cards)
-            
-            print("Completed analysis. Here are your recommended moves:")
-            
-            if phase_result.recommended_moves:
-                for i, move in enumerate(phase_result.recommended_moves[:5]):  # Show up to 5 moves
-                    print(f"{i+1}. {move.to_compact_string()}")
-                    
-                if len(phase_result.recommended_moves) > 5:
-                    print(f"... and {len(phase_result.recommended_moves) - 5} more moves")
-                    
-                print(f"\nPosition evaluation: {phase_result.evaluation.total_score:.1f}")
-                
-                if phase_result.is_winning:
-                    print("🎉 This position can be won!")
-                else:
-                    print("Position analysis complete. Reshuffle may be needed.")
+        This method integrates the GameState and MoveGenerator components to provide
+        comprehensive analysis of the current position, including move generation,
+        performance metrics, and diagnostic logging.
+        
+        Args:
+            layout: Layout renderer for display
+            handler: Input handler for user interaction
+            validator: Card validator for input validation  
+            game_id: Unique identifier for the game session
+        """
+        print("Analyzing layout using core game state representation...")
+        
+        # Import simulator components
+        from src.simulator.game_state import create_initial_state
+        from src.simulator.move_gen import create_move_generator
+        from src.simulator.diagnostics import create_diagnostics, measure_performance
+        
+        # Convert current board to simulator format
+        board_cards = []
+        for card in self.current_game[0]:
+            if card == "" or card is None:
+                board_cards.append("--")
             else:
-                print("No legal moves available. Reshuffle required.")
-                
-        except ImportError as e:
-            # Fallback to placeholder if simulator not available
-            print("Advanced simulator not available, using basic analysis...")
-            time.sleep(1)
-            print("Completed analysis. Here are your recommended moves:")
+                board_cards.append(card)
+        
+        # Create game state with diagnostic logging enabled
+        state = create_initial_state(board_cards, enable_diagnostics=True)
+        move_gen = create_move_generator(enable_diagnostics=True)
+        
+        # Generate legal moves
+        legal_moves = move_gen.generate_legal_moves(state)
+        
+        print("Completed analysis. Here are your legal moves:")
+        
+        if legal_moves:
+            for i, move in enumerate(legal_moves):
+                print(f"{i+1}. {move.to_compact_string()}")
+            
+            print(f"\nTotal legal moves: {len(legal_moves)}")
+            
+            # Performance analysis
+            print("\nPerforming performance analysis...")
+            diagnostics = create_diagnostics()
+            performance_metrics = measure_performance(state, move_gen, iterations=1000)
+            diagnostics.log_performance_metrics(performance_metrics, position_count=1000)
+            
+            total_time = (performance_metrics.hash_generation_time + 
+                         performance_metrics.copy_time + 
+                         performance_metrics.move_generation_time)
+            if total_time > 0:
+                positions_per_second = 1000 / total_time
+                print(f"Performance: {positions_per_second:.1f} positions/second")
+                target_met = "✓" if positions_per_second >= 1000 else "✗"
+                print(f"Target (>1000 pos/sec): {target_met}")
+        else:
+            print("No legal moves available.")
+            
+            # Check why no moves are available
+            gaps = state.get_gaps()
+            immutable_positions = state.get_immutable_positions()
+            
+            print(f"\nDiagnostic information:")
+            print(f"- Gaps on board: {len(gaps)}")
+            print(f"- Immutable positions: {len(immutable_positions)}")
+            
+            # Analyze each gap
+            for gap_row, gap_col in gaps:
+                required_card = move_gen._get_required_card_for_gap(state, gap_row, gap_col)
+                if required_card is None:
+                    print(f"- Gap R{gap_row+1}C{gap_col+1}: Cannot be filled (King/gap to left)")
+                else:
+                    card_pos = move_gen._find_card_position(state, required_card)
+                    if card_pos is None:
+                        print(f"- Gap R{gap_row+1}C{gap_col+1}: Needs {required_card} (not on board)")
+                    elif card_pos in immutable_positions:
+                        print(f"- Gap R{gap_row+1}C{gap_col+1}: Needs {required_card} (immutable)")
+        
+        print(f"\nDiagnostic log saved to: debug/gamestate_diagnostics.log")
+        print("Review the log file for detailed performance metrics and validation data.")
             print("4C -> R2C4")
             print("XD -> R1C9")
             print("8S -> R4C5")

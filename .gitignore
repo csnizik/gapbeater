@@ -16,3 +16,6 @@ saves/
 # Ignore system files
 .DS_Store
 Thumbs.db
+
+# Ignore diagnostic logs
+debug/gamestate_diagnostics.log

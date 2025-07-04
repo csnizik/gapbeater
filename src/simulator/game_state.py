@@ -98,13 +98,17 @@ class GameState:
     COLS = 13
     TOTAL_POSITIONS = ROWS * COLS
     
-    def __init__(self, board: Optional[List[Optional[Card]]] = None):
+    def __init__(self, board: Optional[List[Optional[Card]]] = None, enable_diagnostics: bool = False):
         """
         Initialize game state.
         
         Args:
             board: List of 52 positions (4 rows × 13 cols), None represents gaps
+            enable_diagnostics: Enable diagnostic logging
         """
+        import time
+        start_time = time.time()
+        
         if board is None:
             self.board: List[Optional[Card]] = [None] * self.TOTAL_POSITIONS
         else:
@@ -116,6 +120,18 @@ class GameState:
         self._gap_positions: Set[int] = set()
         self._zobrist_hash: Optional[int] = None
         self._update_derived_state()
+        
+        # Diagnostic logging
+        if enable_diagnostics:
+            try:
+                from .diagnostics import create_diagnostics, DiagnosticMetrics
+                diagnostics = create_diagnostics()
+                metrics = DiagnosticMetrics()
+                metrics.initialization_time = time.time() - start_time
+                diagnostics.log_initialization(self, self.board, metrics)
+                diagnostics.log_immutable_sequence_detection(self)
+            except ImportError:
+                pass  # Diagnostics not available
     
     def _update_derived_state(self) -> None:
         """Update gap positions and immutable sequences."""
@@ -237,13 +253,14 @@ class GameState:
         return self.get_zobrist_hash()
 
 
-def create_initial_state(card_strings: List[str]) -> GameState:
+def create_initial_state(card_strings: List[str], enable_diagnostics: bool = False) -> GameState:
     """
     Create initial game state from list of card strings.
     
     Args:
         card_strings: List of 52 card strings (e.g., ['4C', '--', 'XD', ...])
                      Use '--' for gaps
+        enable_diagnostics: Enable diagnostic logging
     
     Returns:
         GameState initialized with the given cards
@@ -258,4 +275,4 @@ def create_initial_state(card_strings: List[str]) -> GameState:
         else:
             board.append(Card.from_string(card_str))
     
-    return GameState(board)
+    return GameState(board, enable_diagnostics=enable_diagnostics)
