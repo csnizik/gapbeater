@@ -26,25 +26,28 @@ An intelligent simulator and strategy optimizer for Gaps (also known as Addictio
   - If there's a 5♥ to the left of a gap, only the 6♥ can fill that gap
   - If there's a 2♠ to the left of a gap, only the 3♠ can fill that gap
 - **Unplayable Gaps**:
-  - Gaps in the first position of any row (no card to the left)
   - Gaps immediately to the right of a King (no card higher than King)
   - Gaps immediately to the right of another gap
 
 ### Special Rules
 
-- **Starting Sequences**: The only way to start a sequence is by placing a 2 in the first position of any row
-- **Immutable Sequences**: Once a 2 is correctly placed in the first position, it and any subsequent correctly placed cards in sequence (2, 3, 4... of same suit) become locked and cannot be moved, even during reshuffles
+- **Starting Sequences**: The only way to start a sequence is by placing a 2 in the first position of any row. The first position in a row is the only position that doesn't require a lower card to its left.
+- **Immutable Sequences**: Once a 2 is correctly placed in the first position, it and any subsequent correctly placed same-suit cards in sequence (2, 3, 4... of same suit) become locked and cannot be moved, even during reshuffles.
 - **Maximum Moves**: At any given time, there are at most 4 legal moves available (one per gap)
 
 ### Reshuffle Mechanism
 
 - When no legal moves remain, all cards except correctly placed sequences are collected
-- These cards are shuffled and redistributed to the empty positions
+- Correctly placed cards remain immutable sequences and are not included in any reshuffles
+- The reshuffled cards are randomly redistributed to the empty positions
 - The 4 gaps are also shuffled and randomly placed among the redistributed cards
 - **Reshuffle Limit**: Maximum of 3 reshuffles per game
+- **Win Condition:** All 4 suits need to be arranged in rows, starting with the 2 and ending with the K; the last space in each row will be the gap. This is considered a win
 - **End Condition**: If no legal moves exist after the 3rd reshuffle, the game ends
 
 ## Strategic Approach
+
+The gapbeater app does not play the game, deal the cards or perform any randomization. It accepts input from the user, starting with the row positions in the initial deal of a game. With that information, it begins running simulations to find best possible moves. Assuming it does not achieve the win condition from the initial card positions, once the app has determined a best possible set of moves, it gives those to the player and allows the player to re-input the result of the first redeal (which doesn't affect any correctly placed sequences). The app continues this approach until either achieving a win condition or an end condition. After reaching either a win or non-winning end, the app then restarts the simulation, this time having foreknowledge of what each shuffle will look like. In its second phase, it can use this foreknowledge to improve upon its original strategy.
 
 ### Immediate Tactical Goals
 
@@ -127,7 +130,7 @@ python main.py
 
 ### Input Format
 
-- **Cards**: `rank + suit` (e.g., "2h", "xd", "ks")
+- **Cards**: `rank + suit` (e.g., "2h", "xd", "ks", where "x" represents 10)
 - **Ranks**: 2-9, x (10), j (Jack), q (Queen), k (King)
 - **Suits**: c (Clubs), d (Diamonds), h (Hearts), s (Spades)
 - **Gaps**: "-" or "g"
