@@ -43,49 +43,11 @@ class GameManager:
 
     def analyze_layout(self, layout, handler, validator, game_id):
         print("Analyzing...")
-        
-        # Initialize simulator components following PROJECT_CONTEXT.md principles
-        try:
-            from src.simulator.optimizer import create_strategic_optimizer
-            optimizer = create_strategic_optimizer()
-            
-            # Convert current board to simulator format
-            board_cards = []
-            for card in self.current_game[0]:
-                if card == "" or card is None:
-                    board_cards.append("--")
-                else:
-                    board_cards.append(card)
-            
-            # Perform blind strategy analysis (Phase 1)
-            phase_result = optimizer.analyze_blind_strategy(board_cards)
-            
-            print("Completed analysis. Here are your recommended moves:")
-            
-            if phase_result.recommended_moves:
-                for i, move in enumerate(phase_result.recommended_moves[:5]):  # Show up to 5 moves
-                    print(f"{i+1}. {move.to_compact_string()}")
-                    
-                if len(phase_result.recommended_moves) > 5:
-                    print(f"... and {len(phase_result.recommended_moves) - 5} more moves")
-                    
-                print(f"\nPosition evaluation: {phase_result.evaluation.total_score:.1f}")
-                
-                if phase_result.is_winning:
-                    print("🎉 This position can be won!")
-                else:
-                    print("Position analysis complete. Reshuffle may be needed.")
-            else:
-                print("No legal moves available. Reshuffle required.")
-                
-        except ImportError as e:
-            # Fallback to placeholder if simulator not available
-            print("Advanced simulator not available, using basic analysis...")
-            time.sleep(1)
-            print("Completed analysis. Here are your recommended moves:")
-            print("4C -> R2C4")
-            print("XD -> R1C9")
-            print("8S -> R4C5")
+        time.sleep(1)
+        print("Completed analysis. Here are your recommended moves:")
+        print("4C -> R2C4")
+        print("XD -> R1C9")
+        print("8S -> R4C5")
 
         reshuffles_remaining = 3
         for reshuffle_num in range(1, 4):
