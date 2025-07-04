@@ -6,9 +6,6 @@ __pycache__/
 venv/
 env/
 
-# Ignore saved game files
-saves/
-
 # Ignore IDE-specific files
 .vscode/
 .idea/
