@@ -1,5 +1,7 @@
 import uuid
 import time
+import json
+import os
 from src.layout import LayoutRenderer
 from src.input_handler import InputHandler
 from src.validator import CardValidator
@@ -11,6 +13,59 @@ class GameManager:
 
     def open_saved_game(self):
         print("[Stub] Open saved game functionality is not yet implemented.")
+
+    def sample_data_handler(self):
+        """Load predefined sample game data for testing and demonstration."""
+        sample_file = os.path.join("saves", "31870.json")
+        
+        if not os.path.exists(sample_file):
+            print(f"Sample data file {sample_file} not found.")
+            return
+        
+        try:
+            with open(sample_file, 'r') as f:
+                sample_data = json.load(f)
+        except (json.JSONDecodeError, IOError) as e:
+            print(f"Error loading sample data: {e}")
+            return
+        
+        if len(sample_data) != 52:
+            print(f"Invalid sample data: expected 52 cards, got {len(sample_data)}")
+            return
+        
+        game_id = "31870"
+        print(f"Loading sample data (Game ID: {game_id})...")
+        
+        # Set up the game state
+        self.saved_games[game_id] = []
+        layout = LayoutRenderer()
+        validator = CardValidator()
+        handler = InputHandler(layout, validator)
+        
+        # Populate the layout with sample data
+        for i, card in enumerate(sample_data):
+            row, col = divmod(i, 13)
+            layout.update_cell(row, col, card)
+        
+        self.current_game[0] = sample_data
+        
+        print("\nSample data loaded successfully!")
+        print("Displaying loaded sample data for verification:\n")
+        
+        # Display the full board using the layout renderer
+        layout.display_full_board(sample_data)
+        
+        print("\nSample data structure verification:")
+        for i in range(4):
+            row = sample_data[i * 13:(i + 1) * 13]
+            print(f"Row {i+1}: {row}")
+        
+        choice = input("\nSample data loaded. [A]nalyze or [E]xit? ").strip().lower()
+        if choice == 'a':
+            self.analyze_layout(layout, handler, validator, game_id)
+        else:
+            print("Exiting to main menu.")
+            return
 
     def create_new_game(self):
         game_id = input("Enter a Game ID or press Enter to skip: ").strip()
@@ -106,7 +161,13 @@ class GameManager:
             reshuffles_remaining -= 1
 
         print("\nFinal Layout:")
-        layout.display_full_board(self.current_game[3])
+        # Find the last populated reshuffle or use the initial deal
+        final_layout_index = 0
+        for i in range(3, -1, -1):
+            if self.current_game[i]:
+                final_layout_index = i
+                break
+        layout.display_full_board(self.current_game[final_layout_index])
         print("Ready to begin analyzing.")
 
     def compute_prepopulated_cells(self, flat_board):
