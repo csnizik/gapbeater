@@ -273,16 +273,20 @@ class StrategicOptimizer:
         if len(new_cards) != GameState.TOTAL_POSITIONS:
             raise ValueError(f"Must provide exactly {GameState.TOTAL_POSITIONS} card positions")
         
-        # Start with new card layout
-        new_state = create_initial_state(new_cards)
-        
-        # Preserve immutable sequences from previous state
+        # Get immutable sequences from previous state first
         immutable_positions = prev_state.get_immutable_positions()
+        
+        # Create modified card list preserving immutable sequences
+        final_cards = new_cards.copy()
         
         for row, col in immutable_positions:
             preserved_card = prev_state.get_card(row, col)
             if preserved_card is not None:
-                new_state.set_card(row, col, preserved_card)
+                pos = row * GameState.COLS + col
+                final_cards[pos] = str(preserved_card)
+        
+        # Create new state with preserved sequences already in place
+        new_state = create_initial_state(final_cards)
         
         return new_state
     
