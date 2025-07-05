@@ -3,7 +3,7 @@ import time
 from src.layout import LayoutRenderer
 from src.input_handler import InputHandler
 from src.validator import CardValidator
-from src.simulator.game_state import GameState, GameStateDiagnostics
+from src.simulator.game_state import GameState
 
 class GameManager:
     def __init__(self):
