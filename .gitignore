@@ -13,3 +13,6 @@ env/
 # Ignore system files
 .DS_Store
 Thumbs.db
+
+# Ignore debug logs (except for initial implementation)
+debug/*.log

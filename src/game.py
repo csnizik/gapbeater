@@ -3,6 +3,7 @@ import time
 from src.layout import LayoutRenderer
 from src.input_handler import InputHandler
 from src.validator import CardValidator
+from src.simulator.game_state import GameState
 
 class GameManager:
     def __init__(self):
@@ -42,12 +43,34 @@ class GameManager:
             exit(0)
 
     def analyze_layout(self, layout, handler, validator, game_id):
-        print("Analyzing...")
-        time.sleep(1)
-        print("Completed analysis. Here are your recommended moves:")
-        print("4C -> R2C4")
-        print("XD -> R1C9")
-        print("8S -> R4C5")
+        """Analyze game layout using GameState representation"""
+        print("Initializing GameState analysis...")
+        
+        # Create GameState with diagnostics enabled
+        game_state = GameState(enable_diagnostics=True)
+        
+        # Load initial board into GameState
+        initial_board = self.current_game[0]
+        if game_state.load_from_flat_board(initial_board):
+            print("✓ Board loaded successfully into GameState")
+            
+            # Analyze current position
+            legal_moves = game_state.get_legal_moves()
+            print(f"Analysis complete. Found {len(legal_moves)} legal moves:")
+            
+            # Display move recommendations using actual GameState analysis
+            if legal_moves:
+                for i, (card, (target_row, target_col)) in enumerate(legal_moves[:5]):  # Show first 5 moves
+                    rank_map = {2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
+                               8: '8', 9: '9', 10: 'X', 11: 'J', 12: 'Q', 13: 'K'}
+                    suit_map = {0: 'C', 1: 'D', 2: 'H', 3: 'S'}
+                    card_str = f"{rank_map[card.rank]}{suit_map[card.suit]}"
+                    print(f"  {card_str} -> R{target_row+1}C{target_col+1}")
+            else:
+                print("  No legal moves available - reshuffle needed")
+        else:
+            print("✗ Failed to load board into GameState")
+            return
 
         reshuffles_remaining = 3
         for reshuffle_num in range(1, 4):
@@ -59,17 +82,23 @@ class GameManager:
 
             print(f"\nStarting reshuffle {reshuffle_num}/3")
 
-            # Get prepopulated cards + positions to skip
+            # Get prepopulated cards + positions to skip using GameState immutable sequence detection
             prev_board = self.current_game[reshuffle_num - 1]
             skip_cells, prepopulated = self.compute_prepopulated_cells(prev_board)
 
             board = handler.collect_card_inputs(game_id=game_id, skip_cells=skip_cells, prepopulated_cards=prepopulated)
             self.current_game[reshuffle_num] = board
+            
+            # Update GameState with new board and analyze
+            if game_state.load_from_flat_board(board):
+                legal_moves = game_state.get_legal_moves()
+                print(f"After reshuffle: {len(legal_moves)} legal moves available")
+            
             reshuffles_remaining -= 1
 
         print("\nFinal Layout:")
         layout.display_full_board(self.current_game[3])
-        print("Ready to begin analyzing.")
+        print("Analysis complete. Diagnostic data saved to debug/gamestate_diagnostics.log")
 
     def compute_prepopulated_cells(self, flat_board):
         skip_cells = set()
