@@ -32,7 +32,7 @@ An intelligent simulator and strategy optimizer for Gaps (also known as Addictio
 ### Special Rules
 
 - **Starting Sequences**: The only way to start a sequence is by placing a 2 in the first position of any row. The first position in a row is the only position that doesn't require a lower card to its left.
-- **Immutable Sequences**: Once a 2 is correctly placed in the first position, it and any subsequent correctly placed same-suit cards in sequence (2, 3, 4... of same suit) become locked and cannot be moved, even during reshuffles.
+- **Immutable Sequences**: Once a 2 is correctly placed in the first position, it and any subsequent correctly placed same-suit cards in sequence (2, 3, 4... of the same suit) become locked and cannot be moved, even during reshuffles.
 - **Maximum Moves**: At any given time, there are at most 4 legal moves available (one per gap)
 
 ### Reshuffle Mechanism
