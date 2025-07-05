@@ -369,6 +369,7 @@ class GameState:
 
             # Detect immutable sequences after loading
             self.detect_immutable_sequences()
+            self._invalidate_caches()  # Invalidate caches to prevent stale data
 
             if self.diagnostics:
                 self.diagnostics.log_initialization(self, f"loaded_from_flat_board")
