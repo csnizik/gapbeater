@@ -328,7 +328,7 @@ class GameState:
             for row in self.board
         )
         # Use frozenset directly since gaps is already a frozenset
-        return hash((board_tuple, self.gaps))
+        return hash((board_tuple, self.gaps, self.immutable_sequences))
 
     def __eq__(self, other) -> bool:
         """Equality comparison for transposition tables"""
