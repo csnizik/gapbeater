@@ -295,8 +295,8 @@ class GameState:
 
         new_state = GameState(enable_diagnostics=False)  # Don't enable diagnostics on copies
 
-        # Deep copy board using copy.deepcopy for CardPosition objects
-        new_state.board = copy.deepcopy(self.board)
+        # Shallow copy board using row.copy() for CardPosition objects
+        new_state.board = [row.copy() for row in self.board]
 
         # Copy frozensets (these are already immutable)
         new_state.gaps = self.gaps
