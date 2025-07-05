@@ -5,7 +5,7 @@ This module provides optimized data structures for representing game positions,
 following performance-first principles with target of 50,000+ positions/second.
 """
 
-from typing import List, Tuple, Optional, Set, FrozenSet
+from typing import List, Tuple, Optional, FrozenSet
 from dataclasses import dataclass
 import sys
 import os
