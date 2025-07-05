@@ -1,0 +1,29 @@
+2025-07-05 03:21:20,882 - INFO - === GameState Initialization ===
+2025-07-05 03:21:20,882 - INFO - Board configuration: empty
+2025-07-05 03:21:20,882 - INFO - ✓ Board structure validation passed
+2025-07-05 03:21:20,882 - INFO - Initial gap count: 0
+2025-07-05 03:21:20,882 - INFO - Initial immutable sequence count: 0
+2025-07-05 03:21:20,882 - INFO - === Immutable Sequence Detection ===
+2025-07-05 03:21:20,882 - INFO - Row 0: Found immutable sequence of 3 cards
+2025-07-05 03:21:20,882 - DEBUG -   Positions: [(0, 0), (0, 1), (0, 2)]
+2025-07-05 03:21:20,882 - DEBUG - Row 1: No immutable sequence found
+2025-07-05 03:21:20,882 - DEBUG - Row 2: No immutable sequence found
+2025-07-05 03:21:20,882 - DEBUG - Row 3: No immutable sequence found
+2025-07-05 03:21:20,882 - INFO - === GameState Initialization ===
+2025-07-05 03:21:20,882 - INFO - Board configuration: loaded_from_flat_board
+2025-07-05 03:21:20,882 - INFO - ✓ Board structure validation passed
+2025-07-05 03:21:20,882 - INFO - Initial gap count: 42
+2025-07-05 03:21:20,882 - INFO - Initial immutable sequence count: 3
+2025-07-05 03:21:20,882 - DEBUG - === Board State after_loading ===
+2025-07-05 03:21:20,882 - DEBUG - Row 0: 2C 3C 4C -- 6D 7D -- 9H XH JH QH KH --
+2025-07-05 03:21:20,882 - DEBUG - Row 1: -- -- -- -- -- -- -- -- -- -- -- -- --
+2025-07-05 03:21:20,882 - DEBUG - Row 2: -- -- -- -- -- -- -- -- -- -- -- -- --
+2025-07-05 03:21:20,882 - DEBUG - Row 3: -- -- -- -- -- -- -- -- -- -- -- -- --
+2025-07-05 03:21:20,883 - INFO - Move generation: 0 legal moves in 0.000031s
+2025-07-05 03:21:20,883 - DEBUG - Average move generation time: 0.000031s
+2025-07-05 03:21:20,883 - INFO - === Immutable Sequence Detection ===
+2025-07-05 03:21:20,883 - INFO - Row 0: Found immutable sequence of 3 cards
+2025-07-05 03:21:20,883 - DEBUG -   Positions: [(0, 0), (0, 1), (0, 2)]
+2025-07-05 03:21:20,883 - DEBUG - Row 1: No immutable sequence found
+2025-07-05 03:21:20,883 - DEBUG - Row 2: No immutable sequence found
+2025-07-05 03:21:20,883 - DEBUG - Row 3: No immutable sequence found
