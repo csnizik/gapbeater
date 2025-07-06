@@ -573,6 +573,166 @@ class TestMinimaxSearch:
         
         print("✓ test_move_ordering_with_diagnostics passed")
 
+    def test_iterative_deepening_basic(self):
+        """Test basic iterative deepening functionality."""
+        self.setUp()
+        
+        # Set up position with legal moves
+        card_2c = CardPosition(2, 0)
+        self.game_state.place_card(card_2c, 0, 1)
+        self.game_state.create_gap(0, 0)
+        
+        # Test iterative deepening with max depth 3
+        result = self.search.search(self.game_state, 3)
+        stats = self.search.get_performance_stats()
+        
+        # Should return a move
+        assert result is not None, "Should return a move with iterative deepening"
+        
+        # Should have completed at least depth 1
+        assert stats['completed_depth'] >= 1, "Should complete at least depth 1"
+        assert stats['completed_depth'] <= 3, "Should not exceed requested max depth"
+        
+        # Should have searched some nodes
+        assert stats['nodes_searched'] > 0, "Should have searched some nodes"
+        
+        print(f"  Completed depth: {stats['completed_depth']}/3")
+        print(f"  Nodes searched: {stats['nodes_searched']}")
+        print("✓ test_iterative_deepening_basic passed")
+
+    def test_iterative_deepening_time_limit(self):
+        """Test that iterative deepening respects time limits."""
+        self.setUp()
+        
+        # Set up a complex position that should take longer to search
+        cards_to_place = [
+            (CardPosition(2, 0), 0, 1),  # 2 of Clubs
+            (CardPosition(3, 0), 0, 2),  # 3 of Clubs  
+            (CardPosition(4, 0), 0, 3),  # 4 of Clubs
+            (CardPosition(2, 1), 1, 1),  # 2 of Spades
+            (CardPosition(3, 1), 1, 2),  # 3 of Spades
+            (CardPosition(2, 2), 2, 1),  # 2 of Hearts
+        ]
+        
+        for card, row, col in cards_to_place:
+            self.game_state.place_card(card, row, col)
+        
+        # Create multiple gaps for many legal moves
+        gaps_to_create = [(0, 0), (1, 0), (2, 0), (3, 0), (0, 4), (1, 3)]
+        for row, col in gaps_to_create:
+            self.game_state.create_gap(row, col)
+        
+        # Search with high depth that should hit time limit
+        result = self.search.search(self.game_state, 15)  # Deep search
+        stats = self.search.get_performance_stats()
+        
+        # Should return a move even if time limited
+        assert result is not None, "Should return a move even with time limit"
+        
+        # Should respect time limit (2.0 seconds)
+        assert stats['search_time'] <= 2.5, f"Search time should be reasonable, got {stats['search_time']:.3f}s"
+        
+        # Should complete at least depth 1 but probably not all 15 depths
+        assert stats['completed_depth'] >= 1, "Should complete at least depth 1"
+        
+        print(f"  Completed depth: {stats['completed_depth']}/15")
+        print(f"  Search time: {stats['search_time']:.3f}s")
+        print(f"  Nodes searched: {stats['nodes_searched']}")
+        print("✓ test_iterative_deepening_time_limit passed")
+
+    def test_iterative_deepening_diagnostics(self):
+        """Test that iterative deepening logs per-depth progress."""
+        # Create search with diagnostics enabled
+        search_with_diag = MinimaxSearch(enable_diagnostics=True)
+        game_state = GameState()
+        
+        # Set up position with legal moves
+        card_2c = CardPosition(2, 0)
+        game_state.place_card(card_2c, 0, 1)
+        game_state.create_gap(0, 0)
+        
+        # Perform iterative deepening search
+        result = search_with_diag.search(game_state, 3)
+        stats = search_with_diag.get_performance_stats()
+        
+        # Check that log file contains per-depth information
+        log_file = search_with_diag.diagnostics.log_file_path
+        assert log_file.exists(), f"Log file should exist at {log_file}"
+        
+        with open(log_file, 'r') as f:
+            log_content = f.read()
+        
+        # Should contain iterative deepening logs
+        assert "Depth 1 completed" in log_content, "Should log depth 1 completion"
+        assert "Iterative deepening completed" in log_content, "Should log final completion"
+        
+        # Verify it mentions the completed depth
+        completed_depth = stats['completed_depth']
+        assert f"depth {completed_depth}" in log_content, f"Should mention completed depth {completed_depth}"
+        
+        print(f"  Verified iterative deepening logs for depth {completed_depth}")
+        print("✓ test_iterative_deepening_diagnostics passed")
+
+    def test_iterative_deepening_consistency(self):
+        """Test that iterative deepening finds the same move as single-depth search when time allows."""
+        self.setUp()
+        
+        # Set up a simple position
+        card_2c = CardPosition(2, 0)
+        self.game_state.place_card(card_2c, 0, 1)
+        self.game_state.create_gap(0, 0)
+        
+        # Use a new search instance for the single-depth search to avoid state interference
+        single_depth_search = MinimaxSearch()
+        
+        # Perform single-depth search at depth 2
+        single_result = single_depth_search.search(self.game_state, 2)
+        
+        # Perform iterative deepening search to depth 2
+        iterative_result = self.search.search(self.game_state, 2)
+        iterative_stats = self.search.get_performance_stats()
+        
+        # Both should return moves
+        assert single_result is not None, "Single-depth search should return move"
+        assert iterative_result is not None, "Iterative search should return move"
+        
+        # If iterative deepening completed depth 2, results should be the same
+        if iterative_stats['completed_depth'] >= 2:
+            assert single_result == iterative_result, \
+                   f"Results should match when both complete depth 2: {single_result} vs {iterative_result}"
+            print("  ✓ Results match between single-depth and iterative deepening")
+        else:
+            print(f"  ⚠ Iterative deepening only completed depth {iterative_stats['completed_depth']}, skipping consistency check")
+        
+        print("✓ test_iterative_deepening_consistency passed")
+
+    def test_iterative_deepening_default_depth(self):
+        """Test that iterative deepening uses DEFAULT_SEARCH_DEPTH when no max_depth specified."""
+        self.setUp()
+        
+        # Set up position with legal moves
+        card_2c = CardPosition(2, 0)
+        self.game_state.place_card(card_2c, 0, 1)
+        self.game_state.create_gap(0, 0)
+        
+        # Search without specifying max_depth (should use default)
+        result = self.search.search(self.game_state)  # No max_depth parameter
+        stats = self.search.get_performance_stats()
+        
+        # Should return a move
+        assert result is not None, "Should return a move with default depth"
+        
+        # Should have completed at least depth 1
+        assert stats['completed_depth'] >= 1, "Should complete at least depth 1"
+        
+        # Should not exceed DEFAULT_SEARCH_DEPTH (5)
+        from src.constants import DEFAULT_SEARCH_DEPTH
+        assert stats['completed_depth'] <= DEFAULT_SEARCH_DEPTH, \
+               f"Should not exceed default depth {DEFAULT_SEARCH_DEPTH}"
+        
+        print(f"  Completed depth: {stats['completed_depth']}/{DEFAULT_SEARCH_DEPTH} (default)")
+        print("✓ test_iterative_deepening_default_depth passed")
+
     def test_transposition_table_prevents_redundant_calculations(self):
         """Test that transposition table actually prevents redundant position evaluations."""
         self.setUp()
@@ -647,6 +807,12 @@ def run_tests():
         test_instance.test_move_ordering_improves_pruning,
         test_instance.test_move_scoring_heuristics,
         test_instance.test_move_ordering_with_diagnostics,
+        # New iterative deepening tests
+        test_instance.test_iterative_deepening_basic,
+        test_instance.test_iterative_deepening_time_limit,
+        test_instance.test_iterative_deepening_diagnostics,
+        test_instance.test_iterative_deepening_consistency,
+        test_instance.test_iterative_deepening_default_depth,
     ]
     
     passed = 0

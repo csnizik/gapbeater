@@ -132,6 +132,7 @@ class MinimaxSearch:
         self.pruned_nodes = 0
         self.max_depth_reached = 0
         self.search_time = 0.0
+        self.completed_depth = 0  # Track deepest completed iteration in iterative deepening
         
         # Additional metrics for diagnostics
         self.depth_sum = 0  # Sum of all node depths for average calculation
@@ -146,22 +147,31 @@ class MinimaxSearch:
         # Diagnostic logging
         self.diagnostics = SearchDiagnostics() if enable_diagnostics else None
     
-    def search(self, game_state: GameState, depth: int) -> Optional[Move]:
+    def search(self, game_state: GameState, max_depth: int = None) -> Optional[Move]:
         """
-        Search for the best move sequence from the given position.
+        Search for the best move using iterative deepening.
+        
+        Performs searches from depth=1 up to max_depth, returning the best move found
+        from the deepest completed iteration. Stops early if time limit is reached.
         
         Args:
             game_state: Current game state to search from
-            depth: Maximum depth to search (number of moves)
+            max_depth: Maximum depth to search (default: DEFAULT_SEARCH_DEPTH)
             
         Returns:
-            Optional[Move]: First move of best sequence, or None if no moves available
+            Optional[Move]: Best move found, or None if no moves available
         """
-        # Reset performance metrics
+        from ..constants import DEFAULT_SEARCH_DEPTH, MAX_SEARCH_TIME_SECONDS
+        
+        if max_depth is None:
+            max_depth = DEFAULT_SEARCH_DEPTH
+            
+        # Reset cumulative performance metrics
         self.nodes_searched = 0
         self.terminal_nodes = 0
         self.pruned_nodes = 0
         self.max_depth_reached = 0
+        self.completed_depth = 0
         self.depth_sum = 0
         self.branching_factor_sum = 0
         self.nodes_with_moves = 0
@@ -171,58 +181,102 @@ class MinimaxSearch:
         self.cache_hits = 0
         self.cache_misses = 0
         
-        start_time = time.perf_counter()
+        search_start_time = time.perf_counter()
+        
+        # Get legal moves from current position
+        legal_moves = game_state.get_legal_moves()
+        
+        if not legal_moves:
+            # No moves available
+            self.terminal_nodes = 1
+            self.search_time = time.perf_counter() - search_start_time
+            if self.diagnostics:
+                self.diagnostics.log_search_completion(0, 0.0, 0, 0.0, 0.0, 0, 0, 0)
+            return None
         
         # Log search start if diagnostics enabled
         if self.diagnostics:
-            legal_moves = game_state.get_legal_moves()
             position_info = f"{len(legal_moves)} legal moves available"
-            self.diagnostics.log_search_start(position_info, depth)
+            self.diagnostics.log_search_start(position_info, max_depth)
+        
+        best_move = None
+        best_overall_score = float('-inf')
+        completed_depth = 0
         
         try:
-            # Get legal moves from current position
-            legal_moves = game_state.get_legal_moves()
-            
-            if not legal_moves:
-                # No moves available
-                self.terminal_nodes = 1
-                if self.diagnostics:
-                    self.diagnostics.log_search_completion(0, 0.0, 0, 0.0, 0.0, 0, 0, 0)
-                return None
-            
-            best_move = None
-            best_score = float('-inf')
-            
-            # For single-player search, we can use a form of aspiration search
-            # Set a reasonable upper bound for beta based on evaluation range
-            initial_beta = 2.0  # Just above typical scores to enable some pruning
-            
-            # Order moves for better pruning efficiency
-            ordered_moves = self._order_moves(game_state, legal_moves)
-            
-            # Evaluate each possible first move
-            for move in ordered_moves:
-                try:
-                    # Execute the move to get new state
-                    new_state = self.move_executor.execute_move(game_state, move)
-                    
-                    # Search deeper from this position with alpha-beta bounds
-                    # Pass the current best score as alpha (lower bound)
-                    score = self._minimax(new_state, depth - 1, 1, best_score, initial_beta)
-                    
-                    # Track best move
-                    if score > best_score:
-                        best_score = score
-                        best_move = move
+            # Iterative deepening loop
+            for current_depth in range(1, max_depth + 1):
+                depth_start_time = time.perf_counter()
+                
+                # Check if we have enough time for another iteration
+                elapsed_time = depth_start_time - search_start_time
+                if elapsed_time > MAX_SEARCH_TIME_SECONDS * 0.8:  # Stop at 80% of time limit
+                    if self.diagnostics:
+                        self.diagnostics.logger.info(f"Early termination: Time limit approaching ({elapsed_time:.3f}s)")
+                    break
+                
+                # Reset per-depth metrics (preserve cumulative ones)
+                depth_nodes_start = self.nodes_searched
+                depth_terminal_start = self.terminal_nodes
+                depth_pruned_start = self.pruned_nodes
+                
+                best_depth_move = None
+                best_depth_score = float('-inf')
+                
+                # For single-player search, use aspiration search bounds
+                initial_beta = 2.0  # Just above typical scores to enable some pruning
+                
+                # Order moves for better pruning efficiency
+                ordered_moves = self._order_moves(game_state, legal_moves)
+                
+                # Evaluate each possible first move at current depth
+                for move in ordered_moves:
+                    try:
+                        # Execute the move to get new state
+                        new_state = self.move_executor.execute_move(game_state, move)
                         
-                except Exception:
-                    # Skip invalid moves
-                    continue
+                        # Search deeper from this position with alpha-beta bounds
+                        score = self._minimax(new_state, current_depth - 1, 1, best_depth_score, initial_beta)
+                        
+                        # Track best move for this depth
+                        if score > best_depth_score:
+                            best_depth_score = score
+                            best_depth_move = move
+                            
+                    except Exception:
+                        # Skip invalid moves
+                        continue
+                
+                # Update best overall move if this depth found something better
+                if best_depth_move is not None and best_depth_score > best_overall_score:
+                    best_overall_score = best_depth_score
+                    best_move = best_depth_move
+                
+                completed_depth = current_depth
+                self.completed_depth = completed_depth  # Store for performance stats
+                depth_time = time.perf_counter() - depth_start_time
+                
+                # Log per-depth completion if diagnostics enabled
+                if self.diagnostics:
+                    depth_nodes = self.nodes_searched - depth_nodes_start
+                    depth_terminal = self.terminal_nodes - depth_terminal_start
+                    depth_pruned = self.pruned_nodes - depth_pruned_start
+                    
+                    self.diagnostics.logger.info(f"Depth {current_depth} completed in {depth_time:.6f}s")
+                    self.diagnostics.logger.info(f"  Nodes: {depth_nodes}, Terminal: {depth_terminal}, Pruned: {depth_pruned}")
+                    self.diagnostics.logger.info(f"  Best move: {best_depth_move}, Score: {best_depth_score:.3f}")
+                
+                # Check time limit after completing this depth
+                total_elapsed = time.perf_counter() - search_start_time
+                if total_elapsed > MAX_SEARCH_TIME_SECONDS:
+                    if self.diagnostics:
+                        self.diagnostics.logger.info(f"Time limit reached after depth {current_depth}")
+                    break
             
             return best_move
             
         finally:
-            self.search_time = time.perf_counter() - start_time
+            self.search_time = time.perf_counter() - search_start_time
             
             # Log search completion if diagnostics enabled
             if self.diagnostics:
@@ -230,6 +284,7 @@ class MinimaxSearch:
                 avg_depth = self.depth_sum / max(self.nodes_searched, 1)
                 avg_branching_factor = self.branching_factor_sum / max(self.nodes_with_moves, 1)
                 
+                self.diagnostics.logger.info(f"Iterative deepening completed: depth {completed_depth}/{max_depth}")
                 self.diagnostics.log_search_completion(
                     self.nodes_searched,
                     self.search_time,
@@ -446,6 +501,7 @@ class MinimaxSearch:
             'terminal_nodes': self.terminal_nodes,
             'pruned_nodes': self.pruned_nodes,
             'max_depth_reached': self.max_depth_reached,
+            'completed_depth': self.completed_depth,  # Deepest completed iteration
             'search_time': self.search_time,
             'nodes_per_second': self.nodes_searched / max(self.search_time, 1e-9),
             'cache_hits': self.cache_hits,

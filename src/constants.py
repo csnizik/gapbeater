@@ -28,3 +28,4 @@ EMPTY_CELL_STR = "--"
 
 # --- Search Configuration ---
 DEFAULT_SEARCH_DEPTH = 5
+MAX_SEARCH_TIME_SECONDS = 2.0  # Maximum time allowed for iterative deepening search
