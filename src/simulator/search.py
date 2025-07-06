@@ -94,6 +94,13 @@ class SearchDiagnostics:
         if self.logger.isEnabledFor(logging.DEBUG):
             self.logger.debug(f"Evaluating node at depth {depth} with {legal_moves_count} legal moves")
 
+    def log_pruned_node(self, depth: int, alpha: float, beta: float):
+        """Log when a node is pruned by alpha-beta"""
+        if self.logger.isEnabledFor(logging.DEBUG):
+            self.logger.debug(f"Pruned node at depth {depth} (alpha={alpha:.3f}, beta={beta:.3f})")
+        # Also log at info level for statistics
+        self.logger.info(f"Alpha-beta pruning at depth {depth}")
+
 
 class MinimaxSearch:
     """
@@ -112,6 +119,7 @@ class MinimaxSearch:
         # Performance metrics
         self.nodes_searched = 0
         self.terminal_nodes = 0
+        self.pruned_nodes = 0
         self.max_depth_reached = 0
         self.search_time = 0.0
         
@@ -137,6 +145,7 @@ class MinimaxSearch:
         # Reset performance metrics
         self.nodes_searched = 0
         self.terminal_nodes = 0
+        self.pruned_nodes = 0
         self.max_depth_reached = 0
         self.depth_sum = 0
         self.branching_factor_sum = 0
@@ -164,14 +173,19 @@ class MinimaxSearch:
             best_move = None
             best_score = float('-inf')
             
+            # For single-player search, we can use a form of aspiration search
+            # Set a reasonable upper bound for beta based on evaluation range
+            initial_beta = 2.0  # Just above typical scores to enable some pruning
+            
             # Evaluate each possible first move
             for move in legal_moves:
                 try:
                     # Execute the move to get new state
                     new_state = self.move_executor.execute_move(game_state, move)
                     
-                    # Search deeper from this position
-                    score = self._minimax(new_state, depth - 1, 1)
+                    # Search deeper from this position with alpha-beta bounds
+                    # Pass the current best score as alpha (lower bound)
+                    score = self._minimax(new_state, depth - 1, 1, best_score, initial_beta)
                     
                     # Track best move
                     if score > best_score:
@@ -201,14 +215,19 @@ class MinimaxSearch:
                     avg_branching_factor
                 )
     
-    def _minimax(self, game_state: GameState, depth: int, current_depth: int) -> float:
+    def _minimax(self, game_state: GameState, depth: int, current_depth: int, alpha: float, beta: float) -> float:
         """
-        Recursive minimax search for sequential moves.
+        Recursive minimax search for sequential moves with alpha-beta pruning.
+        
+        For single-player search, alpha represents the best score found so far,
+        and beta represents a cutoff threshold above which we can stop searching.
         
         Args:
             game_state: Current game state
             depth: Remaining search depth
             current_depth: Current depth from root (for tracking)
+            alpha: Best score found so far (lower bound)
+            beta: Cutoff threshold (upper bound)
             
         Returns:
             float: Evaluation score for this position
@@ -237,17 +256,29 @@ class MinimaxSearch:
         # For single-player sequential search, we want the maximum score
         # from continuing to make moves
         best_score = float('-inf')
+        local_alpha = alpha
         
         for move in legal_moves:
             try:
                 # Execute move to get new state
                 new_state = self.move_executor.execute_move(game_state, move)
                 
-                # Recurse deeper
-                score = self._minimax(new_state, depth - 1, current_depth + 1)
+                # Recurse deeper with updated alpha bound
+                score = self._minimax(new_state, depth - 1, current_depth + 1, local_alpha, beta)
                 
-                # Track best score
-                best_score = max(best_score, score)
+                # Track best score and update alpha
+                if score > best_score:
+                    best_score = score
+                    local_alpha = max(local_alpha, score)
+                
+                # Alpha-beta pruning: if current best score >= beta,
+                # we can prune remaining moves
+                if best_score >= beta:
+                    # Beta cutoff - we've found a move good enough
+                    self.pruned_nodes += 1
+                    if self.diagnostics:
+                        self.diagnostics.log_pruned_node(current_depth, local_alpha, beta)
+                    break
                 
             except Exception:
                 # Skip invalid moves
@@ -270,6 +301,7 @@ class MinimaxSearch:
         return {
             'nodes_searched': self.nodes_searched,
             'terminal_nodes': self.terminal_nodes,
+            'pruned_nodes': self.pruned_nodes,
             'max_depth_reached': self.max_depth_reached,
             'search_time': self.search_time,
             'nodes_per_second': self.nodes_searched / max(self.search_time, 1e-9)
