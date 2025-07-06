@@ -8,10 +8,17 @@ class InputHandler:
         self.layout = layout_renderer
         self.validator = validator
         self.used_cards = set()
+        self.current_reshuffle = None  # Track current reshuffle number
 
     def collect_card_inputs(self, game_id=None, skip_cells=None, prepopulated_cards=None):
         skip_cells = skip_cells or set()
         prepopulated_cards = prepopulated_cards or {}
+
+        # Set reshuffle number on layout renderer if we're in a reshuffle
+        if self.current_reshuffle:
+            self.layout.set_reshuffle_number(self.current_reshuffle)
+        else:
+            self.layout.set_reshuffle_number(None)
 
         cards = [""] * constants.DECK_SIZE  # Flat list of 52 values
 
