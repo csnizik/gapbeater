@@ -1,0 +1,207 @@
+"""
+Unit tests for the MinimaxSearch module.
+
+Tests verify that the MinimaxSearch correctly implements sequential search,
+handles edge cases, and provides performance metrics.
+"""
+
+import sys
+import os
+
+# Add the project root to the path for imports
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+
+from src.simulator.search import MinimaxSearch
+from src.simulator.game_state import GameState, CardPosition
+
+
+class TestMinimaxSearch:
+    """Test cases for MinimaxSearch functionality."""
+    
+    def setUp(self):
+        """Set up test fixtures."""
+        self.search = MinimaxSearch()
+        self.game_state = GameState()
+    
+    def test_search_with_no_legal_moves(self):
+        """Test search returns None when no legal moves available."""
+        self.setUp()
+        
+        # Empty board has no legal moves initially
+        result = self.search.search(self.game_state, 5)
+        
+        assert result is None, "Should return None when no legal moves"
+        
+        # Check performance metrics
+        stats = self.search.get_performance_stats()
+        assert stats['terminal_nodes'] == 1, "Should have 1 terminal node"
+        assert stats['nodes_searched'] == 0, "Should not search any nodes"
+        
+        print("✓ test_search_with_no_legal_moves passed")
+    
+    def test_search_with_legal_moves(self):
+        """Test search returns a move when legal moves are available."""
+        self.setUp()
+        
+        # Set up a position with legal moves
+        # Place some cards to create gaps that can be filled
+        card_2c = CardPosition(2, 0)  # 2 of Clubs
+        card_3c = CardPosition(3, 0)  # 3 of Clubs
+        
+        # Place cards and create gaps
+        self.game_state.place_card(card_2c, 0, 1)
+        self.game_state.place_card(card_3c, 0, 2)
+        self.game_state.create_gap(0, 0)  # Gap in first column (can place 2s)
+        
+        # Verify we have legal moves
+        legal_moves = self.game_state.get_legal_moves()
+        assert len(legal_moves) > 0, "Should have legal moves for test"
+        
+        # Search for best move
+        result = self.search.search(self.game_state, 3)
+        
+        assert result is not None, "Should return a move when legal moves exist"
+        assert isinstance(result, tuple), "Result should be a move tuple"
+        assert len(result) == 2, "Move should have card and target position"
+        
+        # Check performance metrics
+        stats = self.search.get_performance_stats()
+        assert stats['nodes_searched'] > 0, "Should have searched some nodes"
+        assert stats['search_time'] > 0, "Should have recorded search time"
+        
+        print("✓ test_search_with_legal_moves passed")
+    
+    def test_search_depth_limits(self):
+        """Test that search respects depth limits."""
+        self.setUp()
+        
+        # Set up position with legal moves
+        card_2c = CardPosition(2, 0)
+        self.game_state.place_card(card_2c, 0, 1)
+        self.game_state.create_gap(0, 0)
+        
+        # Search with different depths
+        result_depth_1 = self.search.search(self.game_state, 1)
+        stats_1 = self.search.get_performance_stats()
+        
+        result_depth_3 = self.search.search(self.game_state, 3)
+        stats_3 = self.search.get_performance_stats()
+        
+        # Both should return moves
+        assert result_depth_1 is not None, "Depth 1 should return move"
+        assert result_depth_3 is not None, "Depth 3 should return move"
+        
+        # Deeper search should generally explore more nodes
+        # (though this might not always be true due to early termination)
+        assert stats_3['max_depth_reached'] >= stats_1['max_depth_reached'], \
+               "Deeper search should reach at least same depth"
+        
+        print("✓ test_search_depth_limits passed")
+    
+    def test_terminal_position_handling(self):
+        """Test that terminal positions are handled correctly during search."""
+        self.setUp()
+        
+        # Create a position that will quickly lead to no legal moves
+        # This is tricky with Gaps Solitaire, so we'll create a minimal setup
+        card_2c = CardPosition(2, 0)
+        self.game_state.place_card(card_2c, 0, 1)
+        self.game_state.create_gap(0, 0)
+        
+        # Search with depth that might encounter terminal positions
+        result = self.search.search(self.game_state, 2)
+        stats = self.search.get_performance_stats()
+        
+        # Should handle terminal positions without errors
+        assert isinstance(stats['terminal_nodes'], int), "Should count terminal nodes"
+        assert stats['terminal_nodes'] >= 0, "Terminal node count should be non-negative"
+        
+        print("✓ test_terminal_position_handling passed")
+    
+    def test_performance_metrics(self):
+        """Test that performance metrics are correctly tracked."""
+        self.setUp()
+        
+        # Set up a position for search
+        card_2c = CardPosition(2, 0)
+        self.game_state.place_card(card_2c, 0, 1)
+        self.game_state.create_gap(0, 0)
+        
+        # Perform search
+        self.search.search(self.game_state, 2)
+        stats = self.search.get_performance_stats()
+        
+        # Verify all expected metrics are present
+        expected_keys = ['nodes_searched', 'terminal_nodes', 'max_depth_reached', 
+                        'search_time', 'nodes_per_second']
+        
+        for key in expected_keys:
+            assert key in stats, f"Missing performance metric: {key}"
+            assert isinstance(stats[key], (int, float)), f"Metric {key} should be numeric"
+        
+        # Verify logical constraints
+        assert stats['nodes_searched'] >= 0, "Nodes searched should be non-negative"
+        assert stats['terminal_nodes'] >= 0, "Terminal nodes should be non-negative"
+        assert stats['search_time'] >= 0, "Search time should be non-negative"
+        assert stats['max_depth_reached'] >= 0, "Max depth should be non-negative"
+        
+        print("✓ test_performance_metrics passed")
+    
+    def test_search_integration_with_components(self):
+        """Test that search properly integrates with MoveExecutor and PositionEvaluator."""
+        self.setUp()
+        
+        # Verify search uses the expected components
+        assert hasattr(self.search, 'move_executor'), "Should have move executor"
+        assert hasattr(self.search, 'evaluator'), "Should have evaluator"
+        
+        # Set up position and verify components work
+        card_2c = CardPosition(2, 0)
+        self.game_state.place_card(card_2c, 0, 1)
+        self.game_state.create_gap(0, 0)
+        
+        # Get a legal move and verify executor works
+        legal_moves = self.game_state.get_legal_moves()
+        if legal_moves:
+            move = legal_moves[0]
+            new_state = self.search.move_executor.execute_move(self.game_state, move)
+            assert new_state is not None, "Move executor should work"
+        
+        # Verify evaluator works
+        score = self.search.evaluator.evaluate(self.game_state)
+        assert isinstance(score, (int, float)), "Evaluator should return numeric score"
+        
+        print("✓ test_search_integration_with_components passed")
+
+
+def run_tests():
+    """Run all MinimaxSearch tests."""
+    print("Running MinimaxSearch unit tests...\n")
+    
+    test_instance = TestMinimaxSearch()
+    tests = [
+        test_instance.test_search_with_no_legal_moves,
+        test_instance.test_search_with_legal_moves,
+        test_instance.test_search_depth_limits,
+        test_instance.test_terminal_position_handling,
+        test_instance.test_performance_metrics,
+        test_instance.test_search_integration_with_components,
+    ]
+    
+    passed = 0
+    total = len(tests)
+    
+    for test in tests:
+        try:
+            test()
+            passed += 1
+        except Exception as e:
+            print(f"✗ {test.__name__} failed: {e}")
+    
+    print(f"\nTest Results: {passed}/{total} tests passed")
+    return passed == total
+
+
+if __name__ == "__main__":
+    success = run_tests()
+    exit(0 if success else 1)
