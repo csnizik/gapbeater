@@ -138,7 +138,7 @@ class GameManager:
         print("✓ Board loaded successfully into GameState")
 
         # Analyze initial position and display moves
-        if not self._analyze_and_display_moves(game_state, "Initial deal"):
+        if self._analyze_and_display_moves(game_state, "Initial deal"):
             return
 
         # Automatically proceed through reshuffles
