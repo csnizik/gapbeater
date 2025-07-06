@@ -1,5 +1,7 @@
 import uuid
 import time
+import os
+import json
 from src.layout import LayoutRenderer
 from src.input_handler import InputHandler
 from src.validator import CardValidator
@@ -10,8 +12,98 @@ class GameManager:
         self.current_game = [[] for _ in range(4)]  # initial deal + 3 reshuffles
         self.saved_games = {}
 
+    def user_review_layout(self, board, game_id, layout, handler, validator, is_loaded_game=False):
+        """Display layout and handle user choice for analyze or edit"""
+        if is_loaded_game:
+            print("\nGame layout loaded. Verifying 4-row structure:\n")
+            for i in range(4):
+                row = board[i * 13:(i + 1) * 13]
+                print(f"Row {i+1}: {row}")
+            choice = input("\nLayout loaded. [A]nalyze or [E]dit the layout? ").strip().lower()
+        else:
+            print("\nInitial deal complete. Verifying 4-row structure:\n")
+            for i in range(4):
+                row = board[i * 13:(i + 1) * 13]
+                print(f"Row {i+1}: {row}")
+            choice = input("\nFinished entering initial deal. [A]nalyze or [E]dit the layout? ").strip().lower()
+        
+        if choice == 'a':
+            self.analyze_layout(layout, handler, validator, game_id)
+        elif choice == 'e':
+            print("Edit functionality not added yet.")
+            exit(0)
+
     def open_saved_game(self):
-        print("[Stub] Open saved game functionality is not yet implemented.")
+        """Load and display a previously saved game"""
+        # Check if saves directory exists
+        saves_dir = "./saves"
+        if not os.path.exists(saves_dir):
+            print("No saved games available. The saves directory does not exist.")
+            return
+        
+        # Get list of .json files
+        try:
+            files = [f for f in os.listdir(saves_dir) if f.endswith('.json')]
+        except OSError:
+            print("Error accessing saves directory.")
+            return
+            
+        if not files:
+            print("No saved games available.")
+            return
+        
+        # Display numbered list of saved games
+        print("\nAvailable saved games:")
+        for i, filename in enumerate(files, 1):
+            game_id = filename[:-5]  # Remove .json extension
+            print(f"{i}. {game_id}")
+        
+        # Get user selection
+        while True:
+            try:
+                choice = input(f"\nSelect a game (1-{len(files)}): ").strip()
+                if not choice:
+                    print("Returning to main menu.")
+                    return
+                    
+                selection = int(choice)
+                if 1 <= selection <= len(files):
+                    selected_file = files[selection - 1]
+                    break
+                else:
+                    print(f"Please enter a number between 1 and {len(files)}.")
+            except ValueError:
+                print("Please enter a valid number.")
+        
+        # Load the selected file
+        file_path = os.path.join(saves_dir, selected_file)
+        try:
+            with open(file_path, 'r') as f:
+                board_data = json.load(f)
+        except (json.JSONDecodeError, OSError) as e:
+            print(f"Error loading saved game: {e}")
+            return
+        
+        # Validate the loaded data
+        if not isinstance(board_data, list) or len(board_data) != 52:
+            print("Invalid saved game format. Expected 52 cards.")
+            return
+        
+        # Extract game_id from filename
+        game_id = selected_file[:-5]  # Remove .json extension
+        
+        # Create necessary objects
+        layout = LayoutRenderer()
+        validator = CardValidator()
+        handler = InputHandler(layout, validator)
+        
+        # Set the current game state
+        self.current_game[0] = board_data
+        
+        print(f"\nLoaded game: {game_id}")
+        
+        # Call user_review_layout with loaded data
+        self.user_review_layout(board_data, game_id, layout, handler, validator, is_loaded_game=True)
 
     def create_new_game(self):
         game_id = input("Enter a Game ID or press Enter to skip: ").strip()
@@ -30,17 +122,8 @@ class GameManager:
         initial_board = handler.collect_card_inputs(game_id=game_id)
         self.current_game[0] = initial_board
 
-        print("\nInitial deal complete. Verifying 4-row structure:\n")
-        for i in range(4):
-            row = initial_board[i * 13:(i + 1) * 13]
-            print(f"Row {i+1}: {row}")
-
-        choice = input("\nFinished entering initial deal. [A]nalyze or [E]dit the layout? ").strip().lower()
-        if choice == 'a':
-            self.analyze_layout(layout, handler, validator, game_id)
-        elif choice == 'e':
-            print("Edit functionality not added yet.")
-            exit(0)
+        # Use the extracted common functionality
+        self.user_review_layout(initial_board, game_id, layout, handler, validator, is_loaded_game=False)
 
     def analyze_layout(self, layout, handler, validator, game_id):
         """Analyze game layout using GameState representation"""
