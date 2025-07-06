@@ -171,7 +171,7 @@ class GameManager:
         print("Analysis complete. Diagnostic data saved to debug/gamestate_diagnostics.log")
 
     def _analyze_and_display_moves(self, game_state, phase_name):
-        """Analyze current position and display moves. Returns True if game is won."""
+        """Analyze current position and display optimal move sequence. Returns True if game is won."""
         legal_moves = game_state.get_legal_moves()
         
         # Check for win condition (no gaps remaining)
@@ -179,18 +179,43 @@ class GameManager:
             print(f"{phase_name}: 🎉 GAME WON! No gaps remaining.")
             return True
         
-        print(f"{phase_name}: Found {len(legal_moves)} legal moves:")
-
-        if legal_moves:
-            # Create search instance and find best moves
-            search = MinimaxSearch(enable_diagnostics=True)
+        if not legal_moves:
+            print(f"{phase_name}: No legal moves available - reshuffle needed")
+            return False
+        
+        # Create search instance to find optimal sequence
+        search = MinimaxSearch(enable_diagnostics=True)
+        
+        # Build optimal move sequence
+        move_sequence = []
+        current_state = game_state
+        max_sequence_length = 10  # Prevent infinite loops
+        
+        while len(move_sequence) < max_sequence_length:
+            # Find best move from current position
+            best_move = search.search(current_state, max_depth=3)
+            if not best_move:
+                break
+                
+            # Add move to sequence
+            card, (target_row, target_col) = best_move
+            card_str = f"{constants.RANK_MAP[card.rank]}{constants.SUIT_MAP[card.suit]}"
+            move_sequence.append(f"{card_str} -> R{target_row+1}C{target_col+1}")
             
-            # Display all legal moves in the requested format
-            for card, (target_row, target_col) in legal_moves:
-                card_str = f"{constants.RANK_MAP[card.rank]}{constants.SUIT_MAP[card.suit]}"
-                print(f"{card_str} -> R{target_row+1}C{target_col+1}")
+            # Execute move to get new state for next iteration
+            try:
+                current_state = search.move_executor.execute_move(current_state, best_move)
+                # Check if we can continue - need legal moves
+                if not current_state.get_legal_moves():
+                    break
+            except Exception:
+                break
+        
+        if move_sequence:
+            print(f"{phase_name}: Optimal move sequence:")
+            print(" -> ".join(move_sequence))
         else:
-            print("No legal moves available - reshuffle needed")
+            print(f"{phase_name}: No optimal sequence found")
         
         return False
 
