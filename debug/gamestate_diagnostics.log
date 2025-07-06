@@ -1,22 +1,28 @@
-2025-07-06 10:12:05,644 - INFO - === GameState Initialization ===
-2025-07-06 10:12:05,644 - INFO - Board configuration: empty
-2025-07-06 10:12:05,644 - INFO - ✓ Board structure validation passed
-2025-07-06 10:12:05,644 - INFO - Initial gap count: 0
-2025-07-06 10:12:05,644 - INFO - Initial immutable sequence count: 0
-2025-07-06 10:12:05,644 - INFO - === Immutable Sequence Detection ===
-2025-07-06 10:12:05,644 - DEBUG - Row 0: No immutable sequence found
-2025-07-06 10:12:05,644 - DEBUG - Row 1: No immutable sequence found
-2025-07-06 10:12:05,644 - DEBUG - Row 2: No immutable sequence found
-2025-07-06 10:12:05,644 - DEBUG - Row 3: No immutable sequence found
-2025-07-06 10:12:05,644 - INFO - === GameState Initialization ===
-2025-07-06 10:12:05,645 - INFO - Board configuration: loaded_from_flat_board
-2025-07-06 10:12:05,645 - INFO - ✓ Board structure validation passed
-2025-07-06 10:12:05,645 - INFO - Initial gap count: 4
-2025-07-06 10:12:05,645 - INFO - Initial immutable sequence count: 0
-2025-07-06 10:12:05,645 - DEBUG - === Board State after_loading ===
-2025-07-06 10:12:05,645 - DEBUG - Row 0: QS 9D KC JD 7C 4C JH KS 2S XD -- 2H 7D
-2025-07-06 10:12:05,645 - DEBUG - Row 1: 6S 9S 5S 8C XS 6H 8S 5D 3S 3C 5H -- 3H
-2025-07-06 10:12:05,645 - DEBUG - Row 2: 6C -- 9H QC XC 3D 2C 4D QD JS 6D 4H 4S
-2025-07-06 10:12:05,645 - DEBUG - Row 3: XH 7S 7H KD 5C 9C 2D 8H -- 8D JC KH QH
-2025-07-06 10:12:05,645 - INFO - Move generation: 4 legal moves in 0.000030s
-2025-07-06 10:12:05,645 - DEBUG - Average move generation time: 0.000030s
+2025-07-06 16:20:34,446 - INFO - === GameState Initialization ===
+2025-07-06 16:20:34,446 - INFO - Board configuration: empty
+2025-07-06 16:20:34,446 - INFO - ✓ Board structure validation passed
+2025-07-06 16:20:34,446 - INFO - Initial gap count: 0
+2025-07-06 16:20:34,446 - INFO - Initial immutable sequence count: 0
+2025-07-06 16:20:34,446 - INFO - === Immutable Sequence Detection ===
+2025-07-06 16:20:34,446 - INFO - Row 0: Found immutable sequence of 1 cards
+2025-07-06 16:20:34,446 - DEBUG -   Positions: [(0, 0)]
+2025-07-06 16:20:34,446 - DEBUG - Row 1: No immutable sequence found
+2025-07-06 16:20:34,446 - INFO - Row 2: Found immutable sequence of 3 cards
+2025-07-06 16:20:34,446 - DEBUG -   Positions: [(2, 0), (2, 1), (2, 2)]
+2025-07-06 16:20:34,446 - DEBUG - Row 3: No immutable sequence found
+2025-07-06 16:20:34,446 - INFO - === GameState Initialization ===
+2025-07-06 16:20:34,446 - INFO - Board configuration: loaded_from_flat_board
+2025-07-06 16:20:34,446 - INFO - ✓ Board structure validation passed
+2025-07-06 16:20:34,446 - INFO - Initial gap count: 7
+2025-07-06 16:20:34,446 - INFO - Initial immutable sequence count: 4
+2025-07-06 16:20:34,446 - DEBUG - === Board State after_loading ===
+2025-07-06 16:20:34,446 - DEBUG - Row 0: 2C -- 4C 5C 6C 7C 8C 9C XC JC QC KC --
+2025-07-06 16:20:34,446 - DEBUG - Row 1: -- 3D 4D 5D 6D 7D 8D 9D XD JD QD KD --
+2025-07-06 16:20:34,446 - DEBUG - Row 2: 2H 3H 4H -- 6H 7H 8H 9H XH JH QH KH --
+2025-07-06 16:20:34,446 - DEBUG - Row 3: -- 4S 3S 5S 6S 7S 8S 9S XS JS QS KS 2S
+2025-07-06 16:20:34,446 - INFO - Move generation: 2 legal moves in 0.000026s
+2025-07-06 16:20:34,446 - DEBUG - Average move generation time: 0.000026s
+2025-07-06 16:20:34,447 - DEBUG - Position copy time: 0.000005s
+2025-07-06 16:20:34,447 - DEBUG - Hash generation time: 0.000011s
+2025-07-06 16:20:34,447 - DEBUG - Position copy time: 0.000005s
+2025-07-06 16:20:34,447 - DEBUG - Hash generation time: 0.000009s

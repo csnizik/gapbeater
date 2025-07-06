@@ -6,6 +6,9 @@ from src.layout import LayoutRenderer
 from src.input_handler import InputHandler
 from src.validator import CardValidator
 from src.simulator.game_state import GameState
+from src.simulator.search import MinimaxSearch
+from src.simulator.move_executor import MoveExecutor
+from src.simulator.evaluator import PositionEvaluator
 from . import constants
 
 class GameManager:
@@ -135,11 +138,43 @@ class GameManager:
             legal_moves = game_state.get_legal_moves()
             print(f"Analysis complete. Found {len(legal_moves)} legal moves:")
 
-            # Display move recommendations using actual GameState analysis
+            # Use search for intelligent move recommendation
             if legal_moves:
+                # Create search instance and find best move
+                search = MinimaxSearch(enable_diagnostics=True)
+                best_move = search.search(game_state, constants.DEFAULT_SEARCH_DEPTH)
+                
+                if best_move:
+                    # Execute the recommended move to get the resulting position for evaluation
+                    move_executor = MoveExecutor()
+                    evaluator = PositionEvaluator()
+                    
+                    try:
+                        # Get evaluation score for the recommended move
+                        new_state = move_executor.execute_move(game_state, best_move)
+                        evaluation_score = evaluator.evaluate(new_state)
+                        
+                        # Display search recommendation
+                        card, (target_row, target_col) = best_move
+                        card_str = f"{constants.RANK_MAP[card.rank]}{constants.SUIT_MAP[card.suit]}"
+                        print(f"  Recommended: {card_str} -> R{target_row+1}C{target_col+1} (score: {evaluation_score:.1f})")
+                        
+                        # Show performance stats
+                        stats = search.get_performance_stats()
+                        print(f"  Search evaluated {stats['nodes_searched']} positions in {stats['search_time']:.3f}s")
+                        
+                    except Exception as e:
+                        print(f"  Error evaluating recommended move: {e}")
+                        # Fall back to showing basic moves
+                        card, (target_row, target_col) = best_move
+                        card_str = f"{constants.RANK_MAP[card.rank]}{constants.SUIT_MAP[card.suit]}"
+                        print(f"  Recommended: {card_str} -> R{target_row+1}C{target_col+1}")
+                
+                # Also show other legal moves for context (optional)
+                print(f"  Other legal moves:")
                 for i, (card, (target_row, target_col)) in enumerate(legal_moves[:5]):  # Show first 5 moves
                     card_str = f"{constants.RANK_MAP[card.rank]}{constants.SUIT_MAP[card.suit]}"
-                    print(f"  {card_str} -> R{target_row+1}C{target_col+1}")
+                    print(f"    {card_str} -> R{target_row+1}C{target_col+1}")
             else:
                 print("  No legal moves available - reshuffle needed")
         else:

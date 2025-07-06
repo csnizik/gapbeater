@@ -25,3 +25,6 @@ SAVES_DIR = "saves"
 # --- User Input ---
 EXIT_KEY = 'z'
 EMPTY_CELL_STR = "--"
+
+# --- Search Configuration ---
+DEFAULT_SEARCH_DEPTH = 5
