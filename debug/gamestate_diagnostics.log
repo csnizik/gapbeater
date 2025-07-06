@@ -1,7 +1,7 @@
-2025-07-06 20:12:56,039 - INFO - === GameState Initialization ===
-2025-07-06 20:12:56,040 - INFO - Board configuration: empty
-2025-07-06 20:12:56,040 - INFO - ✓ Board structure validation passed
-2025-07-06 20:12:56,040 - INFO - Initial gap count: 0
-2025-07-06 20:12:56,040 - INFO - Initial immutable sequence count: 0
-2025-07-06 20:12:56,040 - DEBUG - Position copy time: 0.000005s
-2025-07-06 20:12:56,040 - DEBUG - Hash generation time: 0.000002s
+2025-07-06 20:13:44,553 - INFO - === GameState Initialization ===
+2025-07-06 20:13:44,553 - INFO - Board configuration: empty
+2025-07-06 20:13:44,553 - INFO - ✓ Board structure validation passed
+2025-07-06 20:13:44,553 - INFO - Initial gap count: 0
+2025-07-06 20:13:44,554 - INFO - Initial immutable sequence count: 0
+2025-07-06 20:13:44,554 - DEBUG - Position copy time: 0.000004s
+2025-07-06 20:13:44,554 - DEBUG - Hash generation time: 0.000002s
