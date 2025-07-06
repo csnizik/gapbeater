@@ -1,28 +1,30 @@
-2025-07-06 16:20:34,446 - INFO - === GameState Initialization ===
-2025-07-06 16:20:34,446 - INFO - Board configuration: empty
-2025-07-06 16:20:34,446 - INFO - ✓ Board structure validation passed
-2025-07-06 16:20:34,446 - INFO - Initial gap count: 0
-2025-07-06 16:20:34,446 - INFO - Initial immutable sequence count: 0
-2025-07-06 16:20:34,446 - INFO - === Immutable Sequence Detection ===
-2025-07-06 16:20:34,446 - INFO - Row 0: Found immutable sequence of 1 cards
-2025-07-06 16:20:34,446 - DEBUG -   Positions: [(0, 0)]
-2025-07-06 16:20:34,446 - DEBUG - Row 1: No immutable sequence found
-2025-07-06 16:20:34,446 - INFO - Row 2: Found immutable sequence of 3 cards
-2025-07-06 16:20:34,446 - DEBUG -   Positions: [(2, 0), (2, 1), (2, 2)]
-2025-07-06 16:20:34,446 - DEBUG - Row 3: No immutable sequence found
-2025-07-06 16:20:34,446 - INFO - === GameState Initialization ===
-2025-07-06 16:20:34,446 - INFO - Board configuration: loaded_from_flat_board
-2025-07-06 16:20:34,446 - INFO - ✓ Board structure validation passed
-2025-07-06 16:20:34,446 - INFO - Initial gap count: 7
-2025-07-06 16:20:34,446 - INFO - Initial immutable sequence count: 4
-2025-07-06 16:20:34,446 - DEBUG - === Board State after_loading ===
-2025-07-06 16:20:34,446 - DEBUG - Row 0: 2C -- 4C 5C 6C 7C 8C 9C XC JC QC KC --
-2025-07-06 16:20:34,446 - DEBUG - Row 1: -- 3D 4D 5D 6D 7D 8D 9D XD JD QD KD --
-2025-07-06 16:20:34,446 - DEBUG - Row 2: 2H 3H 4H -- 6H 7H 8H 9H XH JH QH KH --
-2025-07-06 16:20:34,446 - DEBUG - Row 3: -- 4S 3S 5S 6S 7S 8S 9S XS JS QS KS 2S
-2025-07-06 16:20:34,446 - INFO - Move generation: 2 legal moves in 0.000026s
-2025-07-06 16:20:34,446 - DEBUG - Average move generation time: 0.000026s
-2025-07-06 16:20:34,447 - DEBUG - Position copy time: 0.000005s
-2025-07-06 16:20:34,447 - DEBUG - Hash generation time: 0.000011s
-2025-07-06 16:20:34,447 - DEBUG - Position copy time: 0.000005s
-2025-07-06 16:20:34,447 - DEBUG - Hash generation time: 0.000009s
+2025-07-06 16:22:02,916 - INFO - === GameState Initialization ===
+2025-07-06 16:22:02,916 - INFO - Board configuration: empty
+2025-07-06 16:22:02,916 - INFO - ✓ Board structure validation passed
+2025-07-06 16:22:02,916 - INFO - Initial gap count: 0
+2025-07-06 16:22:02,916 - INFO - Initial immutable sequence count: 0
+2025-07-06 16:22:02,916 - INFO - === Immutable Sequence Detection ===
+2025-07-06 16:22:02,916 - INFO - Row 0: Found immutable sequence of 1 cards
+2025-07-06 16:22:02,916 - DEBUG -   Positions: [(0, 0)]
+2025-07-06 16:22:02,916 - DEBUG - Row 1: No immutable sequence found
+2025-07-06 16:22:02,916 - INFO - Row 2: Found immutable sequence of 12 cards
+2025-07-06 16:22:02,916 - DEBUG -   Positions: [(2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (2, 10), (2, 11)]
+2025-07-06 16:22:02,916 - DEBUG - Row 3: No immutable sequence found
+2025-07-06 16:22:02,916 - INFO - === GameState Initialization ===
+2025-07-06 16:22:02,916 - INFO - Board configuration: loaded_from_flat_board
+2025-07-06 16:22:02,916 - INFO - ✓ Board structure validation passed
+2025-07-06 16:22:02,916 - INFO - Initial gap count: 6
+2025-07-06 16:22:02,916 - INFO - Initial immutable sequence count: 13
+2025-07-06 16:22:02,916 - DEBUG - === Board State after_loading ===
+2025-07-06 16:22:02,916 - DEBUG - Row 0: 2C -- 4C 5C 6C 7C 8C 9C XC JC QC KC --
+2025-07-06 16:22:02,916 - DEBUG - Row 1: -- 3D 4D 5D 6D 7D 8D 9D XD JD QD KD --
+2025-07-06 16:22:02,916 - DEBUG - Row 2: 2H 3H 4H 5H 6H 7H 8H 9H XH JH QH KH --
+2025-07-06 16:22:02,916 - DEBUG - Row 3: -- 4S 3S 5S 6S 7S 8S 9S XS JS QS KS 2S
+2025-07-06 16:22:02,916 - INFO - Move generation: 2 legal moves in 0.000015s
+2025-07-06 16:22:02,916 - DEBUG - Average move generation time: 0.000015s
+2025-07-06 16:22:02,917 - DEBUG - Position copy time: 0.000006s
+2025-07-06 16:22:02,917 - DEBUG - Hash generation time: 0.000016s
+2025-07-06 16:22:02,917 - DEBUG - Position copy time: 0.000004s
+2025-07-06 16:22:02,917 - DEBUG - Hash generation time: 0.000012s
+2025-07-06 16:22:02,917 - DEBUG - Position copy time: 0.000029s
+2025-07-06 16:22:02,917 - DEBUG - Hash generation time: 0.000014s
