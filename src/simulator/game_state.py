@@ -141,13 +141,6 @@ class GameStateDiagnostics:
 
 
 class GameState:
-    """
-    Efficient board representation optimized for search algorithms.
-
-    Follows SOLID principles with single responsibility for game state management.
-    Designed for performance-first approach targeting millions of evaluations per second.
-    Uses frozenset keys for O(1) lookups and efficient hashing.
-    """
 
     def __init__(self, enable_diagnostics: bool = False):
         """Initialize empty game state following project architecture principles"""
