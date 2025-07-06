@@ -173,6 +173,43 @@ class TestMinimaxSearch:
         
         print("✓ test_search_integration_with_components passed")
 
+    def test_search_diagnostics(self):
+        """Test that SearchDiagnostics functionality works correctly."""
+        # Test with diagnostics enabled
+        search_with_diag = MinimaxSearch(enable_diagnostics=True)
+        assert search_with_diag.diagnostics is not None, "Should have diagnostics enabled"
+        
+        # Test without diagnostics
+        search_without_diag = MinimaxSearch(enable_diagnostics=False)
+        assert search_without_diag.diagnostics is None, "Should have diagnostics disabled"
+        
+        # Set up a position for search
+        game_state = GameState()
+        card_2c = CardPosition(2, 0)
+        game_state.place_card(card_2c, 0, 1)
+        game_state.create_gap(0, 0)
+        
+        # Perform search with diagnostics
+        result = search_with_diag.search(game_state, 2)
+        
+        # Verify log file was created
+        log_file = search_with_diag.diagnostics.log_file_path
+        assert log_file.exists(), f"Log file should exist at {log_file}"
+        
+        # Read log content and verify required entries
+        with open(log_file, 'r') as f:
+            log_content = f.read()
+        
+        # Verify required log entries are present
+        assert "Search Started" in log_content, "Should log search start"
+        assert "Search Completed" in log_content, "Should log search completion"
+        assert "Positions evaluated:" in log_content, "Should log positions evaluated"
+        assert "Positions/second:" in log_content, "Should log positions/second"
+        assert "Average depth reached:" in log_content, "Should log average depth"
+        assert "Average branching factor:" in log_content, "Should log branching factor"
+        
+        print("✓ test_search_diagnostics passed")
+
 
 def run_tests():
     """Run all MinimaxSearch tests."""
@@ -186,6 +223,7 @@ def run_tests():
         test_instance.test_terminal_position_handling,
         test_instance.test_performance_metrics,
         test_instance.test_search_integration_with_components,
+        test_instance.test_search_diagnostics,
     ]
     
     passed = 0
