@@ -154,23 +154,65 @@ class TestPositionEvaluator:
         
         print(f"✓ test_evaluation_performance passed (avg: {avg_time:.6f}s per evaluation)")
 
-    def test_performance_stats(self):
-        """Test that performance statistics are tracked correctly."""
+    def test_performance_tracking_enabled(self):
+        """Test that evaluator works correctly with performance tracking enabled."""
         self.setUp()
+        
+        # Create evaluator with explicit performance tracking enabled
+        tracked_evaluator = PositionEvaluator(enable_performance_tracking=True)
         
         # Perform some evaluations
         state = GameState(enable_diagnostics=False)
-        for _ in range(10):
-            self.evaluator.evaluate(state)
+        for _ in range(5):
+            score = tracked_evaluator.evaluate(state)
+            
+        # Check that stats are being tracked
+        stats = tracked_evaluator.get_performance_stats()
+        assert stats['evaluation_count'] == 5, "Should track evaluation count when enabled"
+        assert stats['total_time'] > 0, "Should track total time when enabled"
+        assert stats['average_time'] > 0, "Should calculate average time when enabled"
+        assert stats['evaluations_per_second'] > 0, "Should calculate evaluations per second when enabled"
         
-        stats = self.evaluator.get_performance_stats()
+        print("✓ test_performance_tracking_enabled passed")
+
+    def test_performance_tracking_disabled(self):
+        """Test that evaluator works correctly with performance tracking disabled."""
+        self.setUp()
         
-        assert stats['evaluation_count'] == 10, "Should track evaluation count"
-        assert stats['total_time'] > 0, "Should track total time"
-        assert stats['average_time'] > 0, "Should calculate average time"
-        assert stats['evaluations_per_second'] > 0, "Should calculate evaluations per second"
+        # Create evaluator with performance tracking disabled
+        untracked_evaluator = PositionEvaluator(enable_performance_tracking=False)
         
-        print("✓ test_performance_stats passed")
+        # Perform some evaluations
+        state = GameState(enable_diagnostics=False)
+        for _ in range(5):
+            score = untracked_evaluator.evaluate(state)
+            
+        # Check that stats are not being tracked (should be zero)
+        stats = untracked_evaluator.get_performance_stats()
+        assert stats['evaluation_count'] == 0, "Should not track evaluation count when disabled"
+        assert stats['total_time'] == 0, "Should not track total time when disabled"
+        assert stats['average_time'] == 0, "Should not calculate average time when disabled"
+        assert stats['evaluations_per_second'] == 0, "Should not calculate evaluations per second when disabled"
+        
+        print("✓ test_performance_tracking_disabled passed")
+
+    def test_backward_compatibility(self):
+        """Test that default behavior maintains backward compatibility."""
+        self.setUp()
+        
+        # Default constructor should enable performance tracking for backward compatibility
+        default_evaluator = PositionEvaluator()
+        
+        # Perform an evaluation
+        state = GameState(enable_diagnostics=False)
+        score = default_evaluator.evaluate(state)
+        
+        # Check that stats are being tracked (backward compatible behavior)
+        stats = default_evaluator.get_performance_stats()
+        assert stats['evaluation_count'] == 1, "Default constructor should enable tracking"
+        assert stats['total_time'] > 0, "Default constructor should track time"
+        
+        print("✓ test_backward_compatibility passed")
 
 
 def run_all_tests():
@@ -184,7 +226,9 @@ def run_all_tests():
         test_instance.test_dead_gap_penalty,
         test_instance.test_normalized_score_range,
         test_instance.test_evaluation_performance,
-        test_instance.test_performance_stats,
+        test_instance.test_performance_tracking_enabled,
+        test_instance.test_performance_tracking_disabled,
+        test_instance.test_backward_compatibility,
     ]
     
     passed = 0
