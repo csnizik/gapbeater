@@ -1,7 +1,7 @@
 import re
 
 class CardValidator:
-    GAP_KEYS = {'-', 'g', ' '}
+    GAP_KEYS = {'-', '--', 'g', ' '}
     SUITS = {'c': 'Clubs', 'd': 'Diamonds', 'h': 'Hearts', 's': 'Spades'}
     RANKS = set("23456789xjqk")
 

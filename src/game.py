@@ -6,6 +6,7 @@ from src.layout import LayoutRenderer
 from src.input_handler import InputHandler
 from src.validator import CardValidator
 from src.simulator.game_state import GameState
+from . import constants
 
 class GameManager:
     def __init__(self):
@@ -14,19 +15,12 @@ class GameManager:
 
     def user_review_layout(self, board, game_id, layout, handler, validator, is_loaded_game=False):
         """Display layout and handle user choice for analyze or edit"""
-        if is_loaded_game:
-            print("\nGame layout loaded. Verifying 4-row structure:\n")
-            for i in range(4):
-                row = board[i * 13:(i + 1) * 13]
-                print(f"Row {i+1}: {row}")
-            choice = input("\nLayout loaded. [A]nalyze or [E]dit the layout? ").strip().lower()
-        else:
-            print("\nInitial deal complete. Verifying 4-row structure:\n")
-            for i in range(4):
-                row = board[i * 13:(i + 1) * 13]
-                print(f"Row {i+1}: {row}")
-            choice = input("\nFinished entering initial deal. [A]nalyze or [E]dit the layout? ").strip().lower()
-        
+        print("\nGame layout loaded. Verifying 4-row structure:\n")
+        for i in range(4):
+            row = board[i * 13:(i + 1) * 13]
+            print(f"Row {i+1}: {row}")
+        choice = input("\nRun [A]nalysis or [E]dit the layout? ").strip().lower()
+
         if choice == 'a':
             self.analyze_layout(layout, handler, validator, game_id)
         elif choice == 'e':
@@ -40,24 +34,24 @@ class GameManager:
         if not os.path.exists(saves_dir):
             print("No saved games available. The saves directory does not exist.")
             return
-        
+
         # Get list of .json files
         try:
             files = [f for f in os.listdir(saves_dir) if f.endswith('.json')]
         except OSError:
             print("Error accessing saves directory.")
             return
-            
+
         if not files:
             print("No saved games available.")
             return
-        
+
         # Display numbered list of saved games
         print("\nAvailable saved games:")
         for i, filename in enumerate(files, 1):
             game_id = filename[:-5]  # Remove .json extension
             print(f"{i}. {game_id}")
-        
+
         # Get user selection
         while True:
             try:
@@ -65,7 +59,7 @@ class GameManager:
                 if not choice:
                     print("Returning to main menu.")
                     return
-                    
+
                 selection = int(choice)
                 if 1 <= selection <= len(files):
                     selected_file = files[selection - 1]
@@ -74,7 +68,7 @@ class GameManager:
                     print(f"Please enter a number between 1 and {len(files)}.")
             except ValueError:
                 print("Please enter a valid number.")
-        
+
         # Load the selected file
         file_path = os.path.join(saves_dir, selected_file)
         try:
@@ -83,25 +77,25 @@ class GameManager:
         except (json.JSONDecodeError, OSError) as e:
             print(f"Error loading saved game: {e}")
             return
-        
+
         # Validate the loaded data
         if not isinstance(board_data, list) or len(board_data) != 52:
             print("Invalid saved game format. Expected 52 cards.")
             return
-        
+
         # Extract game_id from filename
         game_id = selected_file[:-5]  # Remove .json extension
-        
+
         # Create necessary objects
         layout = LayoutRenderer()
         validator = CardValidator()
         handler = InputHandler(layout, validator)
-        
+
         # Set the current game state
         self.current_game[0] = board_data
-        
+
         print(f"\nLoaded game: {game_id}")
-        
+
         # Call user_review_layout with loaded data
         self.user_review_layout(board_data, game_id, layout, handler, validator, is_loaded_game=True)
 
@@ -128,26 +122,23 @@ class GameManager:
     def analyze_layout(self, layout, handler, validator, game_id):
         """Analyze game layout using GameState representation"""
         print("Initializing GameState analysis...")
-        
+
         # Create GameState with diagnostics enabled
         game_state = GameState(enable_diagnostics=True)
-        
+
         # Load initial board into GameState
         initial_board = self.current_game[0]
         if game_state.load_from_flat_board(initial_board):
             print("✓ Board loaded successfully into GameState")
-            
+
             # Analyze current position
             legal_moves = game_state.get_legal_moves()
             print(f"Analysis complete. Found {len(legal_moves)} legal moves:")
-            
+
             # Display move recommendations using actual GameState analysis
             if legal_moves:
                 for i, (card, (target_row, target_col)) in enumerate(legal_moves[:5]):  # Show first 5 moves
-                    rank_map = {2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
-                               8: '8', 9: '9', 10: 'X', 11: 'J', 12: 'Q', 13: 'K'}
-                    suit_map = {0: 'C', 1: 'D', 2: 'H', 3: 'S'}
-                    card_str = f"{rank_map[card.rank]}{suit_map[card.suit]}"
+                    card_str = f"{constants.RANK_MAP[card.rank]}{constants.SUIT_MAP[card.suit]}"
                     print(f"  {card_str} -> R{target_row+1}C{target_col+1}")
             else:
                 print("  No legal moves available - reshuffle needed")
@@ -171,12 +162,12 @@ class GameManager:
 
             board = handler.collect_card_inputs(game_id=game_id, skip_cells=skip_cells, prepopulated_cards=prepopulated)
             self.current_game[reshuffle_num] = board
-            
+
             # Update GameState with new board and analyze
             if game_state.load_from_flat_board(board):
                 legal_moves = game_state.get_legal_moves()
                 print(f"After reshuffle: {len(legal_moves)} legal moves available")
-            
+
             reshuffles_remaining -= 1
 
         print("\nFinal Layout:")

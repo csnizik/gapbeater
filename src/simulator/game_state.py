@@ -12,7 +12,8 @@ import os
 import time
 import logging
 from pathlib import Path
-import copy
+
+from . import constants
 
 # Add parent directory to path for context import
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -41,17 +42,14 @@ class CardPosition:
         rank_char, suit_char = card_str[0], card_str[1]
 
         # Convert rank character to number
-        rank_map = {'2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7,
-                   '8': 8, '9': 9, 'X': 10, 'J': 11, 'Q': 12, 'K': 13}
-        if rank_char.upper() not in rank_map:
+        if rank_char.upper() not in constants.RANK_MAP:
             raise ValueError(f"Invalid rank: {rank_char}")
-        rank = rank_map[rank_char.upper()]
+        rank = constants.RANK_MAP[rank_char.upper()]
 
         # Convert suit character to number
-        suit_map = {'C': 0, 'D': 1, 'H': 2, 'S': 3}
-        if suit_char.upper() not in suit_map:
+        if suit_char.upper() not in constants.SUIT_MAP:
             raise ValueError(f"Invalid suit: {suit_char}")
-        suit = suit_map[suit_char.upper()]
+        suit = constants.SUIT_MAP[suit_char.upper()]
 
         return cls(rank, suit)
 
@@ -140,10 +138,7 @@ class GameStateDiagnostics:
             row_str = []
             for col_idx, card in enumerate(row):
                 if card:
-                    rank_map = {2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
-                               8: '8', 9: '9', 10: 'X', 11: 'J', 12: 'Q', 13: 'K'}
-                    suit_map = {0: 'C', 1: 'D', 2: 'H', 3: 'S'}
-                    row_str.append(f"{rank_map[card.rank]}{suit_map[card.suit]}")
+                    row_str.append(f"{constants.RANK_MAP[card.rank]}{constants.SUIT_MAP[card.suit]}")
                 else:
                     row_str.append("--")
             self.logger.debug(f"Row {row_idx}: {' '.join(row_str)}")
