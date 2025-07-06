@@ -5,7 +5,7 @@ This module provides the MinimaxSearch class that handles sequential move search
 for single-player games, exploring move sequences up to a specified depth.
 """
 
-from typing import Optional, Tuple, List
+from typing import Optional, Tuple, List, Dict
 import time
 import logging
 from pathlib import Path
@@ -47,9 +47,12 @@ class SearchDiagnostics:
 
     def log_search_completion(self, positions_evaluated: int, time_taken: float, 
                             max_depth_reached: int, average_depth: float, 
-                            average_branching_factor: float):
+                            average_branching_factor: float, cache_hits: int = 0, 
+                            cache_misses: int = 0, transposition_table_size: int = 0):
         """Log search completion with performance metrics"""
         positions_per_second = positions_evaluated / max(time_taken, 1e-9)
+        total_cache_lookups = cache_hits + cache_misses
+        cache_hit_rate = cache_hits / max(total_cache_lookups, 1) if total_cache_lookups > 0 else 0.0
         
         self.logger.info("=== Search Completed ===")
         self.logger.info(f"Positions evaluated: {positions_evaluated}")
@@ -58,6 +61,13 @@ class SearchDiagnostics:
         self.logger.info(f"Max depth reached: {max_depth_reached}")
         self.logger.info(f"Average depth reached: {average_depth:.2f}")
         self.logger.info(f"Average branching factor: {average_branching_factor:.2f}")
+        
+        # Log transposition table statistics
+        if total_cache_lookups > 0:
+            self.logger.info(f"Cache hits: {cache_hits}")
+            self.logger.info(f"Cache misses: {cache_misses}")
+            self.logger.info(f"Cache hit rate: {cache_hit_rate:.1%}")
+            self.logger.info(f"Transposition table size: {transposition_table_size}")
         
         # Track for averages
         self.search_times.append(time_taken)
@@ -128,6 +138,11 @@ class MinimaxSearch:
         self.branching_factor_sum = 0  # Sum of legal moves at each node
         self.nodes_with_moves = 0  # Count of nodes that had legal moves
         
+        # Transposition table for caching position evaluations
+        self.transposition_table = {}  # Dict[int, float] - maps hash(game_state) -> evaluation score
+        self.cache_hits = 0
+        self.cache_misses = 0
+        
         # Diagnostic logging
         self.diagnostics = SearchDiagnostics() if enable_diagnostics else None
     
@@ -151,6 +166,11 @@ class MinimaxSearch:
         self.branching_factor_sum = 0
         self.nodes_with_moves = 0
         
+        # Clear transposition table to avoid stale entries between searches
+        self.transposition_table.clear()
+        self.cache_hits = 0
+        self.cache_misses = 0
+        
         start_time = time.perf_counter()
         
         # Log search start if diagnostics enabled
@@ -167,7 +187,7 @@ class MinimaxSearch:
                 # No moves available
                 self.terminal_nodes = 1
                 if self.diagnostics:
-                    self.diagnostics.log_search_completion(0, 0.0, 0, 0.0, 0.0)
+                    self.diagnostics.log_search_completion(0, 0.0, 0, 0.0, 0.0, 0, 0, 0)
                 return None
             
             best_move = None
@@ -212,7 +232,10 @@ class MinimaxSearch:
                     self.search_time,
                     self.max_depth_reached,
                     avg_depth,
-                    avg_branching_factor
+                    avg_branching_factor,
+                    self.cache_hits,
+                    self.cache_misses,
+                    len(self.transposition_table)
                 )
     
     def _minimax(self, game_state: GameState, depth: int, current_depth: int, alpha: float, beta: float) -> float:
@@ -236,6 +259,16 @@ class MinimaxSearch:
         self.max_depth_reached = max(self.max_depth_reached, current_depth)
         self.depth_sum += current_depth
         
+        # Check transposition table for cached result
+        state_hash = hash(game_state)
+        if state_hash in self.transposition_table:
+            self.cache_hits += 1
+            if self.diagnostics and self.diagnostics.logger.isEnabledFor(logging.DEBUG):
+                self.diagnostics.logger.debug(f"Cache hit at depth {current_depth}")
+            return self.transposition_table[state_hash]
+        else:
+            self.cache_misses += 1
+        
         # Get legal moves
         legal_moves = game_state.get_legal_moves()
         
@@ -251,7 +284,10 @@ class MinimaxSearch:
         # Terminal condition: no legal moves or depth limit reached
         if not legal_moves or depth <= 0:
             self.terminal_nodes += 1
-            return self.evaluator.evaluate(game_state)
+            score = self.evaluator.evaluate(game_state)
+            # Store terminal evaluation in transposition table
+            self.transposition_table[state_hash] = score
+            return score
         
         # For single-player sequential search, we want the maximum score
         # from continuing to make moves
@@ -287,7 +323,10 @@ class MinimaxSearch:
         # If no valid moves were found, evaluate current position
         if best_score == float('-inf'):
             self.terminal_nodes += 1
-            return self.evaluator.evaluate(game_state)
+            best_score = self.evaluator.evaluate(game_state)
+        
+        # Store result in transposition table
+        self.transposition_table[state_hash] = best_score
         
         return best_score
     
@@ -296,13 +335,20 @@ class MinimaxSearch:
         Get performance statistics from the last search.
         
         Returns:
-            dict: Performance metrics including nodes searched, time, etc.
+            dict: Performance metrics including nodes searched, time, cache stats, etc.
         """
+        total_cache_lookups = self.cache_hits + self.cache_misses
+        cache_hit_rate = self.cache_hits / max(total_cache_lookups, 1)
+        
         return {
             'nodes_searched': self.nodes_searched,
             'terminal_nodes': self.terminal_nodes,
             'pruned_nodes': self.pruned_nodes,
             'max_depth_reached': self.max_depth_reached,
             'search_time': self.search_time,
-            'nodes_per_second': self.nodes_searched / max(self.search_time, 1e-9)
+            'nodes_per_second': self.nodes_searched / max(self.search_time, 1e-9),
+            'cache_hits': self.cache_hits,
+            'cache_misses': self.cache_misses,
+            'cache_hit_rate': cache_hit_rate,
+            'transposition_table_size': len(self.transposition_table)
         }
