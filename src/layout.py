@@ -24,7 +24,7 @@ class LayoutRenderer:
 
         # Display reshuffle-specific instructions if applicable
         if self.reshuffle_number:
-            print(f"** Enter only unknown cards for reshuffle #{self.reshuffle_number}")
+            print(f"** Enter cards for reshuffle #{self.reshuffle_number}")
         else:
             print("** Enter cards as 4c for 4 of clubs")
         

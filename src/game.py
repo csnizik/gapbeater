@@ -145,14 +145,15 @@ class GameManager:
         for reshuffle_num in range(1, 4):
             print(f"\nProceeding to reshuffle {reshuffle_num}/3...")
 
-            # Get prepopulated cards + positions to skip using GameState immutable sequence detection
-            prev_board = self.current_game[reshuffle_num - 1]
-            skip_cells, prepopulated = self.compute_prepopulated_cells(prev_board)
+            # Temporarily disabled: Get prepopulated cards + positions to skip using GameState immutable sequence detection
+            # prev_board = self.current_game[reshuffle_num - 1]
+            # skip_cells, prepopulated = self.compute_prepopulated_cells(prev_board)
 
             # Update handler to show reshuffle number in prompts
             handler.current_reshuffle = reshuffle_num
             
-            board = handler.collect_card_inputs(game_id=game_id, skip_cells=skip_cells, prepopulated_cards=prepopulated)
+            # Temporarily disabled prepopulation - collect all cards fresh
+            board = handler.collect_card_inputs(game_id=game_id)
             self.current_game[reshuffle_num] = board
             
             # Reset reshuffle number after collection
@@ -225,7 +226,7 @@ class GameManager:
         
         if move_sequence:
             print(f"{phase_name}: Optimal move sequence:")
-            print(" -> ".join(move_sequence))
+            print(", ".join(move_sequence))
         else:
             print(f"{phase_name}: No optimal sequence found")
         
