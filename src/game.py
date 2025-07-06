@@ -9,7 +9,7 @@ from src.simulator.game_state import GameState
 from src.simulator.search import MinimaxSearch
 from src.simulator.move_executor import MoveExecutor
 from src.simulator.evaluator import PositionEvaluator
-from . import constants
+from constants import RANK_MAP, SUIT_MAP, MAX_ITERATIONS
 
 class GameManager:
     def __init__(self):
@@ -151,11 +151,11 @@ class GameManager:
 
             # Update handler to show reshuffle number in prompts
             handler.current_reshuffle = reshuffle_num
-            
+
             # Temporarily disabled prepopulation - collect all cards fresh
             board = handler.collect_card_inputs(game_id=game_id)
             self.current_game[reshuffle_num] = board
-            
+
             # Reset reshuffle number after collection
             handler.current_reshuffle = None
 
@@ -174,62 +174,61 @@ class GameManager:
     def _analyze_and_display_moves(self, game_state, phase_name):
         """Analyze current position and display optimal move sequence. Returns True if game is won."""
         legal_moves = game_state.get_legal_moves()
-        
+
         # Check for win condition (no gaps remaining)
         if len(game_state.gaps) == 0:
             print(f"{phase_name}: 🎉 GAME WON! No gaps remaining.")
             return True
-        
+
         if not legal_moves:
             print(f"{phase_name}: No legal moves available - reshuffle needed")
             return False
-        
+
         # Create search instance to find optimal sequence
         search = MinimaxSearch(enable_diagnostics=True)
-        
+
         # Build optimal move sequence until no more beneficial moves
         move_sequence = []
         current_state = game_state
-        max_iterations = 52  # Maximum possible moves in a game (one per card)
         seen_positions = set()  # Prevent infinite loops by tracking positions
-        
-        for iteration in range(max_iterations):
+
+        for iteration in range(MAX_ITERATIONS):
             # Check for position repetition to prevent infinite loops
             position_hash = hash(current_state)
             if position_hash in seen_positions:
                 break
             seen_positions.add(position_hash)
-            
+
             # Find best move from current position
             best_move = search.search(current_state, max_depth=3)
             if not best_move:
                 break
-                
+
             # Add move to sequence
             card, (target_row, target_col) = best_move
-            card_str = f"{constants.RANK_MAP[card.rank]}{constants.SUIT_MAP[card.suit]}"
+            card_str = f"{RANK_MAP[card.rank]}{SUIT_MAP[card.suit]}"
             move_sequence.append(f"{card_str} -> R{target_row+1}C{target_col+1}")
-            
+
             # Execute move to get new state for next iteration
             try:
                 current_state = search.move_executor.execute_move(current_state, best_move)
-                
+
                 # Check if game is won
                 if len(current_state.gaps) == 0:
                     break
-                    
+
                 # Check if we can continue - need legal moves
                 if not current_state.get_legal_moves():
                     break
             except Exception:
                 break
-        
+
         if move_sequence:
             print(f"{phase_name}: Optimal move sequence:")
             print(", ".join(move_sequence))
         else:
             print(f"{phase_name}: No optimal sequence found")
-        
+
         return False
 
     def compute_prepopulated_cells(self, flat_board):

@@ -27,5 +27,6 @@ EXIT_KEY = 'z'
 EMPTY_CELL_STR = "--"
 
 # --- Search Configuration ---
-DEFAULT_SEARCH_DEPTH = 5
-MAX_SEARCH_TIME_SECONDS = 2.0  # Maximum time allowed for iterative deepening search
+DEFAULT_SEARCH_DEPTH = 15
+MAX_SEARCH_TIME_SECONDS = 6.0
+MAX_ITERATIONS = 104
