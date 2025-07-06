@@ -225,7 +225,10 @@ class GameManager:
 
         if move_sequence:
             print(f"{phase_name}: Optimal move sequence:")
-            print(", ".join(move_sequence))
+            # Group moves into rows of three
+            for i in range(0, len(move_sequence), 3):
+                group = move_sequence[i:i+3]
+                print(", ".join(group))
         else:
             print(f"{phase_name}: No optimal sequence found")
 

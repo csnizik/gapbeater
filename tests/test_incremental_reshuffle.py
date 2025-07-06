@@ -128,6 +128,56 @@ class TestIncrementalReshuffleFlow(unittest.TestCase):
         self.assertEqual(prepopulated[(0, 1)], "3C")
         self.assertEqual(prepopulated[(0, 2)], "4C")
 
+    def test_move_sequence_grouping(self):
+        """Test that move sequences are grouped into rows of three"""
+        import io
+        from contextlib import redirect_stdout
+        
+        # Test short sequence (≤3 moves) - should stay on single line
+        test_board = ["2C", "3C", "--", "5C", "6C", "--", "--", "--", "--", "--", "--", "--", "--",
+                      "--", "4C", "2D", "3D", "--", "--", "--", "--", "--", "--", "--", "--", "--",
+                      "2H", "3H", "4H", "--", "--", "--", "--", "--", "--", "--", "--", "--", "--",
+                      "2S", "3S", "4S", "5S", "--", "--", "--", "--", "--", "--", "--", "--", "--"]
+        
+        self.manager.current_game = [test_board]
+        game_state = GameState(enable_diagnostics=False)
+        self.assertTrue(game_state.load_from_flat_board(test_board))
+        
+        # Capture output to verify formatting
+        captured_output = io.StringIO()
+        with redirect_stdout(captured_output):
+            is_won = self.manager._analyze_and_display_moves(game_state, "Test grouping")
+        
+        output = captured_output.getvalue()
+        
+        # Should not be won and should have moves
+        self.assertFalse(is_won)
+        
+        # Verify the output format - should have header and move line(s)
+        lines = output.strip().split('\n')
+        self.assertGreater(len(lines), 0)
+        
+        # First line should be the header
+        self.assertIn("Test grouping: Optimal move sequence:", lines[0])
+        
+        # Move lines should contain "->" 
+        move_lines = [line for line in lines if '->' in line]
+        self.assertGreater(len(move_lines), 0)
+        
+        # For this test case, we expect a small number of moves (likely 1)
+        # Each line should have at most 3 moves (separated by ", ")
+        for line in move_lines:
+            moves_in_line = line.count('->')
+            self.assertLessEqual(moves_in_line, 3, f"Line has {moves_in_line} moves, should be ≤3: {line}")
+            
+            # Verify comma separation if multiple moves
+            if moves_in_line > 1:
+                # Should have (moves_in_line - 1) commas between moves
+                expected_commas = moves_in_line - 1
+                actual_commas = line.count(', ')
+                self.assertEqual(actual_commas, expected_commas, 
+                               f"Expected {expected_commas} commas for {moves_in_line} moves, got {actual_commas}")
+
 
 if __name__ == '__main__':
     print("Running incremental reshuffle tests...")
