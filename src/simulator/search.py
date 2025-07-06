@@ -197,8 +197,11 @@ class MinimaxSearch:
             # Set a reasonable upper bound for beta based on evaluation range
             initial_beta = 2.0  # Just above typical scores to enable some pruning
             
+            # Order moves for better pruning efficiency
+            ordered_moves = self._order_moves(game_state, legal_moves)
+            
             # Evaluate each possible first move
-            for move in legal_moves:
+            for move in ordered_moves:
                 try:
                     # Execute the move to get new state
                     new_state = self.move_executor.execute_move(game_state, move)
@@ -294,7 +297,10 @@ class MinimaxSearch:
         best_score = float('-inf')
         local_alpha = alpha
         
-        for move in legal_moves:
+        # Order moves for better pruning efficiency
+        ordered_moves = self._order_moves(game_state, legal_moves)
+        
+        for move in ordered_moves:
             try:
                 # Execute move to get new state
                 new_state = self.move_executor.execute_move(game_state, move)
@@ -330,6 +336,101 @@ class MinimaxSearch:
         
         return best_score
     
+    def _score_move(self, game_state: GameState, move: Move) -> float:
+        """
+        Score a move based on heuristic evaluation.
+        
+        Higher scores indicate more promising moves that should be explored first.
+        
+        Args:
+            game_state: Current game state
+            move: Move to score (card, (target_row, target_col))
+            
+        Returns:
+            float: Heuristic score for the move
+        """
+        card, (target_row, target_col) = move
+        score = 0.0
+        
+        # First column bonus - placing 2s creates more opportunities
+        if target_col == 0:
+            score += 10.0
+        else:
+            # Column preference - earlier columns are generally better
+            score += max(0, 13 - target_col)
+        
+        # Check if move would create a dead gap (gap after King)
+        # Look at the position after this move would be made
+        if target_col < 12:  # Not the last column
+            next_pos_card = game_state.board[target_row][target_col + 1]
+            if next_pos_card and next_pos_card.rank == 13:  # King in next position
+                # This move would create a gap after a King if the gap is not already there
+                next_next_col = target_col + 2
+                if next_next_col < 13:  # There is a position after the King
+                    next_next_card = game_state.board[target_row][next_next_col]
+                    if next_next_card is None:  # Gap already exists after King
+                        score -= 5.0  # Penalty for reinforcing dead gap pattern
+        
+        # Sequence extension bonus - prioritize moves that extend longer sequences
+        if target_col > 0:
+            prev_card = game_state.board[target_row][target_col - 1]
+            if prev_card and prev_card.suit == card.suit and prev_card.rank == card.rank - 1:
+                # Count how long the sequence would be after this move
+                sequence_length = 1  # This card
+                check_col = target_col - 1
+                while check_col >= 0:
+                    check_card = game_state.board[target_row][check_col]
+                    if check_card and check_card.suit == card.suit and check_card.rank == card.rank - (target_col - check_col):
+                        sequence_length += 1
+                        check_col -= 1
+                    else:
+                        break
+                score += sequence_length * 0.5
+        
+        # Suit preference - slight bonus for suits that have more potential
+        # This is a simple heuristic that could be expanded
+        if card.suit in [0, 1]:  # Clubs and Spades (arbitrary preference)
+            score += 0.1
+            
+        return score
+    
+    def _order_moves(self, game_state: GameState, legal_moves: List[Move]) -> List[Move]:
+        """
+        Order legal moves based on heuristic evaluation.
+        
+        More promising moves are placed first to improve alpha-beta pruning efficiency.
+        
+        Args:
+            game_state: Current game state
+            legal_moves: List of legal moves to order
+            
+        Returns:
+            List[Move]: Moves sorted by heuristic score (best first)
+        """
+        if not legal_moves:
+            return legal_moves
+        
+        # Score each move and sort by score (descending)
+        scored_moves = []
+        for move in legal_moves:
+            score = self._score_move(game_state, move)
+            scored_moves.append((score, move))
+        
+        # Sort by score (highest first) and extract moves
+        scored_moves.sort(key=lambda x: x[0], reverse=True)
+        ordered_moves = [move for _, move in scored_moves]
+        
+        # Log move ordering if diagnostics enabled and debug level
+        if self.diagnostics and self.diagnostics.logger.isEnabledFor(logging.DEBUG):
+            self.diagnostics.logger.debug(f"Move ordering: {len(ordered_moves)} moves sorted")
+            for i, (score, move) in enumerate(scored_moves[:5]):  # Log top 5 moves
+                card, (target_row, target_col) = move
+                self.diagnostics.logger.debug(
+                    f"  {i+1}. Score {score:.1f}: {card.rank}{['♣','♠','♥','♦'][card.suit]} -> R{target_row+1}C{target_col+1}"
+                )
+        
+        return ordered_moves
+
     def get_performance_stats(self) -> dict:
         """
         Get performance statistics from the last search.
