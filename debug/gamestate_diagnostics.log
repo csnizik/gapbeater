@@ -1,7 +1,25 @@
-2025-07-06 20:13:44,553 - INFO - === GameState Initialization ===
-2025-07-06 20:13:44,553 - INFO - Board configuration: empty
-2025-07-06 20:13:44,553 - INFO - ✓ Board structure validation passed
-2025-07-06 20:13:44,553 - INFO - Initial gap count: 0
-2025-07-06 20:13:44,554 - INFO - Initial immutable sequence count: 0
-2025-07-06 20:13:44,554 - DEBUG - Position copy time: 0.000004s
-2025-07-06 20:13:44,554 - DEBUG - Hash generation time: 0.000002s
+2025-07-06 20:29:45,255 - INFO - === GameState Initialization ===
+2025-07-06 20:29:45,255 - INFO - Board configuration: empty
+2025-07-06 20:29:45,255 - INFO - ✓ Board structure validation passed
+2025-07-06 20:29:45,255 - INFO - Initial gap count: 0
+2025-07-06 20:29:45,255 - INFO - Initial immutable sequence count: 0
+2025-07-06 20:29:45,256 - INFO - === Immutable Sequence Detection ===
+2025-07-06 20:29:45,256 - INFO - Row 0: Found immutable sequence of 2 cards
+2025-07-06 20:29:45,256 - DEBUG -   Positions: [(0, 0), (0, 1)]
+2025-07-06 20:29:45,256 - INFO - Row 1: Found immutable sequence of 11 cards
+2025-07-06 20:29:45,256 - DEBUG -   Positions: [(1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7), (1, 8), (1, 9), (1, 10), (1, 11), (1, 12)]
+2025-07-06 20:29:45,256 - INFO - Row 2: Found immutable sequence of 12 cards
+2025-07-06 20:29:45,256 - DEBUG -   Positions: [(2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (2, 10), (2, 11)]
+2025-07-06 20:29:45,256 - DEBUG - Row 3: No immutable sequence found
+2025-07-06 20:29:45,256 - INFO - === GameState Initialization ===
+2025-07-06 20:29:45,256 - INFO - Board configuration: loaded_from_flat_board
+2025-07-06 20:29:45,256 - INFO - ✓ Board structure validation passed
+2025-07-06 20:29:45,256 - INFO - Initial gap count: 2
+2025-07-06 20:29:45,256 - INFO - Initial immutable sequence count: 25
+2025-07-06 20:29:45,256 - DEBUG - === Board State after_loading ===
+2025-07-06 20:29:45,256 - DEBUG - Row 0: 2C 3C -- 5C 6C 7C 8C 9C XC JC QC KC 2D
+2025-07-06 20:29:45,256 - DEBUG - Row 1: 3D 4C 2D 3D 4D 5D 6D 7D 8D 9D XD JD QD
+2025-07-06 20:29:45,256 - DEBUG - Row 2: 2H 3H 4H 5H 6H 7H 8H 9H XH JH QH KH 2S
+2025-07-06 20:29:45,256 - DEBUG - Row 3: 3S 4S 5S 6S 7S 8S 9S XS JS QS KS KD --
+2025-07-06 20:29:45,256 - INFO - Move generation: 1 legal moves in 0.000011s
+2025-07-06 20:29:45,256 - DEBUG - Average move generation time: 0.000011s
