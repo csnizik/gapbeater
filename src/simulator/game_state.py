@@ -14,6 +14,7 @@ import logging
 from pathlib import Path
 
 from .. import constants
+from .zobrist import get_zobrist_table
 
 # Add parent directory to path for context import
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -149,6 +150,9 @@ class GameState:
         self.gaps: FrozenSet[Tuple[int, int]] = frozenset()  # Track gap positions for O(1) lookup
         self.immutable_sequences: FrozenSet[Tuple[int, int]] = frozenset()  # Cards that cannot be moved
 
+        # Zobrist hash for constant-time hashing
+        self.zhash: int = 0
+
         # Performance optimization: pre-allocate commonly used data structures
         self._legal_moves_cache: Optional[List[Tuple[CardPosition, Tuple[int, int]]]] = None
         self._evaluation_cache: Optional[float] = None
@@ -175,6 +179,16 @@ class GameState:
         if (row, col) in self.immutable_sequences:
             return False  # Cannot place on immutable position
 
+        # Update Zobrist hash
+        zobrist_table = get_zobrist_table()
+        
+        # If there was a gap here, remove it from the hash
+        if (row, col) in self.gaps:
+            self.zhash ^= zobrist_table.get_gap_hash(row, col)
+        
+        # Add the new card to the hash
+        self.zhash ^= zobrist_table.get_piece_hash(row, col, card.rank, card.suit)
+
         self.board[row][col] = card
         # Update gaps using frozenset
         new_gaps = set(self.gaps)
@@ -190,6 +204,17 @@ class GameState:
 
         if (row, col) in self.immutable_sequences:
             return False  # Cannot create gap in immutable sequence
+
+        # Update Zobrist hash
+        zobrist_table = get_zobrist_table()
+        
+        # If there was a card here, remove it from the hash
+        current_card = self.board[row][col]
+        if current_card is not None:
+            self.zhash ^= zobrist_table.get_piece_hash(row, col, current_card.rank, current_card.suit)
+        
+        # Add gap to the hash
+        self.zhash ^= zobrist_table.get_gap_hash(row, col)
 
         self.board[row][col] = None
         # Update gaps using frozenset
@@ -285,6 +310,9 @@ class GameState:
         # Copy frozensets (these are already immutable)
         new_state.gaps = self.gaps
         new_state.immutable_sequences = self.immutable_sequences
+        
+        # Copy Zobrist hash
+        new_state.zhash = self.zhash
 
         copy_time = time.perf_counter() - start_time
 
@@ -301,18 +329,9 @@ class GameState:
         """
         Hash function for transposition tables.
 
-        Implements efficient hashing using frozensets for performance.
+        Uses Zobrist hashing for constant-time hash computation.
         """
-        # Simple hash implementation - can be optimized with Zobrist hashing later
-        board_tuple = tuple(
-            tuple(
-                (card.rank, card.suit) if card else None
-                for card in row
-            )
-            for row in self.board
-        )
-        # Use frozenset directly since gaps is already a frozenset
-        return hash((board_tuple, self.gaps, self.immutable_sequences))
+        return self.zhash
 
     def __eq__(self, other) -> bool:
         """Equality comparison for transposition tables"""
@@ -337,6 +356,8 @@ class GameState:
 
         try:
             gaps_set = set()
+            zobrist_table = get_zobrist_table()
+            self.zhash = 0  # Reset Zobrist hash
 
             for i, card_str in enumerate(flat_board):
                 row = i // 13
@@ -345,9 +366,13 @@ class GameState:
                 if card_str == "--" or card_str == "":
                     self.board[row][col] = None
                     gaps_set.add((row, col))
+                    # Add gap to Zobrist hash
+                    self.zhash ^= zobrist_table.get_gap_hash(row, col)
                 else:
                     card = CardPosition.from_string(card_str)
                     self.board[row][col] = card
+                    # Add card to Zobrist hash
+                    self.zhash ^= zobrist_table.get_piece_hash(row, col, card.rank, card.suit)
 
             self.gaps = frozenset(gaps_set)
 
