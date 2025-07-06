@@ -16,3 +16,6 @@ Thumbs.db
 
 # Ignore debug logs (except for initial implementation)
 debug/*.log
+
+# Ignore demo files
+demo_*.py
