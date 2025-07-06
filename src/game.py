@@ -131,83 +131,68 @@ class GameManager:
 
         # Load initial board into GameState
         initial_board = self.current_game[0]
-        if game_state.load_from_flat_board(initial_board):
-            print("✓ Board loaded successfully into GameState")
-
-            # Analyze current position
-            legal_moves = game_state.get_legal_moves()
-            print(f"Analysis complete. Found {len(legal_moves)} legal moves:")
-
-            # Use search for intelligent move recommendation
-            if legal_moves:
-                # Create search instance and find best move
-                search = MinimaxSearch(enable_diagnostics=True)
-                best_move = search.search(game_state, constants.DEFAULT_SEARCH_DEPTH)
-                
-                if best_move:
-                    # Execute the recommended move to get the resulting position for evaluation
-                    move_executor = MoveExecutor()
-                    evaluator = PositionEvaluator()
-                    
-                    try:
-                        # Get evaluation score for the recommended move
-                        new_state = move_executor.execute_move(game_state, best_move)
-                        evaluation_score = evaluator.evaluate(new_state)
-                        
-                        # Display search recommendation
-                        card, (target_row, target_col) = best_move
-                        card_str = f"{constants.RANK_MAP[card.rank]}{constants.SUIT_MAP[card.suit]}"
-                        print(f"  Recommended: {card_str} -> R{target_row+1}C{target_col+1} (score: {evaluation_score:.1f})")
-                        
-                        # Show performance stats
-                        stats = search.get_performance_stats()
-                        print(f"  Search evaluated {stats['nodes_searched']} positions in {stats['search_time']:.3f}s")
-                        
-                    except Exception as e:
-                        print(f"  Error evaluating recommended move: {e}")
-                        # Fall back to showing basic moves
-                        card, (target_row, target_col) = best_move
-                        card_str = f"{constants.RANK_MAP[card.rank]}{constants.SUIT_MAP[card.suit]}"
-                        print(f"  Recommended: {card_str} -> R{target_row+1}C{target_col+1}")
-                
-                # Also show other legal moves for context (optional)
-                print(f"  Other legal moves:")
-                for i, (card, (target_row, target_col)) in enumerate(legal_moves[:5]):  # Show first 5 moves
-                    card_str = f"{constants.RANK_MAP[card.rank]}{constants.SUIT_MAP[card.suit]}"
-                    print(f"    {card_str} -> R{target_row+1}C{target_col+1}")
-            else:
-                print("  No legal moves available - reshuffle needed")
-        else:
+        if not game_state.load_from_flat_board(initial_board):
             print("✗ Failed to load board into GameState")
             return
 
-        reshuffles_remaining = 3
-        for reshuffle_num in range(1, 4):
-            print(f"\nYou have {reshuffles_remaining} reshuffles remaining.")
-            proceed = input("Enter new layout for next [R]eshuffle? ").strip().lower()
-            if proceed != 'r':
-                print("Exiting reshuffle loop.")
-                break
+        print("✓ Board loaded successfully into GameState")
 
-            print(f"\nStarting reshuffle {reshuffle_num}/3")
+        # Analyze initial position and display moves
+        if not self._analyze_and_display_moves(game_state, "Initial deal"):
+            return
+
+        # Automatically proceed through reshuffles
+        for reshuffle_num in range(1, 4):
+            print(f"\nProceeding to reshuffle {reshuffle_num}/3...")
 
             # Get prepopulated cards + positions to skip using GameState immutable sequence detection
             prev_board = self.current_game[reshuffle_num - 1]
             skip_cells, prepopulated = self.compute_prepopulated_cells(prev_board)
 
+            # Update handler to show reshuffle number in prompts
+            handler.current_reshuffle = reshuffle_num
+            
             board = handler.collect_card_inputs(game_id=game_id, skip_cells=skip_cells, prepopulated_cards=prepopulated)
             self.current_game[reshuffle_num] = board
+            
+            # Reset reshuffle number after collection
+            handler.current_reshuffle = None
 
             # Update GameState with new board and analyze
-            if game_state.load_from_flat_board(board):
-                legal_moves = game_state.get_legal_moves()
-                print(f"After reshuffle: {len(legal_moves)} legal moves available")
+            if not game_state.load_from_flat_board(board):
+                print(f"✗ Failed to load reshuffle {reshuffle_num} into GameState")
+                continue
 
-            reshuffles_remaining -= 1
+            # Check for win condition and analyze moves
+            if self._analyze_and_display_moves(game_state, f"Reshuffle {reshuffle_num}"):
+                print(f"\n🎉 Game won after reshuffle {reshuffle_num}!")
+                break
 
-        print("\nFinal Layout:")
-        layout.display_full_board(self.current_game[3])
         print("Analysis complete. Diagnostic data saved to debug/gamestate_diagnostics.log")
+
+    def _analyze_and_display_moves(self, game_state, phase_name):
+        """Analyze current position and display moves. Returns True if game is won."""
+        legal_moves = game_state.get_legal_moves()
+        
+        # Check for win condition (no gaps remaining)
+        if len(game_state.gaps) == 0:
+            print(f"{phase_name}: 🎉 GAME WON! No gaps remaining.")
+            return True
+        
+        print(f"{phase_name}: Found {len(legal_moves)} legal moves:")
+
+        if legal_moves:
+            # Create search instance and find best moves
+            search = MinimaxSearch(enable_diagnostics=True)
+            
+            # Display all legal moves in the requested format
+            for card, (target_row, target_col) in legal_moves:
+                card_str = f"{constants.RANK_MAP[card.rank]}{constants.SUIT_MAP[card.suit]}"
+                print(f"{card_str} -> R{target_row+1}C{target_col+1}")
+        else:
+            print("No legal moves available - reshuffle needed")
+        
+        return False
 
     def compute_prepopulated_cells(self, flat_board):
         skip_cells = set()

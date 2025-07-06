@@ -2,6 +2,11 @@ class LayoutRenderer:
     def __init__(self):
         self.grid = [["  " for _ in range(13)] for _ in range(4)]
         self.highlights = set()  # Store (row, col) tuples
+        self.reshuffle_number = None  # Track current reshuffle number
+
+    def set_reshuffle_number(self, reshuffle_num):
+        """Set the current reshuffle number for display"""
+        self.reshuffle_number = reshuffle_num
 
     def update_cell(self, row, col, value):
         self.grid[row][col] = value
@@ -17,7 +22,14 @@ class LayoutRenderer:
         sys.stdout.write("\033[2J\033[H")
         sys.stdout.flush()
 
-        print("** Enter cards as 4c for 4 of clubs\n** Use `x` for 10, `j` for jack, etc.\n** Use `-` or `g` for gap space\n** Use `z` to save and exit\n")
+        # Display reshuffle-specific instructions if applicable
+        if self.reshuffle_number:
+            print(f"** Enter only unknown cards for reshuffle #{self.reshuffle_number}")
+        else:
+            print("** Enter cards as 4c for 4 of clubs")
+        
+        print("** Use `x` for 10, `j` for jack, etc.\n** Use `-` or `g` for gap space\n** Use `z` to save and exit\n")
+        
         for r_idx, row in enumerate(self.grid):
             display_row = []
             for c_idx, val in enumerate(row):
