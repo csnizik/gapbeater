@@ -7,8 +7,9 @@ the strategic principles and performance targets outlined in the project context
 
 # This module structure follows the planned architecture from README.md:
 # src/simulator/
-# ├── game_state.py  # Efficient board representation
-# ├── move_gen.py    # Legal move generation
-# ├── evaluator.py   # Position evaluation and scoring
-# ├── search.py      # Tree search algorithms
-# └── optimizer.py   # Multi-phase strategic planning
+# ├── game_state.py     # Efficient board representation
+# ├── move_executor.py  # Move execution engine
+# ├── move_gen.py       # Legal move generation
+# ├── evaluator.py      # Position evaluation and scoring
+# ├── search.py         # Tree search algorithms
+# └── optimizer.py      # Multi-phase strategic planning
