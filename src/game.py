@@ -186,12 +186,19 @@ class GameManager:
         # Create search instance to find optimal sequence
         search = MinimaxSearch(enable_diagnostics=True)
         
-        # Build optimal move sequence
+        # Build optimal move sequence until no more beneficial moves
         move_sequence = []
         current_state = game_state
-        max_sequence_length = 10  # Prevent infinite loops
+        max_iterations = 52  # Maximum possible moves in a game (one per card)
+        seen_positions = set()  # Prevent infinite loops by tracking positions
         
-        while len(move_sequence) < max_sequence_length:
+        for iteration in range(max_iterations):
+            # Check for position repetition to prevent infinite loops
+            position_hash = hash(current_state)
+            if position_hash in seen_positions:
+                break
+            seen_positions.add(position_hash)
+            
             # Find best move from current position
             best_move = search.search(current_state, max_depth=3)
             if not best_move:
@@ -205,6 +212,11 @@ class GameManager:
             # Execute move to get new state for next iteration
             try:
                 current_state = search.move_executor.execute_move(current_state, best_move)
+                
+                # Check if game is won
+                if len(current_state.gaps) == 0:
+                    break
+                    
                 # Check if we can continue - need legal moves
                 if not current_state.get_legal_moves():
                     break
