@@ -300,11 +300,14 @@ class GameState:
 
         Optimized for performance as this will be called frequently during tree search.
         """
-        start_time = time.perf_counter()
+        # Only perform timing when diagnostics are enabled to minimize overhead
+        if self.diagnostics:
+            start_time = time.perf_counter()
 
         new_state = GameState(enable_diagnostics=False)  # Don't enable diagnostics on copies
 
-        # Shallow copy board using row.copy() for CardPosition objects
+        # Copy board using row.copy() for CardPosition objects
+        # This provides the optimal balance of performance and correctness
         new_state.board = [row.copy() for row in self.board]
 
         # Copy frozensets (these are already immutable)
@@ -314,10 +317,9 @@ class GameState:
         # Copy Zobrist hash
         new_state.zhash = self.zhash
 
-        copy_time = time.perf_counter() - start_time
-
         # Log performance if diagnostics enabled on original
         if self.diagnostics:
+            copy_time = time.perf_counter() - start_time
             hash_start = time.perf_counter()
             _ = hash(new_state)  # Generate hash for timing
             hash_time = time.perf_counter() - hash_start
