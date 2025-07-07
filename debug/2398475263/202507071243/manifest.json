@@ -1,0 +1,44 @@
+{
+  "run_metadata": {
+    "timestamp": "2025-07-07T12:43:44.842252",
+    "run_id": "202507071243",
+    "format_version": "1.0"
+  },
+  "performance_settings": {
+    "SEARCH_DEPTH": 15,
+    "SEARCH_TIME_LIMIT": 6.0,
+    "MAX_ITERATIONS": 104,
+    "TARGET_SPEED": 50000,
+    "RESPONSE_TIME_LIMIT": 2.0,
+    "MEMORY_LIMIT": 100,
+    "ALPHA_BETA_PRUNING": true,
+    "TRANSPOSITION_TABLES": true,
+    "ITERATIVE_DEEPENING": true,
+    "MOVE_ORDERING": true,
+    "GAP_CREATION_WEIGHT": 100.0,
+    "SEQUENCE_WEIGHT": 200.0
+  },
+  "additional_performance_factors": {
+    "BOARD_ROWS": 4,
+    "BOARD_COLS": 13,
+    "DECK_SIZE": 52,
+    "CORRECT_PLACEMENT_WEIGHT": 50.0,
+    "DEAD_GAP_PENALTY": -5.0,
+    "BASE_SCORE": 50.0,
+    "NORMALIZATION_FACTOR": 100.0,
+    "ZOBRIST_SEED": 12345,
+    "ZOBRIST_BITS": 64,
+    "HASH_TABLE_ENABLED": true,
+    "ENABLE_PERFORMANCE_TRACKING": false,
+    "GLOBAL_LOGGING_ENABLED": true
+  },
+  "runtime_environment": {
+    "python_version": "3.11.5",
+    "platform": "macOS-10.16-x86_64-i386-64bit",
+    "processor": "i386"
+  },
+  "game_session": {
+    "game_id": "2398475263",
+    "session_start": "2025-07-07T12:43:44.889589"
+  }
+}
