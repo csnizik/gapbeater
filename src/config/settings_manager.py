@@ -94,6 +94,8 @@ class SettingsManager:
         self._settings: Dict[str, SettingDefinition] = {}
         self._lock = threading.RLock()
         self._current_run_id = None  # Track current run for timestamped logging
+        self._current_game_id = None  # Track current game ID
+        self._pending_timestamped_run = False  # Flag for deferred directory creation
         self._register_default_settings()
         self._initialized = True
     
@@ -386,7 +388,8 @@ class SettingsManager:
         are rotated (truncated). When disabled, sets loggers to WARNING level.
         
         Args:
-            create_timestamped_run: If True, creates a timestamped subdirectory for this run
+            create_timestamped_run: If True, marks that we want timestamped logging 
+                                   (actual directory creation deferred until game_id available)
         """
         logging_enabled = self.get_setting("logging_enabled")
         
@@ -412,18 +415,24 @@ class SettingsManager:
         # If logging is being enabled, set up logging directory structure
         if logging_enabled:
             if create_timestamped_run:
-                self._setup_timestamped_run()
+                # Mark that we want timestamped logging but defer creation until game_id available
+                self._pending_timestamped_run = True
             else:
                 self._rotate_log_files()
     
-    def _setup_timestamped_run(self) -> None:
-        """Create timestamped subdirectory for this run and generate manifest."""
+    def _setup_timestamped_run(self, game_id: str) -> None:
+        """Create timestamped subdirectory for this run and generate manifest.
+        
+        Args:
+            game_id: The game ID to group runs under
+        """
         # Generate timestamp in format YYYYMMDDHHMM
         timestamp = datetime.now().strftime("%Y%m%d%H%M")
         self._current_run_id = timestamp
+        self._current_game_id = game_id
         
-        # Create timestamped directory
-        run_dir = Path(f"debug/{timestamp}")
+        # Create directory structure: debug/{game_id}/{timestamp}/
+        run_dir = Path(f"debug/{game_id}/{timestamp}")
         run_dir.mkdir(parents=True, exist_ok=True)
         
         # Generate and save manifest
@@ -494,7 +503,7 @@ class SettingsManager:
         # Add game_id if we can determine it (placeholder for now)
         # This would be populated if we have access to the current game instance
         manifest_data["game_session"] = {
-            "game_id": "TBD",  # To be populated by game manager if available
+            "game_id": self._current_game_id or "TBD",  # Use current game ID if available
             "session_start": datetime.now().isoformat()
         }
         
@@ -532,12 +541,27 @@ class SettingsManager:
                 with open(log_path, 'w') as f:
                     f.write("")  # Clear the file
     
+    def setup_timestamped_run_with_game_id(self, game_id: str) -> None:
+        """
+        Create timestamped run directory if one was requested via --verbose flag.
+        
+        Args:
+            game_id: The game ID to use for directory structure
+        """
+        if self._pending_timestamped_run and self.get_setting("logging_enabled"):
+            self._setup_timestamped_run(game_id)
+            self._pending_timestamped_run = False
+    
     def update_manifest_with_game_id(self, game_id: str) -> None:
         """Update the manifest file with the actual game ID once it's available."""
+        # If we have a pending timestamped run, create it now
+        self.setup_timestamped_run_with_game_id(game_id)
+        
+        # If we already have a timestamped run, update its manifest
         if not hasattr(self, '_current_run_id') or not self._current_run_id:
             return
             
-        run_dir = Path(f"debug/{self._current_run_id}")
+        run_dir = Path(f"debug/{game_id}/{self._current_run_id}")
         manifest_path = run_dir / "manifest.json"
         
         if not manifest_path.exists():
