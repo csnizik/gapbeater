@@ -28,3 +28,6 @@ benchmark_gamestate_copy.py
 benchmark_copy_final.py
 test_copy_correctness.py
 test_optimized_copy.py
+
+# Test save files
+saves/test*.json
