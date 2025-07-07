@@ -15,8 +15,8 @@ def main():
     settings_manager = SettingsManager()
     if args.verbose:
         settings_manager.set_setting("logging_enabled", True)
-        settings_manager.configure_global_logging()
-        print("Verbose diagnostic logging enabled")
+        settings_manager.configure_global_logging(create_timestamped_run=True)
+        print("Verbose diagnostic logging enabled with timestamped debug directory")
     elif args.quiet:
         settings_manager.set_setting("logging_enabled", False)
         settings_manager.configure_global_logging()

@@ -21,9 +21,19 @@ class InvalidMoveError(Exception):
 class MoveExecutorDiagnostics:
     """Diagnostic logging for move execution operations"""
     
-    def __init__(self, log_file_path: str = "debug/move_executor_diagnostics.log"):
+    def __init__(self, log_file_path: str = None):
+        # Check if we should use timestamped directory
+        if log_file_path is None:
+            from ..config.settings_manager import SettingsManager
+            settings_manager = SettingsManager()
+            current_log_dir = settings_manager.get_current_log_directory()
+            if current_log_dir:
+                log_file_path = str(current_log_dir / "move_executor_diagnostics.log")
+            else:
+                log_file_path = "debug/move_executor_diagnostics.log"
+        
         self.log_file_path = Path(log_file_path)
-        self.log_file_path.parent.mkdir(exist_ok=True)
+        self.log_file_path.parent.mkdir(parents=True, exist_ok=True)
         
         # Configure logging
         self.logger = logging.getLogger("MoveExecutorDiagnostics")

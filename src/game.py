@@ -148,6 +148,9 @@ class GameManager:
         print(f"\nLoaded game: {game_id}")
 
         # Call user_review_layout with loaded data
+        settings_manager = SettingsManager()
+        settings_manager.update_manifest_with_game_id(game_id)
+        
         self.user_review_layout(board_data, game_id, layout, handler, validator, is_loaded_game=True)
 
     def create_new_game(self):
@@ -157,6 +160,10 @@ class GameManager:
             print(f"Generated Game ID: {game_id}")
         else:
             print(f"Using Game ID: {game_id}")
+
+        # Update manifest with game ID if timestamped logging is active
+        settings_manager = SettingsManager()
+        settings_manager.update_manifest_with_game_id(game_id)
 
         self.saved_games[game_id] = []
         layout = LayoutRenderer()

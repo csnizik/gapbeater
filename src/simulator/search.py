@@ -20,10 +20,20 @@ Move = Tuple[CardPosition, Tuple[int, int]]
 class SearchDiagnostics:
     """Comprehensive diagnostic logging for search operations"""
 
-    def __init__(self, log_file_path: str = "debug/search_diagnostics.log", 
+    def __init__(self, log_file_path: str = None, 
                  log_level: int = logging.INFO):
+        # Check if we should use timestamped directory
+        if log_file_path is None:
+            from ..config.settings_manager import SettingsManager
+            settings_manager = SettingsManager()
+            current_log_dir = settings_manager.get_current_log_directory()
+            if current_log_dir:
+                log_file_path = str(current_log_dir / "search_diagnostics.log")
+            else:
+                log_file_path = "debug/search_diagnostics.log"
+        
         self.log_file_path = Path(log_file_path)
-        self.log_file_path.parent.mkdir(exist_ok=True)
+        self.log_file_path.parent.mkdir(parents=True, exist_ok=True)
 
         # Configure logging
         self.logger = logging.getLogger("SearchDiagnostics")
