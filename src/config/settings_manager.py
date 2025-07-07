@@ -7,6 +7,10 @@ performance parameters in the GapBeater application.
 
 import threading
 import time
+import logging
+import json
+from datetime import datetime
+from pathlib import Path
 from dataclasses import dataclass
 from typing import Dict, Any, Union, Tuple, Optional
 from enum import Enum
@@ -89,6 +93,9 @@ class SettingsManager:
             
         self._settings: Dict[str, SettingDefinition] = {}
         self._lock = threading.RLock()
+        self._current_run_id = None  # Track current run for timestamped logging
+        self._current_game_id = None  # Track current game ID
+        self._pending_timestamped_run = False  # Flag for deferred directory creation
         self._register_default_settings()
         self._initialized = True
     
@@ -217,6 +224,14 @@ class SettingsManager:
             description="Enable detailed diagnostic logging",
             current_value=ENABLE_DIAGNOSTICS,
             default_value=ENABLE_DIAGNOSTICS,
+            setting_type=SettingType.BOOLEAN
+        )
+        
+        self._settings["logging_enabled"] = SettingDefinition(
+            name="Global Logging",
+            description="Master toggle for all diagnostic logging",
+            current_value=False,
+            default_value=False,
             setting_type=SettingType.BOOLEAN
         )
         
@@ -364,3 +379,219 @@ class SettingsManager:
                 }
                 for key, setting in self._settings.items()
             }
+    
+    def configure_global_logging(self, create_timestamped_run: bool = False) -> None:
+        """
+        Configure all diagnostic loggers based on the global logging_enabled setting.
+        
+        When enabled, sets all diagnostic loggers to DEBUG level and ensures log files
+        are rotated (truncated). When disabled, sets loggers to WARNING level.
+        
+        Args:
+            create_timestamped_run: If True, marks that we want timestamped logging 
+                                   (actual directory creation deferred until game_id available)
+        """
+        logging_enabled = self.get_setting("logging_enabled")
+        
+        # Define all diagnostic logger names
+        diagnostic_loggers = [
+            "GameStateDiagnostics",
+            "SearchDiagnostics", 
+            "MoveExecutorDiagnostics",
+            "PositionEvaluatorDiagnostics"
+        ]
+        
+        # Configure log level for all diagnostic loggers
+        target_level = logging.DEBUG if logging_enabled else logging.WARNING
+        
+        for logger_name in diagnostic_loggers:
+            logger = logging.getLogger(logger_name)
+            logger.setLevel(target_level)
+            
+            # Update all handlers to the target level
+            for handler in logger.handlers:
+                handler.setLevel(target_level)
+        
+        # If logging is being enabled, set up logging directory structure
+        if logging_enabled:
+            if create_timestamped_run:
+                # Mark that we want timestamped logging but defer creation until game_id available
+                self._pending_timestamped_run = True
+            else:
+                self._rotate_log_files()
+    
+    def _setup_timestamped_run(self, game_id: str) -> None:
+        """Create timestamped subdirectory for this run and generate manifest.
+        
+        Args:
+            game_id: The game ID to group runs under
+        """
+        # Generate timestamp in format YYYYMMDDHHMM
+        timestamp = datetime.now().strftime("%Y%m%d%H%M")
+        self._current_run_id = timestamp
+        self._current_game_id = game_id
+        
+        # Create directory structure: debug/{game_id}/{timestamp}/
+        run_dir = Path(f"debug/{game_id}/{timestamp}")
+        run_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Generate and save manifest
+        self._generate_manifest(run_dir)
+        
+        # Update log file paths to use timestamped directory
+        self._setup_timestamped_log_files(run_dir)
+    
+    def _generate_manifest(self, run_dir: Path) -> None:
+        """Generate manifest file with all runtime metadata."""
+        manifest_data = {
+            "run_metadata": {
+                "timestamp": datetime.now().isoformat(),
+                "run_id": self._current_run_id,
+                "format_version": "1.0"
+            },
+            "performance_settings": {
+                # Core search algorithm settings
+                "SEARCH_DEPTH": self.get_setting("search_depth"),
+                "SEARCH_TIME_LIMIT": self.get_setting("max_search_time"), 
+                "MAX_ITERATIONS": self.get_setting("max_iterations"),
+                
+                # Performance targets
+                "TARGET_SPEED": self.get_setting("target_positions_per_sec"),
+                "RESPONSE_TIME_LIMIT": self.get_setting("max_response_time"),
+                "MEMORY_LIMIT": self.get_setting("max_memory_usage"),
+                
+                # Optimization toggles
+                "ALPHA_BETA_PRUNING": self.get_setting("alpha_beta_pruning"),
+                "TRANSPOSITION_TABLES": self.get_setting("transposition_tables"),
+                "ITERATIVE_DEEPENING": self.get_setting("iterative_deepening"),
+                "MOVE_ORDERING": self.get_setting("move_ordering"),
+                
+                # Evaluation weights
+                "GAP_CREATION_WEIGHT": self.get_setting("gap_creation_weight"),
+                "SEQUENCE_WEIGHT": self.get_setting("sequence_weight")
+            },
+            "additional_performance_factors": {
+                # Board configuration (affects search space)
+                "BOARD_ROWS": 4,
+                "BOARD_COLS": 13,
+                "DECK_SIZE": 52,
+                
+                # Position evaluator constants (affect scoring)
+                "CORRECT_PLACEMENT_WEIGHT": 50.0,
+                "DEAD_GAP_PENALTY": -5.0,
+                "BASE_SCORE": 50.0,
+                "NORMALIZATION_FACTOR": 100.0,
+                
+                # Zobrist hashing configuration (affects transposition tables)
+                "ZOBRIST_SEED": 12345,
+                "ZOBRIST_BITS": 64,
+                
+                # Game state caching
+                "HASH_TABLE_ENABLED": self.get_setting("transposition_tables"),
+                
+                # Logging configuration
+                "ENABLE_PERFORMANCE_TRACKING": self.get_setting("performance_tracking"),
+                "GLOBAL_LOGGING_ENABLED": self.get_setting("logging_enabled")
+            },
+            "runtime_environment": {
+                "python_version": f"{__import__('sys').version_info.major}.{__import__('sys').version_info.minor}.{__import__('sys').version_info.micro}",
+                "platform": __import__('platform').platform(),
+                "processor": __import__('platform').processor() or "unknown"
+            }
+        }
+        
+        # Add game_id if we can determine it (placeholder for now)
+        # This would be populated if we have access to the current game instance
+        manifest_data["game_session"] = {
+            "game_id": self._current_game_id or "TBD",  # Use current game ID if available
+            "session_start": datetime.now().isoformat()
+        }
+        
+        # Write manifest as JSON
+        manifest_path = run_dir / "manifest.json"
+        with open(manifest_path, 'w', encoding='utf-8') as f:
+            json.dump(manifest_data, f, indent=2, ensure_ascii=False)
+    
+    def _setup_timestamped_log_files(self, run_dir: Path) -> None:
+        """Configure log files to write to timestamped directory."""
+        # This will be used by diagnostic classes when they're initialized
+        # For now, we'll store the path for future use
+        self._current_log_dir = run_dir
+    
+    def get_current_log_directory(self) -> Optional[Path]:
+        """Get the current timestamped log directory if one exists."""
+        return getattr(self, '_current_log_dir', None)
+    
+    def _rotate_log_files(self) -> None:
+        """Rotate (truncate) all diagnostic log files to prevent unbounded growth."""
+        debug_dir = Path("debug")
+        debug_dir.mkdir(exist_ok=True)
+        
+        log_files = [
+            "debug/gamestate_diagnostics.log",
+            "debug/search_diagnostics.log",
+            "debug/move_executor_diagnostics.log", 
+            "debug/position_evaluator_diagnostics.log"
+        ]
+        
+        for log_file in log_files:
+            log_path = Path(log_file)
+            if log_path.exists():
+                # Truncate existing file
+                with open(log_path, 'w') as f:
+                    f.write("")  # Clear the file
+    
+    def setup_timestamped_run_with_game_id(self, game_id: str) -> None:
+        """
+        Create timestamped run directory if one was requested via --verbose flag.
+        
+        Args:
+            game_id: The game ID to use for directory structure
+        """
+        if self._pending_timestamped_run and self.get_setting("logging_enabled"):
+            self._setup_timestamped_run(game_id)
+            self._pending_timestamped_run = False
+    
+    def update_manifest_with_game_id(self, game_id: str) -> None:
+        """Update the manifest file with the actual game ID once it's available."""
+        # If we have a pending timestamped run, create it now
+        self.setup_timestamped_run_with_game_id(game_id)
+        
+        # If we already have a timestamped run, update its manifest
+        if not hasattr(self, '_current_run_id') or not self._current_run_id:
+            return
+            
+        run_dir = Path(f"debug/{game_id}/{self._current_run_id}")
+        manifest_path = run_dir / "manifest.json"
+        
+        if not manifest_path.exists():
+            return
+            
+        try:
+            # Read existing manifest
+            with open(manifest_path, 'r', encoding='utf-8') as f:
+                manifest_data = json.load(f)
+            
+            # Update game_id
+            manifest_data["game_session"]["game_id"] = game_id
+            
+            # Write back to file
+            with open(manifest_path, 'w', encoding='utf-8') as f:
+                json.dump(manifest_data, f, indent=2, ensure_ascii=False)
+                
+        except Exception as e:
+            # Log error but don't fail the application
+            print(f"Warning: Could not update manifest with game ID: {e}")
+    
+    def toggle_logging(self) -> bool:
+        """
+        Toggle the global logging setting and reconfigure all loggers.
+        
+        Returns:
+            bool: New state of logging (True if now enabled, False if disabled)
+        """
+        current_state = self.get_setting("logging_enabled")
+        new_state = not current_state
+        self.set_setting("logging_enabled", new_state)
+        self.configure_global_logging()
+        return new_state
