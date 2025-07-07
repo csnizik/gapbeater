@@ -7,6 +7,8 @@ performance parameters in the GapBeater application.
 
 import threading
 import time
+import logging
+from pathlib import Path
 from dataclasses import dataclass
 from typing import Dict, Any, Union, Tuple, Optional
 from enum import Enum
@@ -220,6 +222,14 @@ class SettingsManager:
             setting_type=SettingType.BOOLEAN
         )
         
+        self._settings["logging_enabled"] = SettingDefinition(
+            name="Global Logging",
+            description="Master toggle for all diagnostic logging",
+            current_value=False,
+            default_value=False,
+            setting_type=SettingType.BOOLEAN
+        )
+        
         self._settings["performance_tracking"] = SettingDefinition(
             name="Performance Tracking",
             description="Enable performance metrics tracking",
@@ -364,3 +374,67 @@ class SettingsManager:
                 }
                 for key, setting in self._settings.items()
             }
+    
+    def configure_global_logging(self) -> None:
+        """
+        Configure all diagnostic loggers based on the global logging_enabled setting.
+        
+        When enabled, sets all diagnostic loggers to DEBUG level and ensures log files
+        are rotated (truncated). When disabled, sets loggers to WARNING level.
+        """
+        logging_enabled = self.get_setting("logging_enabled")
+        
+        # Define all diagnostic logger names
+        diagnostic_loggers = [
+            "GameStateDiagnostics",
+            "SearchDiagnostics", 
+            "MoveExecutorDiagnostics",
+            "PositionEvaluatorDiagnostics"
+        ]
+        
+        # Configure log level for all diagnostic loggers
+        target_level = logging.DEBUG if logging_enabled else logging.WARNING
+        
+        for logger_name in diagnostic_loggers:
+            logger = logging.getLogger(logger_name)
+            logger.setLevel(target_level)
+            
+            # Update all handlers to the target level
+            for handler in logger.handlers:
+                handler.setLevel(target_level)
+        
+        # If logging is being enabled, rotate log files (truncate them)
+        if logging_enabled:
+            self._rotate_log_files()
+    
+    def _rotate_log_files(self) -> None:
+        """Rotate (truncate) all diagnostic log files to prevent unbounded growth."""
+        debug_dir = Path("debug")
+        debug_dir.mkdir(exist_ok=True)
+        
+        log_files = [
+            "debug/gamestate_diagnostics.log",
+            "debug/search_diagnostics.log",
+            "debug/move_executor_diagnostics.log", 
+            "debug/position_evaluator_diagnostics.log"
+        ]
+        
+        for log_file in log_files:
+            log_path = Path(log_file)
+            if log_path.exists():
+                # Truncate existing file
+                with open(log_path, 'w') as f:
+                    f.write("")  # Clear the file
+    
+    def toggle_logging(self) -> bool:
+        """
+        Toggle the global logging setting and reconfigure all loggers.
+        
+        Returns:
+            bool: New state of logging (True if now enabled, False if disabled)
+        """
+        current_state = self.get_setting("logging_enabled")
+        new_state = not current_state
+        self.set_setting("logging_enabled", new_state)
+        self.configure_global_logging()
+        return new_state

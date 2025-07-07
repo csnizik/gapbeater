@@ -123,8 +123,8 @@ class MinimaxSearch:
     
     def __init__(self, enable_diagnostics: bool = False):
         """Initialize search components and performance tracking."""
-        self.move_executor = MoveExecutor()
-        self.evaluator = PositionEvaluator()
+        self.move_executor = MoveExecutor(enable_diagnostics=enable_diagnostics)
+        self.evaluator = PositionEvaluator(enable_diagnostics=enable_diagnostics)
         
         # Performance metrics
         self.nodes_searched = 0

@@ -26,19 +26,57 @@ class GameManager:
         print("\nPress Enter to return to main menu...")
         input()  # Wait for user to press Enter
 
+    def configure_logging_menu(self):
+        """Interactive menu for configuring diagnostic logging"""
+        settings_manager = SettingsManager()
+        current_state = settings_manager.get_setting("logging_enabled")
+        
+        print("\n" + "="*50)
+        print("DIAGNOSTIC LOGGING CONFIGURATION")
+        print("="*50)
+        print(f"Current status: {'ENABLED' if current_state else 'DISABLED'}")
+        print("\nDiagnostic loggers controlled:")
+        print("  • GameState operations")
+        print("  • Search algorithms") 
+        print("  • Move execution")
+        print("  • Position evaluation")
+        print("\nLog files written to debug/ directory when enabled")
+        
+        choice = input(f"\n[E]nable logging, [D]isable logging, or [T]oggle? ").strip().lower()
+        
+        if choice == 'e':
+            settings_manager.set_setting("logging_enabled", True)
+            settings_manager.configure_global_logging()
+            print("✓ Diagnostic logging ENABLED")
+        elif choice == 'd':
+            settings_manager.set_setting("logging_enabled", False)
+            settings_manager.configure_global_logging()
+            print("✓ Diagnostic logging DISABLED")
+        elif choice == 't':
+            new_state = settings_manager.toggle_logging()
+            print(f"✓ Diagnostic logging {'ENABLED' if new_state else 'DISABLED'}")
+        
+        print("\nReturning to main menu...")
+
     def user_review_layout(self, board, game_id, layout, handler, validator, is_loaded_game=False):
         """Display layout and handle user choice for analyze or edit"""
         print("\nGame layout loaded. Verifying 4-row structure:\n")
         for i in range(4):
             row = board[i * 13:(i + 1) * 13]
             print(f"Row {i+1}: {row}")
-        choice = input("\nRun [A]nalysis or [E]dit the layout? ").strip().lower()
+        choice = input("\nRun [A]nalysis, [E]dit the layout, or configure [L]ogging? ").strip().lower()
 
         if choice == 'a':
             self.analyze_layout(layout, handler, validator, game_id)
         elif choice == 'e':
             print("Edit functionality not added yet.")
             exit(0)
+        elif choice == 'l':
+            self.configure_logging_menu()
+            # After configuring logging, offer to run analysis
+            run_analysis = input("\nRun analysis with current logging settings? [Y/n]: ").strip().lower()
+            if run_analysis != 'n':
+                self.analyze_layout(layout, handler, validator, game_id)
 
     def open_saved_game(self):
         """Load and display a previously saved game"""
@@ -136,8 +174,12 @@ class GameManager:
         """Analyze game layout using GameState representation"""
         print("Initializing GameState analysis...")
 
-        # Create GameState with diagnostics enabled
-        game_state = GameState(enable_diagnostics=True)
+        # Get global logging setting
+        settings_manager = SettingsManager()
+        logging_enabled = settings_manager.get_setting("logging_enabled")
+
+        # Create GameState with diagnostics based on global setting
+        game_state = GameState(enable_diagnostics=logging_enabled)
 
         # Load initial board into GameState
         initial_board = self.current_game[0]
@@ -179,7 +221,10 @@ class GameManager:
                 print(f"\n🎉 Game won after reshuffle {reshuffle_num}!")
                 break
 
-        print("Analysis complete. Diagnostic data saved to debug/gamestate_diagnostics.log")
+        if logging_enabled:
+            print("Analysis complete. Diagnostic data saved to debug/ directory")
+        else:
+            print("Analysis complete.")
 
     def _analyze_and_display_moves(self, game_state, phase_name):
         """Analyze current position and display optimal move sequence. Returns True if game is won."""
@@ -194,8 +239,12 @@ class GameManager:
             print(f"{phase_name}: No legal moves available - reshuffle needed")
             return False
 
+        # Get global logging setting for search instance
+        settings_manager = SettingsManager()
+        logging_enabled = settings_manager.get_setting("logging_enabled")
+
         # Create search instance to find optimal sequence
-        search = MinimaxSearch(enable_diagnostics=True)
+        search = MinimaxSearch(enable_diagnostics=logging_enabled)
 
         # Build optimal move sequence until no more beneficial moves
         move_sequence = []
