@@ -42,7 +42,7 @@ class InputHandler:
         # Build list of positions we actually want to collect input for
         input_positions = [
             (r, c) for r in range(constants.BOARD_ROWS) for c in range(constants.BOARD_COLS)
-            if (r, c) not in skip_cells
+            if (r, c) not in skip_cells and (r, c) not in prepopulated_cards
         ]
 
         current_input_idx = 0
@@ -51,12 +51,39 @@ class InputHandler:
             flat_index = row * constants.BOARD_COLS + col
 
             self.layout.render()
-            user_input = input(f"Row {row+1}, Col {col+1}: ").strip().lower()
+            
+            # Show undo option starting from the second position
+            if current_input_idx > 0:
+                user_input = input(f"Row {row+1}, Col {col+1} (or [U]ndo): ").strip().lower()
+            else:
+                user_input = input(f"Row {row+1}, Col {col+1}: ").strip().lower()
 
             if user_input == constants.EXIT_KEY:
                 self.save_partial_game(cards, game_id)
                 print(f"\nSaved and exited to {constants.SAVES_DIR}/{game_id}.json")
                 exit(0)
+
+            # Handle undo functionality
+            if user_input == 'u' and current_input_idx > 0:
+                # Find the previous user-entered position
+                prev_input_idx = current_input_idx - 1
+                prev_row, prev_col = input_positions[prev_input_idx]
+                prev_flat_index = prev_row * constants.BOARD_COLS + prev_col
+                
+                # Get the card that was previously entered
+                prev_card = cards[prev_flat_index]
+                
+                # Remove from used_cards if it's not an empty cell
+                if prev_card and prev_card != constants.EMPTY_CELL_STR:
+                    self.used_cards.discard(prev_card)
+                
+                # Clear the cell and update data structures
+                self.layout.update_cell(prev_row, prev_col, "  ")
+                cards[prev_flat_index] = ""
+                
+                # Move back to the previous position
+                current_input_idx = prev_input_idx
+                continue
 
             if not self.validator.is_valid_input(user_input):
                 continue
