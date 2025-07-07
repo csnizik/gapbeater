@@ -9,12 +9,21 @@ from src.simulator.game_state import GameState
 from src.simulator.search import MinimaxSearch
 from src.simulator.move_executor import MoveExecutor
 from src.simulator.evaluator import PositionEvaluator
+from src.config.settings_manager import SettingsManager
 from constants import RANK_MAP, SUIT_MAP, MAX_ITERATIONS
 
 class GameManager:
     def __init__(self):
         self.current_game = [[] for _ in range(4)]  # initial deal + 3 reshuffles
         self.saved_games = {}
+
+    def display_settings(self):
+        """Display performance settings and return to main menu"""
+        settings_manager = SettingsManager()
+        settings_manager.display()
+        
+        print("\nPress Enter to return to main menu...")
+        input()  # Wait for user to press Enter
 
     def user_review_layout(self, board, game_id, layout, handler, validator, is_loaded_game=False):
         """Display layout and handle user choice for analyze or edit"""
