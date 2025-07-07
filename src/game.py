@@ -10,7 +10,8 @@ from src.simulator.search import MinimaxSearch
 from src.simulator.move_executor import MoveExecutor
 from src.simulator.evaluator import PositionEvaluator
 from src.config.settings_manager import SettingsManager
-from constants import RANK_MAP, SUIT_MAP, MAX_ITERATIONS
+from constants import RANK_MAP, SUIT_MAP
+from src.settings import MAX_ITERATIONS
 
 class GameManager:
     def __init__(self):

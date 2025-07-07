@@ -27,6 +27,7 @@ EXIT_KEY = 'z'
 EMPTY_CELL_STR = "--"
 
 # --- Search Configuration ---
-DEFAULT_SEARCH_DEPTH = 15
-MAX_SEARCH_TIME_SECONDS = 6.0
-MAX_ITERATIONS = 104
+# Import performance settings from centralized settings module
+from src.settings import SEARCH_DEPTH as DEFAULT_SEARCH_DEPTH
+from src.settings import SEARCH_TIME_LIMIT as MAX_SEARCH_TIME_SECONDS
+from src.settings import MAX_ITERATIONS

@@ -10,6 +10,13 @@ import time
 from dataclasses import dataclass
 from typing import Dict, Any, Union, Tuple, Optional
 from enum import Enum
+from ..settings import (
+    SEARCH_DEPTH, SEARCH_TIME_LIMIT, MAX_ITERATIONS, TARGET_SPEED,
+    RESPONSE_TIME_LIMIT, MEMORY_LIMIT, ALPHA_BETA_PRUNING, 
+    TRANSPOSITION_TABLES, ITERATIVE_DEEPENING, MOVE_ORDERING,
+    GAP_CREATION_WEIGHT, SEQUENCE_WEIGHT, ENABLE_DIAGNOSTICS,
+    PERFORMANCE_TRACKING
+)
 
 
 class SettingType(Enum):
@@ -92,8 +99,8 @@ class SettingsManager:
         self._settings["search_depth"] = SettingDefinition(
             name="Search Depth",
             description="Maximum depth for minimax search algorithm",
-            current_value=15,
-            default_value=15,
+            current_value=SEARCH_DEPTH,
+            default_value=SEARCH_DEPTH,
             min_value=1,
             max_value=25,
             setting_type=SettingType.INTEGER
@@ -102,8 +109,8 @@ class SettingsManager:
         self._settings["max_search_time"] = SettingDefinition(
             name="Search Time Limit",
             description="Maximum time for iterative deepening search (seconds)",
-            current_value=6.0,
-            default_value=6.0,
+            current_value=SEARCH_TIME_LIMIT,
+            default_value=SEARCH_TIME_LIMIT,
             min_value=0.1,
             max_value=30.0,
             setting_type=SettingType.FLOAT
@@ -112,8 +119,8 @@ class SettingsManager:
         self._settings["max_iterations"] = SettingDefinition(
             name="Max Iterations",
             description="Maximum iterations for search algorithms",
-            current_value=104,
-            default_value=104,
+            current_value=MAX_ITERATIONS,
+            default_value=MAX_ITERATIONS,
             min_value=1,
             max_value=1000,
             setting_type=SettingType.INTEGER
@@ -123,8 +130,8 @@ class SettingsManager:
         self._settings["target_positions_per_sec"] = SettingDefinition(
             name="Target Speed",
             description="Target positions evaluated per second",
-            current_value=50000,
-            default_value=50000,
+            current_value=TARGET_SPEED,
+            default_value=TARGET_SPEED,
             min_value=1000,
             max_value=1000000,
             setting_type=SettingType.INTEGER
@@ -133,8 +140,8 @@ class SettingsManager:
         self._settings["max_response_time"] = SettingDefinition(
             name="Response Time Limit",
             description="Maximum acceptable response time (seconds)",
-            current_value=2.0,
-            default_value=2.0,
+            current_value=RESPONSE_TIME_LIMIT,
+            default_value=RESPONSE_TIME_LIMIT,
             min_value=0.1,
             max_value=10.0,
             setting_type=SettingType.FLOAT
@@ -143,8 +150,8 @@ class SettingsManager:
         self._settings["max_memory_usage"] = SettingDefinition(
             name="Memory Limit",
             description="Maximum memory usage (MB)",
-            current_value=100,
-            default_value=100,
+            current_value=MEMORY_LIMIT,
+            default_value=MEMORY_LIMIT,
             min_value=10,
             max_value=1000,
             setting_type=SettingType.INTEGER
@@ -154,32 +161,32 @@ class SettingsManager:
         self._settings["alpha_beta_pruning"] = SettingDefinition(
             name="Alpha-Beta Pruning",
             description="Enable alpha-beta pruning optimization",
-            current_value=True,
-            default_value=True,
+            current_value=ALPHA_BETA_PRUNING,
+            default_value=ALPHA_BETA_PRUNING,
             setting_type=SettingType.BOOLEAN
         )
         
         self._settings["transposition_tables"] = SettingDefinition(
             name="Transposition Tables",
             description="Enable transposition table caching",
-            current_value=True,
-            default_value=True,
+            current_value=TRANSPOSITION_TABLES,
+            default_value=TRANSPOSITION_TABLES,
             setting_type=SettingType.BOOLEAN
         )
         
         self._settings["iterative_deepening"] = SettingDefinition(
             name="Iterative Deepening",
             description="Enable iterative deepening search",
-            current_value=True,
-            default_value=True,
+            current_value=ITERATIVE_DEEPENING,
+            default_value=ITERATIVE_DEEPENING,
             setting_type=SettingType.BOOLEAN
         )
         
         self._settings["move_ordering"] = SettingDefinition(
             name="Move Ordering",
             description="Enable intelligent move ordering",
-            current_value=True,
-            default_value=True,
+            current_value=MOVE_ORDERING,
+            default_value=MOVE_ORDERING,
             setting_type=SettingType.BOOLEAN
         )
         
@@ -187,8 +194,8 @@ class SettingsManager:
         self._settings["gap_creation_weight"] = SettingDefinition(
             name="Gap Creation Weight",
             description="Weight for gap creation in position evaluation",
-            current_value=100.0,
-            default_value=100.0,
+            current_value=GAP_CREATION_WEIGHT,
+            default_value=GAP_CREATION_WEIGHT,
             min_value=0.0,
             max_value=1000.0,
             setting_type=SettingType.FLOAT
@@ -197,8 +204,8 @@ class SettingsManager:
         self._settings["sequence_weight"] = SettingDefinition(
             name="Sequence Weight",
             description="Weight for sequence building in evaluation",
-            current_value=200.0,
-            default_value=200.0,
+            current_value=SEQUENCE_WEIGHT,
+            default_value=SEQUENCE_WEIGHT,
             min_value=0.0,
             max_value=1000.0,
             setting_type=SettingType.FLOAT
@@ -208,16 +215,16 @@ class SettingsManager:
         self._settings["enable_diagnostics"] = SettingDefinition(
             name="Enable Diagnostics",
             description="Enable detailed diagnostic logging",
-            current_value=False,
-            default_value=False,
+            current_value=ENABLE_DIAGNOSTICS,
+            default_value=ENABLE_DIAGNOSTICS,
             setting_type=SettingType.BOOLEAN
         )
         
         self._settings["performance_tracking"] = SettingDefinition(
             name="Performance Tracking",
             description="Enable performance metrics tracking",
-            current_value=False,
-            default_value=False,
+            current_value=PERFORMANCE_TRACKING,
+            default_value=PERFORMANCE_TRACKING,
             setting_type=SettingType.BOOLEAN
         )
     
