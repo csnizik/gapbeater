@@ -726,7 +726,7 @@ class TestMinimaxSearch:
         assert stats['completed_depth'] >= 1, "Should complete at least depth 1"
         
         # Should not exceed DEFAULT_SEARCH_DEPTH (5)
-        from src.constants import DEFAULT_SEARCH_DEPTH
+        from src.settings import SEARCH_DEPTH as DEFAULT_SEARCH_DEPTH
         assert stats['completed_depth'] <= DEFAULT_SEARCH_DEPTH, \
                f"Should not exceed default depth {DEFAULT_SEARCH_DEPTH}"
         

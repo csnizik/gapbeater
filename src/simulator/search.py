@@ -161,7 +161,7 @@ class MinimaxSearch:
         Returns:
             Optional[Move]: Best move found, or None if no moves available
         """
-        from ..constants import DEFAULT_SEARCH_DEPTH, MAX_SEARCH_TIME_SECONDS
+        from src.settings import SEARCH_DEPTH as DEFAULT_SEARCH_DEPTH, SEARCH_TIME_LIMIT as MAX_SEARCH_TIME_SECONDS
         
         if max_depth is None:
             max_depth = DEFAULT_SEARCH_DEPTH
