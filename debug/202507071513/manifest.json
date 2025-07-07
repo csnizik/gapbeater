@@ -1,7 +1,7 @@
 {
   "run_metadata": {
-    "timestamp": "2025-07-07T15:11:17.267269",
-    "run_id": "202507071511",
+    "timestamp": "2025-07-07T15:13:02.390773",
+    "run_id": "202507071513",
     "format_version": "1.0"
   },
   "performance_settings": {
@@ -38,7 +38,7 @@
     "processor": "x86_64"
   },
   "game_session": {
-    "game_id": "test-game-42",
-    "session_start": "2025-07-07T15:11:17.270363"
+    "game_id": "test-12345",
+    "session_start": "2025-07-07T15:13:02.395463"
   }
 }
