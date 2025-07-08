@@ -15,8 +15,7 @@ from dataclasses import dataclass
 from typing import Dict, Any, Union, Tuple, Optional
 from enum import Enum
 from ..settings import (
-    SEARCH_DEPTH, SEARCH_TIME_LIMIT, MAX_ITERATIONS, TARGET_SPEED,
-    RESPONSE_TIME_LIMIT, MEMORY_LIMIT, ALPHA_BETA_PRUNING, 
+    SEARCH_DEPTH, SEARCH_TIME_LIMIT, MAX_ITERATIONS, ALPHA_BETA_PRUNING, 
     TRANSPOSITION_TABLES, ITERATIVE_DEEPENING, MOVE_ORDERING,
     GAP_CREATION_WEIGHT, SEQUENCE_WEIGHT, ENABLE_DIAGNOSTICS,
     PERFORMANCE_TRACKING
@@ -129,37 +128,6 @@ class SettingsManager:
             current_value=MAX_ITERATIONS,
             default_value=MAX_ITERATIONS,
             min_value=1,
-            max_value=1000,
-            setting_type=SettingType.INTEGER
-        )
-        
-        # Performance target settings
-        self._settings["target_positions_per_sec"] = SettingDefinition(
-            name="Target Speed",
-            description="Target positions evaluated per second",
-            current_value=TARGET_SPEED,
-            default_value=TARGET_SPEED,
-            min_value=1000,
-            max_value=1000000,
-            setting_type=SettingType.INTEGER
-        )
-        
-        self._settings["max_response_time"] = SettingDefinition(
-            name="Response Time Limit",
-            description="Maximum acceptable response time (seconds)",
-            current_value=RESPONSE_TIME_LIMIT,
-            default_value=RESPONSE_TIME_LIMIT,
-            min_value=0.1,
-            max_value=10.0,
-            setting_type=SettingType.FLOAT
-        )
-        
-        self._settings["max_memory_usage"] = SettingDefinition(
-            name="Memory Limit",
-            description="Maximum memory usage (MB)",
-            current_value=MEMORY_LIMIT,
-            default_value=MEMORY_LIMIT,
-            min_value=10,
             max_value=1000,
             setting_type=SettingType.INTEGER
         )
@@ -454,11 +422,6 @@ class SettingsManager:
                 "SEARCH_DEPTH": self.get_setting("search_depth"),
                 "SEARCH_TIME_LIMIT": self.get_setting("max_search_time"), 
                 "MAX_ITERATIONS": self.get_setting("max_iterations"),
-                
-                # Performance targets
-                "TARGET_SPEED": self.get_setting("target_positions_per_sec"),
-                "RESPONSE_TIME_LIMIT": self.get_setting("max_response_time"),
-                "MEMORY_LIMIT": self.get_setting("max_memory_usage"),
                 
                 # Optimization toggles
                 "ALPHA_BETA_PRUNING": self.get_setting("alpha_beta_pruning"),

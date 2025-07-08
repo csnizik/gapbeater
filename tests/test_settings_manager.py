@@ -35,7 +35,7 @@ def test_default_settings_loaded():
     # Test a few key settings exist
     expected_settings = [
         'search_depth', 'max_search_time', 'alpha_beta_pruning', 
-        'transposition_tables', 'target_positions_per_sec'
+        'transposition_tables', 'gap_creation_weight'
     ]
     
     for setting_key in expected_settings:

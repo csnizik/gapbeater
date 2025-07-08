@@ -11,9 +11,8 @@ SEARCH_TIME_LIMIT = 6.0  # Range: 0.1-30.0 | Default 6.0 | Maximum time for iter
 MAX_ITERATIONS = 104  # Range: 1-1000 | Default 100 | Maximum iterations for search algorithms
 
 # Performance target settings
-TARGET_SPEED = 50000  # Range: 1000-1000000 | Default 50000 | Target positions evaluated per second
-RESPONSE_TIME_LIMIT = 2.0  # Range: 0.1-10.0 | Default 2.0 | Maximum acceptable response time (seconds)
-MEMORY_LIMIT = 100  # Range: 10-1000 | Default 100 | Maximum memory usage (MB)
+# TARGET_SPEED, RESPONSE_TIME_LIMIT, and MEMORY_LIMIT have been removed
+# as they are not actually used in the search behavior
 
 # Optimization technique toggles
 ALPHA_BETA_PRUNING = True  # Range: true/false | Default true | Enable alpha-beta pruning optimization
