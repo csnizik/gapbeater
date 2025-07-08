@@ -238,7 +238,7 @@ class MinimaxSearch:
                 initial_beta = 2.0  # Just above typical scores to enable some pruning
 
                 # Order moves for better pruning efficiency
-                ordered_moves = self._order_moves(game_state, legal_moves)
+                ordered_moves = self._order_moves(game_state, legal_moves, current_depth)
 
                 # Evaluate each possible first move at current depth
                 for move in ordered_moves:
@@ -364,7 +364,7 @@ class MinimaxSearch:
         local_alpha = alpha
 
         # Order moves for better pruning efficiency
-        ordered_moves = self._order_moves(game_state, legal_moves)
+        ordered_moves = self._order_moves(game_state, legal_moves, current_depth)
 
         for move in ordered_moves:
             try:
@@ -444,42 +444,19 @@ class MinimaxSearch:
 
         return score
 
-    def _order_moves(self, game_state: GameState, legal_moves: List[Move]) -> List[Move]:
-        """
-        Order legal moves based on heuristic evaluation.
-
-        More promising moves are placed first to improve alpha-beta pruning efficiency.
-
-        Args:
-            game_state: Current game state
-            legal_moves: List of legal moves to order
-
-        Returns:
-            List[Move]: Moves sorted by heuristic score (best first)
-        """
+    def _order_moves(self, game_state: GameState, legal_moves: List[Move], depth_from_root: int = 0) -> List[Move]:
         if not legal_moves:
             return legal_moves
 
-        # Score each move and sort by score (descending)
         scored_moves = []
         for move in legal_moves:
-            score = self._score_move(game_state, move)
+            score = self._score_move(game_state, move, depth_from_root)
             scored_moves.append((score, move))
 
-        # Sort by score (highest first) and extract moves
         scored_moves.sort(key=lambda x: x[0], reverse=True)
         ordered_moves = [move for _, move in scored_moves]
-
-        # Log move ordering if diagnostics enabled and debug level
-        if self.diagnostics and self.diagnostics.logger.isEnabledFor(logging.DEBUG):
-            self.diagnostics.logger.debug(f"Move ordering: {len(ordered_moves)} moves sorted")
-            for i, (score, move) in enumerate(scored_moves[:5]):  # Log top 5 moves
-                card, (target_row, target_col) = move
-                self.diagnostics.logger.debug(
-                    f"  {i+1}. Score {score:.1f}: {card.rank}{['♣','♠','♥','♦'][card.suit]} -> R{target_row+1}C{target_col+1}"
-                )
-
         return ordered_moves
+
 
     def get_performance_stats(self) -> dict:
         """
