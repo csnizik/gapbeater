@@ -20,9 +20,8 @@ TRANSPOSITION_TABLES = True  # Range: true/false | Default true | Enable transpo
 ITERATIVE_DEEPENING = True  # Range: true/false | Default true | Enable iterative deepening search
 MOVE_ORDERING = True  # Range: true/false | Default true | Enable intelligent move ordering
 
-# Evaluator weight constants
-GAP_CREATION_WEIGHT = 100.0  # Range: 0.0-1000.0 | Default 100.0 | Weight for gap creation in position evaluation
-SEQUENCE_WEIGHT = 200.0  # Range: 0.0-1000.0 | Default 200.0 | Weight for sequence building in evaluation
+# Move evaluation constants
+SEQUENCE_PREFERENCE_MULTIPLIER = 1.5  # Range: 1.0-3.0 | Default 1.5 | Preference multiplier for sequence-building moves over gap-creating moves
 
 # Diagnostic options
 ENABLE_DIAGNOSTICS = False  # Range: true/false | Default false | Enable detailed diagnostic logging

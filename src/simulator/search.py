@@ -12,6 +12,7 @@ from pathlib import Path
 from .game_state import GameState, CardPosition
 from .move_executor import MoveExecutor
 from .evaluator import PositionEvaluator
+from ..settings import SEQUENCE_PREFERENCE_MULTIPLIER
 
 # Type alias for move representation
 Move = Tuple[CardPosition, Tuple[int, int]]
@@ -437,9 +438,11 @@ class MinimaxSearch:
                         score -= 5.0  # Penalty for reinforcing dead gap pattern
         
         # Sequence extension bonus - prioritize moves that extend longer sequences
+        is_sequence_building = False
         if target_col > 0:
             prev_card = game_state.board[target_row][target_col - 1]
             if prev_card and prev_card.suit == card.suit and prev_card.rank == card.rank - 1:
+                is_sequence_building = True
                 # Count how long the sequence would be after this move
                 sequence_length = 1  # This card
                 check_col = target_col - 1
@@ -456,6 +459,10 @@ class MinimaxSearch:
         # This is a simple heuristic that could be expanded
         if card.suit in [0, 1]:  # Clubs and Spades (arbitrary preference)
             score += 0.1
+        
+        # Apply sequence preference multiplier for sequence-building moves
+        if is_sequence_building:
+            score *= SEQUENCE_PREFERENCE_MULTIPLIER
             
         return score
     

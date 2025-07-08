@@ -17,7 +17,7 @@ from enum import Enum
 from ..settings import (
     SEARCH_DEPTH, SEARCH_TIME_LIMIT, MAX_ITERATIONS, ALPHA_BETA_PRUNING, 
     TRANSPOSITION_TABLES, ITERATIVE_DEEPENING, MOVE_ORDERING,
-    GAP_CREATION_WEIGHT, SEQUENCE_WEIGHT, ENABLE_DIAGNOSTICS,
+    SEQUENCE_PREFERENCE_MULTIPLIER, ENABLE_DIAGNOSTICS,
     PERFORMANCE_TRACKING
 )
 
@@ -165,24 +165,14 @@ class SettingsManager:
             setting_type=SettingType.BOOLEAN
         )
         
-        # Evaluator weight constants
-        self._settings["gap_creation_weight"] = SettingDefinition(
-            name="Gap Creation Weight",
-            description="Weight for gap creation in position evaluation",
-            current_value=GAP_CREATION_WEIGHT,
-            default_value=GAP_CREATION_WEIGHT,
-            min_value=0.0,
-            max_value=1000.0,
-            setting_type=SettingType.FLOAT
-        )
-        
-        self._settings["sequence_weight"] = SettingDefinition(
-            name="Sequence Weight",
-            description="Weight for sequence building in evaluation",
-            current_value=SEQUENCE_WEIGHT,
-            default_value=SEQUENCE_WEIGHT,
-            min_value=0.0,
-            max_value=1000.0,
+        # Move evaluation constants
+        self._settings["sequence_preference_multiplier"] = SettingDefinition(
+            name="Sequence Preference Multiplier",
+            description="Preference multiplier for sequence-building moves over gap-creating moves",
+            current_value=SEQUENCE_PREFERENCE_MULTIPLIER,
+            default_value=SEQUENCE_PREFERENCE_MULTIPLIER,
+            min_value=1.0,
+            max_value=3.0,
             setting_type=SettingType.FLOAT
         )
         
@@ -430,8 +420,7 @@ class SettingsManager:
                 "MOVE_ORDERING": self.get_setting("move_ordering"),
                 
                 # Evaluation weights
-                "GAP_CREATION_WEIGHT": self.get_setting("gap_creation_weight"),
-                "SEQUENCE_WEIGHT": self.get_setting("sequence_weight")
+                "SEQUENCE_PREFERENCE_MULTIPLIER": self.get_setting("sequence_preference_multiplier")
             },
             "additional_performance_factors": {
                 # Board configuration (affects search space)
