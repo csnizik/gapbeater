@@ -1,0 +1,348 @@
+2025-07-07 22:26:46,269 - INFO - Position evaluation: score=30.19, time=0.0000s
+2025-07-07 22:26:46,269 - DEBUG - Correctly placed cards: 15, dead gaps: 0
+2025-07-07 22:26:46,269 - INFO - Position evaluation: score=28.30, time=0.0000s
+2025-07-07 22:26:46,269 - DEBUG - Correctly placed cards: 14, dead gaps: 0
+2025-07-07 22:26:46,269 - INFO - Position evaluation: score=28.11, time=0.0000s
+2025-07-07 22:26:46,269 - DEBUG - Correctly placed cards: 14, dead gaps: 1
+2025-07-07 22:26:46,269 - INFO - Position evaluation: score=28.30, time=0.0000s
+2025-07-07 22:26:46,269 - DEBUG - Correctly placed cards: 14, dead gaps: 0
+2025-07-07 22:26:46,272 - INFO - Position evaluation: score=32.08, time=0.0000s
+2025-07-07 22:26:46,272 - DEBUG - Correctly placed cards: 16, dead gaps: 0
+2025-07-07 22:26:46,272 - INFO - Position evaluation: score=30.19, time=0.0000s
+2025-07-07 22:26:46,272 - DEBUG - Correctly placed cards: 15, dead gaps: 0
+2025-07-07 22:26:46,272 - INFO - Position evaluation: score=30.00, time=0.0000s
+2025-07-07 22:26:46,273 - DEBUG - Correctly placed cards: 15, dead gaps: 1
+2025-07-07 22:26:46,273 - INFO - Position evaluation: score=30.19, time=0.0000s
+2025-07-07 22:26:46,273 - DEBUG - Correctly placed cards: 15, dead gaps: 0
+2025-07-07 22:26:46,275 - INFO - Position evaluation: score=32.08, time=0.0000s
+2025-07-07 22:26:46,275 - DEBUG - Correctly placed cards: 16, dead gaps: 0
+2025-07-07 22:26:46,275 - INFO - Position evaluation: score=32.08, time=0.0000s
+2025-07-07 22:26:46,275 - DEBUG - Correctly placed cards: 16, dead gaps: 0
+2025-07-07 22:26:46,275 - INFO - Position evaluation: score=31.89, time=0.0000s
+2025-07-07 22:26:46,275 - DEBUG - Correctly placed cards: 16, dead gaps: 1
+2025-07-07 22:26:46,275 - INFO - Position evaluation: score=32.08, time=0.0000s
+2025-07-07 22:26:46,275 - DEBUG - Correctly placed cards: 16, dead gaps: 0
+2025-07-07 22:26:46,277 - INFO - Position evaluation: score=32.08, time=0.0000s
+2025-07-07 22:26:46,277 - DEBUG - Correctly placed cards: 16, dead gaps: 0
+2025-07-07 22:26:46,277 - INFO - Position evaluation: score=32.08, time=0.0000s
+2025-07-07 22:26:46,277 - DEBUG - Correctly placed cards: 16, dead gaps: 0
+2025-07-07 22:26:46,277 - INFO - Position evaluation: score=31.89, time=0.0000s
+2025-07-07 22:26:46,277 - DEBUG - Correctly placed cards: 16, dead gaps: 1
+2025-07-07 22:26:46,278 - INFO - Position evaluation: score=32.08, time=0.0000s
+2025-07-07 22:26:46,278 - DEBUG - Correctly placed cards: 16, dead gaps: 0
+2025-07-07 22:26:46,280 - INFO - Position evaluation: score=32.08, time=0.0000s
+2025-07-07 22:26:46,280 - DEBUG - Correctly placed cards: 16, dead gaps: 0
+2025-07-07 22:26:46,280 - INFO - Position evaluation: score=32.08, time=0.0000s
+2025-07-07 22:26:46,280 - DEBUG - Correctly placed cards: 16, dead gaps: 0
+2025-07-07 22:26:46,280 - INFO - Position evaluation: score=31.89, time=0.0000s
+2025-07-07 22:26:46,280 - DEBUG - Correctly placed cards: 16, dead gaps: 1
+2025-07-07 22:26:46,280 - INFO - Position evaluation: score=32.08, time=0.0000s
+2025-07-07 22:26:46,280 - DEBUG - Correctly placed cards: 16, dead gaps: 0
+2025-07-07 22:26:46,282 - INFO - Position evaluation: score=33.96, time=0.0000s
+2025-07-07 22:26:46,282 - DEBUG - Correctly placed cards: 17, dead gaps: 0
+2025-07-07 22:26:46,283 - INFO - Position evaluation: score=32.08, time=0.0000s
+2025-07-07 22:26:46,283 - DEBUG - Correctly placed cards: 16, dead gaps: 0
+2025-07-07 22:26:46,283 - INFO - Position evaluation: score=31.89, time=0.0000s
+2025-07-07 22:26:46,283 - DEBUG - Correctly placed cards: 16, dead gaps: 1
+2025-07-07 22:26:46,283 - INFO - Position evaluation: score=32.08, time=0.0000s
+2025-07-07 22:26:46,283 - DEBUG - Correctly placed cards: 16, dead gaps: 0
+2025-07-07 22:26:46,285 - INFO - Position evaluation: score=33.96, time=0.0000s
+2025-07-07 22:26:46,285 - DEBUG - Correctly placed cards: 17, dead gaps: 0
+2025-07-07 22:26:46,285 - INFO - Position evaluation: score=33.96, time=0.0000s
+2025-07-07 22:26:46,285 - DEBUG - Correctly placed cards: 17, dead gaps: 0
+2025-07-07 22:26:46,285 - INFO - Position evaluation: score=33.77, time=0.0000s
+2025-07-07 22:26:46,285 - DEBUG - Correctly placed cards: 17, dead gaps: 1
+2025-07-07 22:26:46,286 - INFO - Position evaluation: score=33.96, time=0.0000s
+2025-07-07 22:26:46,286 - DEBUG - Correctly placed cards: 17, dead gaps: 0
+2025-07-07 22:26:46,287 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,287 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,288 - INFO - Position evaluation: score=33.96, time=0.0000s
+2025-07-07 22:26:46,288 - DEBUG - Correctly placed cards: 17, dead gaps: 0
+2025-07-07 22:26:46,288 - INFO - Position evaluation: score=33.77, time=0.0000s
+2025-07-07 22:26:46,288 - DEBUG - Correctly placed cards: 17, dead gaps: 1
+2025-07-07 22:26:46,288 - INFO - Position evaluation: score=33.96, time=0.0000s
+2025-07-07 22:26:46,288 - DEBUG - Correctly placed cards: 17, dead gaps: 0
+2025-07-07 22:26:46,290 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,290 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,290 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,290 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,290 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,290 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,290 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,290 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,292 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,292 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,292 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,292 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,293 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,293 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,293 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,293 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,295 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,295 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,295 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,295 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,295 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,295 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,297 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,297 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,297 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,297 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,297 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,297 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,297 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,297 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,299 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,299 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,299 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,299 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,299 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,299 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,300 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,300 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,301 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,301 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,302 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,302 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,302 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,302 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,302 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,302 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,304 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,304 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,304 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,304 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,304 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,304 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,304 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,304 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,306 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,306 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,306 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,306 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,306 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,306 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,306 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,306 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,308 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,308 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,308 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,308 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,309 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,309 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,309 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,309 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,311 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,311 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,311 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,311 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,311 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,311 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,311 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,311 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,313 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,313 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,313 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,313 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,313 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,313 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,315 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,315 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,315 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,315 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,315 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,315 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,315 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,315 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,317 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,317 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,317 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,317 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,317 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,317 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,318 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,318 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,319 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,319 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,319 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,319 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,319 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,320 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,320 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,320 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,321 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,321 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,321 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,321 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,322 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,322 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,323 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,323 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,323 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,323 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,323 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,323 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,325 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,325 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,325 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,325 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,326 - INFO - Position evaluation: score=37.55, time=0.0000s
+2025-07-07 22:26:46,326 - DEBUG - Correctly placed cards: 19, dead gaps: 1
+2025-07-07 22:26:46,327 - INFO - Position evaluation: score=35.66, time=0.0000s
+2025-07-07 22:26:46,327 - DEBUG - Correctly placed cards: 18, dead gaps: 1
+2025-07-07 22:26:46,327 - INFO - Position evaluation: score=35.85, time=0.0000s
+2025-07-07 22:26:46,327 - DEBUG - Correctly placed cards: 18, dead gaps: 0
+2025-07-07 22:26:46,328 - INFO - Position evaluation: score=37.55, time=0.0000s
+2025-07-07 22:26:46,328 - DEBUG - Correctly placed cards: 19, dead gaps: 1
+2025-07-07 22:26:46,328 - INFO - Position evaluation: score=37.55, time=0.0000s
+2025-07-07 22:26:46,328 - DEBUG - Correctly placed cards: 19, dead gaps: 1
+2025-07-07 22:26:46,329 - INFO - Position evaluation: score=39.43, time=0.0000s
+2025-07-07 22:26:46,329 - DEBUG - Correctly placed cards: 20, dead gaps: 1
+2025-07-07 22:26:46,330 - INFO - Position evaluation: score=37.55, time=0.0000s
+2025-07-07 22:26:46,330 - DEBUG - Correctly placed cards: 19, dead gaps: 1
+2025-07-07 22:26:46,331 - INFO - Position evaluation: score=41.32, time=0.0000s
+2025-07-07 22:26:46,331 - DEBUG - Correctly placed cards: 21, dead gaps: 1
+2025-07-07 22:26:46,331 - INFO - Position evaluation: score=39.43, time=0.0000s
+2025-07-07 22:26:46,331 - DEBUG - Correctly placed cards: 20, dead gaps: 1
+2025-07-07 22:26:46,333 - INFO - Position evaluation: score=43.21, time=0.0000s
+2025-07-07 22:26:46,333 - DEBUG - Correctly placed cards: 22, dead gaps: 1
+2025-07-07 22:26:46,333 - INFO - Position evaluation: score=41.32, time=0.0000s
+2025-07-07 22:26:46,333 - DEBUG - Correctly placed cards: 21, dead gaps: 1
+2025-07-07 22:26:46,334 - INFO - Position evaluation: score=45.09, time=0.0000s
+2025-07-07 22:26:46,334 - DEBUG - Correctly placed cards: 23, dead gaps: 1
+2025-07-07 22:26:46,334 - INFO - Position evaluation: score=45.09, time=0.0000s
+2025-07-07 22:26:46,334 - DEBUG - Correctly placed cards: 23, dead gaps: 1
+2025-07-07 22:26:46,334 - INFO - Position evaluation: score=43.21, time=0.0000s
+2025-07-07 22:26:46,334 - DEBUG - Correctly placed cards: 22, dead gaps: 1
+2025-07-07 22:26:46,336 - INFO - Position evaluation: score=46.98, time=0.0000s
+2025-07-07 22:26:46,336 - DEBUG - Correctly placed cards: 24, dead gaps: 1
+2025-07-07 22:26:46,336 - INFO - Position evaluation: score=46.98, time=0.0000s
+2025-07-07 22:26:46,336 - DEBUG - Correctly placed cards: 24, dead gaps: 1
+2025-07-07 22:26:46,336 - INFO - Position evaluation: score=45.09, time=0.0000s
+2025-07-07 22:26:46,336 - DEBUG - Correctly placed cards: 23, dead gaps: 1
+2025-07-07 22:26:46,337 - INFO - Position evaluation: score=48.87, time=0.0000s
+2025-07-07 22:26:46,337 - DEBUG - Correctly placed cards: 25, dead gaps: 1
+2025-07-07 22:26:46,338 - INFO - Position evaluation: score=48.87, time=0.0000s
+2025-07-07 22:26:46,338 - DEBUG - Correctly placed cards: 25, dead gaps: 1
+2025-07-07 22:26:46,338 - INFO - Position evaluation: score=46.98, time=0.0000s
+2025-07-07 22:26:46,338 - DEBUG - Correctly placed cards: 24, dead gaps: 1
+2025-07-07 22:26:46,339 - INFO - Position evaluation: score=50.75, time=0.0000s
+2025-07-07 22:26:46,339 - DEBUG - Correctly placed cards: 26, dead gaps: 1
+2025-07-07 22:26:46,339 - INFO - Position evaluation: score=48.87, time=0.0000s
+2025-07-07 22:26:46,339 - DEBUG - Correctly placed cards: 25, dead gaps: 1
+2025-07-07 22:26:46,340 - INFO - Position evaluation: score=52.64, time=0.0000s
+2025-07-07 22:26:46,340 - DEBUG - Correctly placed cards: 27, dead gaps: 1
+2025-07-07 22:26:46,340 - INFO - Position evaluation: score=50.75, time=0.0000s
+2025-07-07 22:26:46,340 - DEBUG - Correctly placed cards: 26, dead gaps: 1
+2025-07-07 22:26:46,341 - INFO - Position evaluation: score=52.45, time=0.0000s
+2025-07-07 22:26:46,341 - DEBUG - Correctly placed cards: 27, dead gaps: 2
+2025-07-07 22:26:46,342 - INFO - Position evaluation: score=52.64, time=0.0000s
+2025-07-07 22:26:46,342 - DEBUG - Correctly placed cards: 27, dead gaps: 1
+2025-07-07 22:26:46,343 - INFO - Position evaluation: score=54.53, time=0.0000s
+2025-07-07 22:26:46,343 - DEBUG - Correctly placed cards: 28, dead gaps: 1
+2025-07-07 22:26:46,343 - INFO - Position evaluation: score=52.45, time=0.0000s
+2025-07-07 22:26:46,343 - DEBUG - Correctly placed cards: 27, dead gaps: 2
+2025-07-07 22:26:46,343 - INFO - Position evaluation: score=52.64, time=0.0000s
+2025-07-07 22:26:46,343 - DEBUG - Correctly placed cards: 27, dead gaps: 1
+2025-07-07 22:26:46,344 - INFO - Position evaluation: score=56.42, time=0.0000s
+2025-07-07 22:26:46,344 - DEBUG - Correctly placed cards: 29, dead gaps: 1
+2025-07-07 22:26:46,344 - INFO - Position evaluation: score=54.34, time=0.0000s
+2025-07-07 22:26:46,344 - DEBUG - Correctly placed cards: 28, dead gaps: 2
+2025-07-07 22:26:46,345 - INFO - Position evaluation: score=54.53, time=0.0000s
+2025-07-07 22:26:46,345 - DEBUG - Correctly placed cards: 28, dead gaps: 1
+2025-07-07 22:26:46,346 - INFO - Position evaluation: score=56.23, time=0.0000s
+2025-07-07 22:26:46,346 - DEBUG - Correctly placed cards: 29, dead gaps: 2
+2025-07-07 22:26:46,346 - INFO - Position evaluation: score=56.42, time=0.0000s
+2025-07-07 22:26:46,346 - DEBUG - Correctly placed cards: 29, dead gaps: 1
+2025-07-07 22:26:46,346 - INFO - Position evaluation: score=56.42, time=0.0000s
+2025-07-07 22:26:46,346 - DEBUG - Correctly placed cards: 29, dead gaps: 1
+2025-07-07 22:26:46,347 - INFO - Position evaluation: score=56.23, time=0.0000s
+2025-07-07 22:26:46,347 - DEBUG - Correctly placed cards: 29, dead gaps: 2
+2025-07-07 22:26:46,347 - INFO - Position evaluation: score=56.23, time=0.0000s
+2025-07-07 22:26:46,347 - DEBUG - Correctly placed cards: 29, dead gaps: 2
+2025-07-07 22:26:46,348 - INFO - Position evaluation: score=56.42, time=0.0000s
+2025-07-07 22:26:46,348 - DEBUG - Correctly placed cards: 29, dead gaps: 1
+2025-07-07 22:26:46,349 - INFO - Position evaluation: score=58.30, time=0.0000s
+2025-07-07 22:26:46,349 - DEBUG - Correctly placed cards: 30, dead gaps: 1
+2025-07-07 22:26:46,349 - INFO - Position evaluation: score=56.23, time=0.0000s
+2025-07-07 22:26:46,349 - DEBUG - Correctly placed cards: 29, dead gaps: 2
+2025-07-07 22:26:46,349 - INFO - Position evaluation: score=56.23, time=0.0000s
+2025-07-07 22:26:46,349 - DEBUG - Correctly placed cards: 29, dead gaps: 2
+2025-07-07 22:26:46,350 - INFO - Position evaluation: score=60.19, time=0.0000s
+2025-07-07 22:26:46,350 - DEBUG - Correctly placed cards: 31, dead gaps: 1
+2025-07-07 22:26:46,350 - INFO - Position evaluation: score=58.11, time=0.0000s
+2025-07-07 22:26:46,350 - DEBUG - Correctly placed cards: 30, dead gaps: 2
+2025-07-07 22:26:46,351 - INFO - Position evaluation: score=62.08, time=0.0000s
+2025-07-07 22:26:46,351 - DEBUG - Correctly placed cards: 32, dead gaps: 1
+2025-07-07 22:26:46,352 - INFO - Position evaluation: score=60.00, time=0.0000s
+2025-07-07 22:26:46,352 - DEBUG - Correctly placed cards: 31, dead gaps: 2
+2025-07-07 22:26:46,352 - INFO - Position evaluation: score=60.19, time=0.0000s
+2025-07-07 22:26:46,352 - DEBUG - Correctly placed cards: 31, dead gaps: 1
+2025-07-07 22:26:46,353 - INFO - Position evaluation: score=61.89, time=0.0000s
+2025-07-07 22:26:46,353 - DEBUG - Correctly placed cards: 32, dead gaps: 2
+2025-07-07 22:26:46,353 - INFO - Position evaluation: score=62.08, time=0.0000s
+2025-07-07 22:26:46,353 - DEBUG - Correctly placed cards: 32, dead gaps: 1
+2025-07-07 22:26:46,354 - INFO - Position evaluation: score=63.96, time=0.0000s
+2025-07-07 22:26:46,354 - DEBUG - Correctly placed cards: 33, dead gaps: 1
+2025-07-07 22:26:46,355 - INFO - Position evaluation: score=61.89, time=0.0000s
+2025-07-07 22:26:46,355 - DEBUG - Correctly placed cards: 32, dead gaps: 2
+2025-07-07 22:26:46,355 - INFO - Position evaluation: score=62.08, time=0.0000s
+2025-07-07 22:26:46,355 - DEBUG - Correctly placed cards: 32, dead gaps: 1
+2025-07-07 22:26:46,356 - INFO - Position evaluation: score=63.77, time=0.0000s
+2025-07-07 22:26:46,356 - DEBUG - Correctly placed cards: 33, dead gaps: 2
+2025-07-07 22:26:46,356 - INFO - Position evaluation: score=63.96, time=0.0000s
+2025-07-07 22:26:46,356 - DEBUG - Correctly placed cards: 33, dead gaps: 1
+2025-07-07 22:26:46,357 - INFO - Position evaluation: score=65.85, time=0.0000s
+2025-07-07 22:26:46,357 - DEBUG - Correctly placed cards: 34, dead gaps: 1
+2025-07-07 22:26:46,357 - INFO - Position evaluation: score=63.77, time=0.0000s
+2025-07-07 22:26:46,357 - DEBUG - Correctly placed cards: 33, dead gaps: 2
+2025-07-07 22:26:46,357 - INFO - Position evaluation: score=63.96, time=0.0000s
+2025-07-07 22:26:46,357 - DEBUG - Correctly placed cards: 33, dead gaps: 1
+2025-07-07 22:26:46,359 - INFO - Position evaluation: score=67.55, time=0.0000s
+2025-07-07 22:26:46,359 - DEBUG - Correctly placed cards: 35, dead gaps: 2
+2025-07-07 22:26:46,359 - INFO - Position evaluation: score=65.66, time=0.0000s
+2025-07-07 22:26:46,359 - DEBUG - Correctly placed cards: 34, dead gaps: 2
+2025-07-07 22:26:46,359 - INFO - Position evaluation: score=65.85, time=0.0000s
+2025-07-07 22:26:46,359 - DEBUG - Correctly placed cards: 34, dead gaps: 1
+2025-07-07 22:26:46,360 - INFO - Position evaluation: score=67.55, time=0.0000s
+2025-07-07 22:26:46,360 - DEBUG - Correctly placed cards: 35, dead gaps: 2
+2025-07-07 22:26:46,360 - INFO - Position evaluation: score=67.55, time=0.0000s
+2025-07-07 22:26:46,360 - DEBUG - Correctly placed cards: 35, dead gaps: 2
+2025-07-07 22:26:46,361 - INFO - Position evaluation: score=67.55, time=0.0000s
+2025-07-07 22:26:46,361 - DEBUG - Correctly placed cards: 35, dead gaps: 2
+2025-07-07 22:26:46,362 - INFO - Position evaluation: score=69.62, time=0.0000s
+2025-07-07 22:26:46,362 - DEBUG - Correctly placed cards: 36, dead gaps: 1
+2025-07-07 22:26:46,363 - INFO - Position evaluation: score=71.51, time=0.0000s
+2025-07-07 22:26:46,363 - DEBUG - Correctly placed cards: 37, dead gaps: 1
+2025-07-07 22:26:46,364 - INFO - Position evaluation: score=73.40, time=0.0000s
+2025-07-07 22:26:46,364 - DEBUG - Correctly placed cards: 38, dead gaps: 1
+2025-07-07 22:26:46,364 - INFO - Position evaluation: score=73.21, time=0.0000s
+2025-07-07 22:26:46,364 - DEBUG - Correctly placed cards: 38, dead gaps: 2
+2025-07-07 22:26:46,365 - INFO - Position evaluation: score=75.09, time=0.0000s
+2025-07-07 22:26:46,365 - DEBUG - Correctly placed cards: 39, dead gaps: 2
+2025-07-07 22:26:46,366 - INFO - Position evaluation: score=75.09, time=0.0000s
+2025-07-07 22:26:46,366 - DEBUG - Correctly placed cards: 39, dead gaps: 2
+2025-07-07 22:26:46,367 - INFO - Position evaluation: score=76.98, time=0.0000s
+2025-07-07 22:26:46,367 - DEBUG - Correctly placed cards: 40, dead gaps: 2
+2025-07-07 22:26:46,368 - INFO - Position evaluation: score=78.87, time=0.0000s
+2025-07-07 22:26:46,368 - DEBUG - Correctly placed cards: 41, dead gaps: 2
+2025-07-07 22:26:46,368 - INFO - Position evaluation: score=80.75, time=0.0000s
+2025-07-07 22:26:46,369 - DEBUG - Correctly placed cards: 42, dead gaps: 2
+2025-07-07 22:26:46,369 - INFO - Position evaluation: score=80.75, time=0.0000s
+2025-07-07 22:26:46,369 - DEBUG - Correctly placed cards: 42, dead gaps: 2
+2025-07-07 22:26:46,370 - INFO - Position evaluation: score=82.64, time=0.0000s
+2025-07-07 22:26:46,370 - DEBUG - Correctly placed cards: 43, dead gaps: 2
+2025-07-07 22:26:46,371 - INFO - Position evaluation: score=84.53, time=0.0000s
+2025-07-07 22:26:46,371 - DEBUG - Correctly placed cards: 44, dead gaps: 2
+2025-07-07 22:26:46,371 - INFO - Position evaluation: score=84.53, time=0.0000s
+2025-07-07 22:26:46,371 - DEBUG - Correctly placed cards: 44, dead gaps: 2
+2025-07-07 22:26:46,372 - INFO - Position evaluation: score=86.42, time=0.0000s
+2025-07-07 22:26:46,372 - DEBUG - Correctly placed cards: 45, dead gaps: 2
+2025-07-07 22:26:46,373 - INFO - Position evaluation: score=88.30, time=0.0000s
+2025-07-07 22:26:46,373 - DEBUG - Correctly placed cards: 46, dead gaps: 2
+2025-07-07 22:26:46,373 - INFO - Position evaluation: score=88.49, time=0.0000s
+2025-07-07 22:26:46,373 - DEBUG - Correctly placed cards: 46, dead gaps: 1
+2025-07-07 22:26:46,374 - INFO - Position evaluation: score=90.19, time=0.0000s
+2025-07-07 22:26:46,374 - DEBUG - Correctly placed cards: 47, dead gaps: 2
+2025-07-07 22:26:46,375 - INFO - Position evaluation: score=91.70, time=0.0000s
+2025-07-07 22:26:46,375 - DEBUG - Correctly placed cards: 48, dead gaps: 4

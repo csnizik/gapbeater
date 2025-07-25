@@ -279,15 +279,15 @@ class GameState:
                         else:
                             break
 
-                    # A sequence is immutable if it starts with a 2 and has at least 1 card
-                    if len(sequence_positions) >= 1 and col == 0:  # Must start in first column to be truly immutable
+                    # A sequence is immutable ONLY if it starts with a 2 in column 1
+                    # According to the rules, sequences that start with a 2 not in column 1 
+                    # are not correctly placed and thus not immutable
+                    if len(sequence_positions) >= 1 and col == 0:  # Must start in first column to be immutable
                         row_sequence = sequence_positions
                         immutable_positions.update(sequence_positions)
                         break
-                    elif len(sequence_positions) >= 2:  # Existing sequences of 2+ cards are immutable
-                        row_sequence = sequence_positions
-                        immutable_positions.update(sequence_positions)
-                        break
+                    # Note: Removed the "elif len(sequence_positions) >= 2" condition
+                    # as sequences not starting in column 1 should never be immutable
 
             sequences.append(row_sequence)
 
@@ -424,17 +424,20 @@ class GameState:
             # 2. Or it's a 2 and the gap is in the first column
 
             if gap_col == 0:
-                # First column - only 2s can be placed
+                # First column - only 2s that are NOT already in column 1 can be placed
                 for row in range(4):
                     for col in range(13):
                         card = self.board[row][col]
                         if (card and card.rank == 2 and
+                            col != 0 and  # 2 must NOT already be in column 1
                             (row, col) not in self.immutable_sequences):
                             legal_moves.append((card, (gap_row, gap_col)))
             else:
                 # Other columns - need previous card to be (rank-1, same suit)
+                # Also ensure gap is not to the right of another gap or King
                 prev_card = self.board[gap_row][gap_col - 1]
-                if prev_card and prev_card.rank < 13:  # Can't place after King
+                if (prev_card and  # Previous position must have a card (not a gap)
+                    prev_card.rank < 13):  # Can't place after King
                     needed_rank = prev_card.rank + 1
                     needed_suit = prev_card.suit
 

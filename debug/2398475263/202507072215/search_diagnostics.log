@@ -1,0 +1,888 @@
+2025-07-07 22:17:04,812 - INFO - === Search Started ===
+2025-07-07 22:17:04,812 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,812 - INFO - Max search depth: 3
+2025-07-07 22:17:04,814 - INFO - Depth 1 completed in 0.001884s
+2025-07-07 22:17:04,814 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,814 - INFO -   Best move: (CardPosition(rank=11, suit=0), (2, 2)), Score: 1.887
+2025-07-07 22:17:04,815 - INFO - Depth 2 completed in 0.000790s
+2025-07-07 22:17:04,815 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,815 - INFO -   Best move: (CardPosition(rank=11, suit=0), (2, 2)), Score: 1.887
+2025-07-07 22:17:04,816 - INFO - Depth 3 completed in 0.000708s
+2025-07-07 22:17:04,816 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,816 - INFO -   Best move: (CardPosition(rank=11, suit=0), (2, 2)), Score: 1.887
+2025-07-07 22:17:04,816 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,816 - INFO - === Search Completed ===
+2025-07-07 22:17:04,816 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,816 - INFO - Time taken: 0.004038s
+2025-07-07 22:17:04,816 - INFO - Positions/second: 2971.78
+2025-07-07 22:17:04,816 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,816 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,816 - INFO - Average branching factor: 4.75
+2025-07-07 22:17:04,816 - INFO - Cache hits: 8
+2025-07-07 22:17:04,816 - INFO - Cache misses: 4
+2025-07-07 22:17:04,816 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,816 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,817 - INFO - === Search Started ===
+2025-07-07 22:17:04,817 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,817 - INFO - Max search depth: 3
+2025-07-07 22:17:04,818 - INFO - Depth 1 completed in 0.000828s
+2025-07-07 22:17:04,818 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,818 - INFO -   Best move: (CardPosition(rank=3, suit=0), (3, 5)), Score: 1.887
+2025-07-07 22:17:04,818 - INFO - Depth 2 completed in 0.000344s
+2025-07-07 22:17:04,818 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,818 - INFO -   Best move: (CardPosition(rank=3, suit=0), (3, 5)), Score: 1.887
+2025-07-07 22:17:04,819 - INFO - Depth 3 completed in 0.000338s
+2025-07-07 22:17:04,819 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,819 - INFO -   Best move: (CardPosition(rank=3, suit=0), (3, 5)), Score: 1.887
+2025-07-07 22:17:04,819 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,819 - INFO - === Search Completed ===
+2025-07-07 22:17:04,819 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,819 - INFO - Time taken: 0.002032s
+2025-07-07 22:17:04,819 - INFO - Positions/second: 5905.49
+2025-07-07 22:17:04,819 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,819 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,819 - INFO - Average branching factor: 4.75
+2025-07-07 22:17:04,819 - INFO - Cache hits: 8
+2025-07-07 22:17:04,819 - INFO - Cache misses: 4
+2025-07-07 22:17:04,819 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,819 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,820 - INFO - === Search Started ===
+2025-07-07 22:17:04,820 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,820 - INFO - Max search depth: 3
+2025-07-07 22:17:04,821 - INFO - Depth 1 completed in 0.000796s
+2025-07-07 22:17:04,821 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,821 - INFO -   Best move: (CardPosition(rank=4, suit=1), (1, 6)), Score: 1.887
+2025-07-07 22:17:04,821 - INFO - Depth 2 completed in 0.000333s
+2025-07-07 22:17:04,821 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,821 - INFO -   Best move: (CardPosition(rank=4, suit=1), (1, 6)), Score: 1.887
+2025-07-07 22:17:04,821 - INFO - Depth 3 completed in 0.000338s
+2025-07-07 22:17:04,822 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,822 - INFO -   Best move: (CardPosition(rank=4, suit=1), (1, 6)), Score: 1.887
+2025-07-07 22:17:04,822 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,822 - INFO - === Search Completed ===
+2025-07-07 22:17:04,822 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,822 - INFO - Time taken: 0.001975s
+2025-07-07 22:17:04,822 - INFO - Positions/second: 6074.80
+2025-07-07 22:17:04,822 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,822 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,822 - INFO - Average branching factor: 5.50
+2025-07-07 22:17:04,822 - INFO - Cache hits: 8
+2025-07-07 22:17:04,822 - INFO - Cache misses: 4
+2025-07-07 22:17:04,822 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,822 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,822 - INFO - === Search Started ===
+2025-07-07 22:17:04,822 - INFO - Position: 7 legal moves available
+2025-07-07 22:17:04,822 - INFO - Max search depth: 3
+2025-07-07 22:17:04,824 - INFO - Depth 1 completed in 0.001621s
+2025-07-07 22:17:04,824 - INFO -   Nodes: 7, Terminal: 7, Pruned: 0
+2025-07-07 22:17:04,824 - INFO -   Best move: (CardPosition(rank=2, suit=1), (1, 0)), Score: 3.774
+2025-07-07 22:17:04,825 - INFO - Depth 2 completed in 0.000682s
+2025-07-07 22:17:04,825 - INFO -   Nodes: 7, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,825 - INFO -   Best move: (CardPosition(rank=2, suit=1), (1, 0)), Score: 3.774
+2025-07-07 22:17:04,826 - INFO - Depth 3 completed in 0.000603s
+2025-07-07 22:17:04,826 - INFO -   Nodes: 7, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,826 - INFO -   Best move: (CardPosition(rank=2, suit=1), (1, 0)), Score: 3.774
+2025-07-07 22:17:04,826 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,826 - INFO - === Search Completed ===
+2025-07-07 22:17:04,826 - INFO - Positions evaluated: 21
+2025-07-07 22:17:04,826 - INFO - Time taken: 0.003486s
+2025-07-07 22:17:04,826 - INFO - Positions/second: 6024.49
+2025-07-07 22:17:04,826 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,826 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,826 - INFO - Average branching factor: 5.57
+2025-07-07 22:17:04,826 - INFO - Cache hits: 14
+2025-07-07 22:17:04,826 - INFO - Cache misses: 7
+2025-07-07 22:17:04,826 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,826 - INFO - Transposition table size: 7
+2025-07-07 22:17:04,827 - INFO - === Search Started ===
+2025-07-07 22:17:04,827 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,827 - INFO - Max search depth: 3
+2025-07-07 22:17:04,827 - INFO - Depth 1 completed in 0.000764s
+2025-07-07 22:17:04,827 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,827 - INFO -   Best move: (CardPosition(rank=6, suit=3), (1, 9)), Score: 3.774
+2025-07-07 22:17:04,828 - INFO - Depth 2 completed in 0.000320s
+2025-07-07 22:17:04,828 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,828 - INFO -   Best move: (CardPosition(rank=6, suit=3), (1, 9)), Score: 3.774
+2025-07-07 22:17:04,828 - INFO - Depth 3 completed in 0.000350s
+2025-07-07 22:17:04,828 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,828 - INFO -   Best move: (CardPosition(rank=6, suit=3), (1, 9)), Score: 3.774
+2025-07-07 22:17:04,828 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,828 - INFO - === Search Completed ===
+2025-07-07 22:17:04,828 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,829 - INFO - Time taken: 0.001905s
+2025-07-07 22:17:04,829 - INFO - Positions/second: 6298.88
+2025-07-07 22:17:04,829 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,829 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,829 - INFO - Average branching factor: 4.25
+2025-07-07 22:17:04,829 - INFO - Cache hits: 8
+2025-07-07 22:17:04,829 - INFO - Cache misses: 4
+2025-07-07 22:17:04,829 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,829 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,829 - INFO - === Search Started ===
+2025-07-07 22:17:04,829 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,829 - INFO - Max search depth: 3
+2025-07-07 22:17:04,830 - INFO - Depth 1 completed in 0.000764s
+2025-07-07 22:17:04,830 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,830 - INFO -   Best move: (CardPosition(rank=9, suit=2), (2, 7)), Score: 3.774
+2025-07-07 22:17:04,830 - INFO - Depth 2 completed in 0.000315s
+2025-07-07 22:17:04,830 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,830 - INFO -   Best move: (CardPosition(rank=9, suit=2), (2, 7)), Score: 3.774
+2025-07-07 22:17:04,831 - INFO - Depth 3 completed in 0.000305s
+2025-07-07 22:17:04,831 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,831 - INFO -   Best move: (CardPosition(rank=9, suit=2), (2, 7)), Score: 3.774
+2025-07-07 22:17:04,831 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,831 - INFO - === Search Completed ===
+2025-07-07 22:17:04,831 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,831 - INFO - Time taken: 0.001860s
+2025-07-07 22:17:04,831 - INFO - Positions/second: 6453.22
+2025-07-07 22:17:04,831 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,831 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,831 - INFO - Average branching factor: 4.25
+2025-07-07 22:17:04,831 - INFO - Cache hits: 8
+2025-07-07 22:17:04,831 - INFO - Cache misses: 4
+2025-07-07 22:17:04,831 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,831 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,832 - INFO - === Search Started ===
+2025-07-07 22:17:04,832 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,832 - INFO - Max search depth: 3
+2025-07-07 22:17:04,832 - INFO - Depth 1 completed in 0.000730s
+2025-07-07 22:17:04,832 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,833 - INFO -   Best move: (CardPosition(rank=13, suit=3), (1, 3)), Score: 3.774
+2025-07-07 22:17:04,833 - INFO - Depth 2 completed in 0.000315s
+2025-07-07 22:17:04,833 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,833 - INFO -   Best move: (CardPosition(rank=13, suit=3), (1, 3)), Score: 3.774
+2025-07-07 22:17:04,833 - INFO - Depth 3 completed in 0.000315s
+2025-07-07 22:17:04,833 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,833 - INFO -   Best move: (CardPosition(rank=13, suit=3), (1, 3)), Score: 3.774
+2025-07-07 22:17:04,833 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,833 - INFO - === Search Completed ===
+2025-07-07 22:17:04,834 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,834 - INFO - Time taken: 0.001814s
+2025-07-07 22:17:04,834 - INFO - Positions/second: 6614.45
+2025-07-07 22:17:04,834 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,834 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,834 - INFO - Average branching factor: 4.25
+2025-07-07 22:17:04,834 - INFO - Cache hits: 8
+2025-07-07 22:17:04,834 - INFO - Cache misses: 4
+2025-07-07 22:17:04,834 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,834 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,834 - INFO - === Search Started ===
+2025-07-07 22:17:04,834 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,834 - INFO - Max search depth: 3
+2025-07-07 22:17:04,835 - INFO - Depth 1 completed in 0.000773s
+2025-07-07 22:17:04,835 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,835 - INFO -   Best move: (CardPosition(rank=13, suit=1), (2, 11)), Score: 3.774
+2025-07-07 22:17:04,836 - INFO - Depth 2 completed in 0.000347s
+2025-07-07 22:17:04,836 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,836 - INFO -   Best move: (CardPosition(rank=13, suit=1), (2, 11)), Score: 3.774
+2025-07-07 22:17:04,836 - INFO - Depth 3 completed in 0.000320s
+2025-07-07 22:17:04,836 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,836 - INFO -   Best move: (CardPosition(rank=13, suit=1), (2, 11)), Score: 3.774
+2025-07-07 22:17:04,836 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,836 - INFO - === Search Completed ===
+2025-07-07 22:17:04,836 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,836 - INFO - Time taken: 0.001983s
+2025-07-07 22:17:04,836 - INFO - Positions/second: 6050.91
+2025-07-07 22:17:04,836 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,836 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,836 - INFO - Average branching factor: 4.25
+2025-07-07 22:17:04,836 - INFO - Cache hits: 8
+2025-07-07 22:17:04,836 - INFO - Cache misses: 4
+2025-07-07 22:17:04,836 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,837 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,837 - INFO - === Search Started ===
+2025-07-07 22:17:04,837 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,837 - INFO - Max search depth: 3
+2025-07-07 22:17:04,838 - INFO - Depth 1 completed in 0.000721s
+2025-07-07 22:17:04,838 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,838 - INFO -   Best move: (CardPosition(rank=3, suit=3), (2, 9)), Score: 3.774
+2025-07-07 22:17:04,838 - INFO - Depth 2 completed in 0.000316s
+2025-07-07 22:17:04,838 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,838 - INFO -   Best move: (CardPosition(rank=3, suit=3), (2, 9)), Score: 3.774
+2025-07-07 22:17:04,839 - INFO - Depth 3 completed in 0.000398s
+2025-07-07 22:17:04,839 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,839 - INFO -   Best move: (CardPosition(rank=3, suit=3), (2, 9)), Score: 3.774
+2025-07-07 22:17:04,839 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,839 - INFO - === Search Completed ===
+2025-07-07 22:17:04,839 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,839 - INFO - Time taken: 0.001913s
+2025-07-07 22:17:04,839 - INFO - Positions/second: 6273.36
+2025-07-07 22:17:04,839 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,839 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,839 - INFO - Average branching factor: 4.75
+2025-07-07 22:17:04,839 - INFO - Cache hits: 8
+2025-07-07 22:17:04,839 - INFO - Cache misses: 4
+2025-07-07 22:17:04,839 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,839 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,839 - INFO - === Search Started ===
+2025-07-07 22:17:04,839 - INFO - Position: 6 legal moves available
+2025-07-07 22:17:04,839 - INFO - Max search depth: 3
+2025-07-07 22:17:04,841 - INFO - Depth 1 completed in 0.001111s
+2025-07-07 22:17:04,841 - INFO -   Nodes: 6, Terminal: 6, Pruned: 0
+2025-07-07 22:17:04,841 - INFO -   Best move: (CardPosition(rank=2, suit=0), (0, 0)), Score: 5.660
+2025-07-07 22:17:04,841 - INFO - Depth 2 completed in 0.000538s
+2025-07-07 22:17:04,841 - INFO -   Nodes: 6, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,841 - INFO -   Best move: (CardPosition(rank=2, suit=0), (0, 0)), Score: 5.660
+2025-07-07 22:17:04,842 - INFO - Depth 3 completed in 0.000480s
+2025-07-07 22:17:04,842 - INFO -   Nodes: 6, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,842 - INFO -   Best move: (CardPosition(rank=2, suit=0), (0, 0)), Score: 5.660
+2025-07-07 22:17:04,842 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,842 - INFO - === Search Completed ===
+2025-07-07 22:17:04,842 - INFO - Positions evaluated: 18
+2025-07-07 22:17:04,842 - INFO - Time taken: 0.002593s
+2025-07-07 22:17:04,842 - INFO - Positions/second: 6941.48
+2025-07-07 22:17:04,842 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,842 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,842 - INFO - Average branching factor: 5.00
+2025-07-07 22:17:04,842 - INFO - Cache hits: 12
+2025-07-07 22:17:04,842 - INFO - Cache misses: 6
+2025-07-07 22:17:04,842 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,842 - INFO - Transposition table size: 6
+2025-07-07 22:17:04,843 - INFO - === Search Started ===
+2025-07-07 22:17:04,843 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,843 - INFO - Max search depth: 3
+2025-07-07 22:17:04,844 - INFO - Depth 1 completed in 0.000935s
+2025-07-07 22:17:04,844 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,844 - INFO -   Best move: (CardPosition(rank=5, suit=2), (1, 11)), Score: 5.660
+2025-07-07 22:17:04,844 - INFO - Depth 2 completed in 0.000332s
+2025-07-07 22:17:04,844 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,844 - INFO -   Best move: (CardPosition(rank=5, suit=2), (1, 11)), Score: 5.660
+2025-07-07 22:17:04,845 - INFO - Depth 3 completed in 0.000322s
+2025-07-07 22:17:04,845 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,845 - INFO -   Best move: (CardPosition(rank=5, suit=2), (1, 11)), Score: 5.660
+2025-07-07 22:17:04,845 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,845 - INFO - === Search Completed ===
+2025-07-07 22:17:04,845 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,845 - INFO - Time taken: 0.002131s
+2025-07-07 22:17:04,845 - INFO - Positions/second: 5631.14
+2025-07-07 22:17:04,845 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,845 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,845 - INFO - Average branching factor: 3.75
+2025-07-07 22:17:04,845 - INFO - Cache hits: 8
+2025-07-07 22:17:04,845 - INFO - Cache misses: 4
+2025-07-07 22:17:04,845 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,845 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,846 - INFO - === Search Started ===
+2025-07-07 22:17:04,846 - INFO - Position: 3 legal moves available
+2025-07-07 22:17:04,846 - INFO - Max search depth: 3
+2025-07-07 22:17:04,846 - INFO - Depth 1 completed in 0.000572s
+2025-07-07 22:17:04,846 - INFO -   Nodes: 3, Terminal: 3, Pruned: 0
+2025-07-07 22:17:04,846 - INFO -   Best move: (CardPosition(rank=9, suit=3), (0, 11)), Score: 5.660
+2025-07-07 22:17:04,847 - INFO - Depth 2 completed in 0.000255s
+2025-07-07 22:17:04,847 - INFO -   Nodes: 3, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,847 - INFO -   Best move: (CardPosition(rank=9, suit=3), (0, 11)), Score: 5.660
+2025-07-07 22:17:04,847 - INFO - Depth 3 completed in 0.000244s
+2025-07-07 22:17:04,847 - INFO -   Nodes: 3, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,847 - INFO -   Best move: (CardPosition(rank=9, suit=3), (0, 11)), Score: 5.660
+2025-07-07 22:17:04,847 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,847 - INFO - === Search Completed ===
+2025-07-07 22:17:04,847 - INFO - Positions evaluated: 9
+2025-07-07 22:17:04,847 - INFO - Time taken: 0.001632s
+2025-07-07 22:17:04,847 - INFO - Positions/second: 5515.26
+2025-07-07 22:17:04,847 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,847 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,847 - INFO - Average branching factor: 3.33
+2025-07-07 22:17:04,847 - INFO - Cache hits: 6
+2025-07-07 22:17:04,847 - INFO - Cache misses: 3
+2025-07-07 22:17:04,848 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,848 - INFO - Transposition table size: 3
+2025-07-07 22:17:04,848 - INFO - === Search Started ===
+2025-07-07 22:17:04,848 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,848 - INFO - Max search depth: 3
+2025-07-07 22:17:04,849 - INFO - Depth 1 completed in 0.000772s
+2025-07-07 22:17:04,849 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,849 - INFO -   Best move: (CardPosition(rank=12, suit=3), (0, 9)), Score: 5.660
+2025-07-07 22:17:04,849 - INFO - Depth 2 completed in 0.000324s
+2025-07-07 22:17:04,849 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,849 - INFO -   Best move: (CardPosition(rank=12, suit=3), (0, 9)), Score: 5.660
+2025-07-07 22:17:04,850 - INFO - Depth 3 completed in 0.000316s
+2025-07-07 22:17:04,850 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,850 - INFO -   Best move: (CardPosition(rank=12, suit=3), (0, 9)), Score: 5.660
+2025-07-07 22:17:04,850 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,850 - INFO - === Search Completed ===
+2025-07-07 22:17:04,850 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,850 - INFO - Time taken: 0.001884s
+2025-07-07 22:17:04,850 - INFO - Positions/second: 6369.74
+2025-07-07 22:17:04,850 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,850 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,850 - INFO - Average branching factor: 4.00
+2025-07-07 22:17:04,850 - INFO - Cache hits: 8
+2025-07-07 22:17:04,850 - INFO - Cache misses: 4
+2025-07-07 22:17:04,850 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,850 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,850 - INFO - === Search Started ===
+2025-07-07 22:17:04,850 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,851 - INFO - Max search depth: 3
+2025-07-07 22:17:04,851 - INFO - Depth 1 completed in 0.000791s
+2025-07-07 22:17:04,851 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,851 - INFO -   Best move: (CardPosition(rank=5, suit=0), (1, 2)), Score: 5.660
+2025-07-07 22:17:04,852 - INFO - Depth 2 completed in 0.000327s
+2025-07-07 22:17:04,852 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,852 - INFO -   Best move: (CardPosition(rank=5, suit=0), (1, 2)), Score: 5.660
+2025-07-07 22:17:04,852 - INFO - Depth 3 completed in 0.000317s
+2025-07-07 22:17:04,852 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,852 - INFO -   Best move: (CardPosition(rank=5, suit=0), (1, 2)), Score: 5.660
+2025-07-07 22:17:04,852 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,852 - INFO - === Search Completed ===
+2025-07-07 22:17:04,852 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,852 - INFO - Time taken: 0.001934s
+2025-07-07 22:17:04,853 - INFO - Positions/second: 6203.52
+2025-07-07 22:17:04,853 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,853 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,853 - INFO - Average branching factor: 4.00
+2025-07-07 22:17:04,853 - INFO - Cache hits: 8
+2025-07-07 22:17:04,853 - INFO - Cache misses: 4
+2025-07-07 22:17:04,853 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,853 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,853 - INFO - === Search Started ===
+2025-07-07 22:17:04,853 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,854 - INFO - Max search depth: 3
+2025-07-07 22:17:04,855 - INFO - Depth 1 completed in 0.000791s
+2025-07-07 22:17:04,855 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,855 - INFO -   Best move: (CardPosition(rank=4, suit=0), (3, 6)), Score: 5.660
+2025-07-07 22:17:04,855 - INFO - Depth 2 completed in 0.000340s
+2025-07-07 22:17:04,855 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,855 - INFO -   Best move: (CardPosition(rank=4, suit=0), (3, 6)), Score: 5.660
+2025-07-07 22:17:04,856 - INFO - Depth 3 completed in 0.000319s
+2025-07-07 22:17:04,856 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,856 - INFO -   Best move: (CardPosition(rank=4, suit=0), (3, 6)), Score: 5.660
+2025-07-07 22:17:04,856 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,856 - INFO - === Search Completed ===
+2025-07-07 22:17:04,856 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,856 - INFO - Time taken: 0.002614s
+2025-07-07 22:17:04,856 - INFO - Positions/second: 4590.10
+2025-07-07 22:17:04,856 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,856 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,856 - INFO - Average branching factor: 4.00
+2025-07-07 22:17:04,856 - INFO - Cache hits: 8
+2025-07-07 22:17:04,856 - INFO - Cache misses: 4
+2025-07-07 22:17:04,856 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,856 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,857 - INFO - === Search Started ===
+2025-07-07 22:17:04,857 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,857 - INFO - Max search depth: 3
+2025-07-07 22:17:04,858 - INFO - Depth 1 completed in 0.000784s
+2025-07-07 22:17:04,858 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,858 - INFO -   Best move: (CardPosition(rank=3, suit=1), (1, 1)), Score: 7.547
+2025-07-07 22:17:04,858 - INFO - Depth 2 completed in 0.000321s
+2025-07-07 22:17:04,858 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,858 - INFO -   Best move: (CardPosition(rank=3, suit=1), (1, 1)), Score: 7.547
+2025-07-07 22:17:04,858 - INFO - Depth 3 completed in 0.000323s
+2025-07-07 22:17:04,858 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,859 - INFO -   Best move: (CardPosition(rank=3, suit=1), (1, 1)), Score: 7.547
+2025-07-07 22:17:04,859 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,859 - INFO - === Search Completed ===
+2025-07-07 22:17:04,859 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,859 - INFO - Time taken: 0.001893s
+2025-07-07 22:17:04,859 - INFO - Positions/second: 6337.83
+2025-07-07 22:17:04,859 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,859 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,859 - INFO - Average branching factor: 4.00
+2025-07-07 22:17:04,859 - INFO - Cache hits: 8
+2025-07-07 22:17:04,859 - INFO - Cache misses: 4
+2025-07-07 22:17:04,859 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,859 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,859 - INFO - === Search Started ===
+2025-07-07 22:17:04,859 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,859 - INFO - Max search depth: 3
+2025-07-07 22:17:04,860 - INFO - Depth 1 completed in 0.000704s
+2025-07-07 22:17:04,860 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,860 - INFO -   Best move: (CardPosition(rank=8, suit=2), (1, 5)), Score: 7.547
+2025-07-07 22:17:04,860 - INFO - Depth 2 completed in 0.000303s
+2025-07-07 22:17:04,860 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,861 - INFO -   Best move: (CardPosition(rank=8, suit=2), (1, 5)), Score: 7.547
+2025-07-07 22:17:04,861 - INFO - Depth 3 completed in 0.000302s
+2025-07-07 22:17:04,861 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,861 - INFO -   Best move: (CardPosition(rank=8, suit=2), (1, 5)), Score: 7.547
+2025-07-07 22:17:04,861 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,861 - INFO - === Search Completed ===
+2025-07-07 22:17:04,861 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,861 - INFO - Time taken: 0.001749s
+2025-07-07 22:17:04,861 - INFO - Positions/second: 6861.75
+2025-07-07 22:17:04,861 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,861 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,861 - INFO - Average branching factor: 4.00
+2025-07-07 22:17:04,861 - INFO - Cache hits: 8
+2025-07-07 22:17:04,861 - INFO - Cache misses: 4
+2025-07-07 22:17:04,861 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,861 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,862 - INFO - === Search Started ===
+2025-07-07 22:17:04,862 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,862 - INFO - Max search depth: 3
+2025-07-07 22:17:04,863 - INFO - Depth 1 completed in 0.000761s
+2025-07-07 22:17:04,863 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,863 - INFO -   Best move: (CardPosition(rank=10, suit=3), (0, 12)), Score: 7.547
+2025-07-07 22:17:04,863 - INFO - Depth 2 completed in 0.000313s
+2025-07-07 22:17:04,863 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,863 - INFO -   Best move: (CardPosition(rank=10, suit=3), (0, 12)), Score: 7.547
+2025-07-07 22:17:04,863 - INFO - Depth 3 completed in 0.000304s
+2025-07-07 22:17:04,863 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,863 - INFO -   Best move: (CardPosition(rank=10, suit=3), (0, 12)), Score: 7.547
+2025-07-07 22:17:04,863 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,863 - INFO - === Search Completed ===
+2025-07-07 22:17:04,864 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,864 - INFO - Time taken: 0.001842s
+2025-07-07 22:17:04,864 - INFO - Positions/second: 6514.66
+2025-07-07 22:17:04,864 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,864 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,864 - INFO - Average branching factor: 3.50
+2025-07-07 22:17:04,864 - INFO - Cache hits: 8
+2025-07-07 22:17:04,864 - INFO - Cache misses: 4
+2025-07-07 22:17:04,864 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,864 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,864 - INFO - === Search Started ===
+2025-07-07 22:17:04,864 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,864 - INFO - Max search depth: 3
+2025-07-07 22:17:04,865 - INFO - Depth 1 completed in 0.000707s
+2025-07-07 22:17:04,865 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,865 - INFO -   Best move: (CardPosition(rank=11, suit=2), (0, 5)), Score: 7.547
+2025-07-07 22:17:04,865 - INFO - Depth 2 completed in 0.000333s
+2025-07-07 22:17:04,865 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,865 - INFO -   Best move: (CardPosition(rank=11, suit=2), (0, 5)), Score: 7.547
+2025-07-07 22:17:04,866 - INFO - Depth 3 completed in 0.000310s
+2025-07-07 22:17:04,866 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,866 - INFO -   Best move: (CardPosition(rank=11, suit=2), (0, 5)), Score: 7.547
+2025-07-07 22:17:04,866 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,866 - INFO - === Search Completed ===
+2025-07-07 22:17:04,866 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,866 - INFO - Time taken: 0.001814s
+2025-07-07 22:17:04,866 - INFO - Positions/second: 6615.50
+2025-07-07 22:17:04,866 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,866 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,866 - INFO - Average branching factor: 3.50
+2025-07-07 22:17:04,866 - INFO - Cache hits: 8
+2025-07-07 22:17:04,866 - INFO - Cache misses: 4
+2025-07-07 22:17:04,866 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,866 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,867 - INFO - === Search Started ===
+2025-07-07 22:17:04,867 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,867 - INFO - Max search depth: 3
+2025-07-07 22:17:04,867 - INFO - Depth 1 completed in 0.000713s
+2025-07-07 22:17:04,867 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,867 - INFO -   Best move: (CardPosition(rank=13, suit=0), (3, 9)), Score: 7.547
+2025-07-07 22:17:04,868 - INFO - Depth 2 completed in 0.000410s
+2025-07-07 22:17:04,868 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,868 - INFO -   Best move: (CardPosition(rank=13, suit=0), (3, 9)), Score: 7.547
+2025-07-07 22:17:04,868 - INFO - Depth 3 completed in 0.000312s
+2025-07-07 22:17:04,868 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,868 - INFO -   Best move: (CardPosition(rank=13, suit=0), (3, 9)), Score: 7.547
+2025-07-07 22:17:04,868 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,868 - INFO - === Search Completed ===
+2025-07-07 22:17:04,868 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,868 - INFO - Time taken: 0.001866s
+2025-07-07 22:17:04,869 - INFO - Positions/second: 6429.92
+2025-07-07 22:17:04,869 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,869 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,869 - INFO - Average branching factor: 3.50
+2025-07-07 22:17:04,869 - INFO - Cache hits: 8
+2025-07-07 22:17:04,869 - INFO - Cache misses: 4
+2025-07-07 22:17:04,869 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,869 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,869 - INFO - === Search Started ===
+2025-07-07 22:17:04,869 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,869 - INFO - Max search depth: 3
+2025-07-07 22:17:04,870 - INFO - Depth 1 completed in 0.000685s
+2025-07-07 22:17:04,870 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,870 - INFO -   Best move: (CardPosition(rank=5, suit=0), (3, 7)), Score: 7.547
+2025-07-07 22:17:04,870 - INFO - Depth 2 completed in 0.000321s
+2025-07-07 22:17:04,870 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,870 - INFO -   Best move: (CardPosition(rank=5, suit=0), (3, 7)), Score: 7.547
+2025-07-07 22:17:04,871 - INFO - Depth 3 completed in 0.000300s
+2025-07-07 22:17:04,871 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,871 - INFO -   Best move: (CardPosition(rank=5, suit=0), (3, 7)), Score: 7.547
+2025-07-07 22:17:04,871 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,871 - INFO - === Search Completed ===
+2025-07-07 22:17:04,871 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,871 - INFO - Time taken: 0.001874s
+2025-07-07 22:17:04,871 - INFO - Positions/second: 6402.90
+2025-07-07 22:17:04,871 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,871 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,871 - INFO - Average branching factor: 3.50
+2025-07-07 22:17:04,871 - INFO - Cache hits: 8
+2025-07-07 22:17:04,871 - INFO - Cache misses: 4
+2025-07-07 22:17:04,871 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,871 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,872 - INFO - === Search Started ===
+2025-07-07 22:17:04,872 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,872 - INFO - Max search depth: 3
+2025-07-07 22:17:04,872 - INFO - Depth 1 completed in 0.000689s
+2025-07-07 22:17:04,872 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,873 - INFO -   Best move: (CardPosition(rank=4, suit=1), (1, 2)), Score: 9.434
+2025-07-07 22:17:04,873 - INFO - Depth 2 completed in 0.000304s
+2025-07-07 22:17:04,873 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,873 - INFO -   Best move: (CardPosition(rank=4, suit=1), (1, 2)), Score: 9.434
+2025-07-07 22:17:04,873 - INFO - Depth 3 completed in 0.000330s
+2025-07-07 22:17:04,873 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,873 - INFO -   Best move: (CardPosition(rank=4, suit=1), (1, 2)), Score: 9.434
+2025-07-07 22:17:04,873 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,873 - INFO - === Search Completed ===
+2025-07-07 22:17:04,873 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,873 - INFO - Time taken: 0.001753s
+2025-07-07 22:17:04,874 - INFO - Positions/second: 6843.69
+2025-07-07 22:17:04,874 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,874 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,874 - INFO - Average branching factor: 3.50
+2025-07-07 22:17:04,874 - INFO - Cache hits: 8
+2025-07-07 22:17:04,874 - INFO - Cache misses: 4
+2025-07-07 22:17:04,874 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,874 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,874 - INFO - === Search Started ===
+2025-07-07 22:17:04,874 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,874 - INFO - Max search depth: 3
+2025-07-07 22:17:04,875 - INFO - Depth 1 completed in 0.000677s
+2025-07-07 22:17:04,875 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,875 - INFO -   Best move: (CardPosition(rank=9, suit=2), (1, 6)), Score: 9.434
+2025-07-07 22:17:04,875 - INFO - Depth 2 completed in 0.000305s
+2025-07-07 22:17:04,875 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,875 - INFO -   Best move: (CardPosition(rank=9, suit=2), (1, 6)), Score: 9.434
+2025-07-07 22:17:04,876 - INFO - Depth 3 completed in 0.000306s
+2025-07-07 22:17:04,876 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,876 - INFO -   Best move: (CardPosition(rank=9, suit=2), (1, 6)), Score: 9.434
+2025-07-07 22:17:04,876 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,876 - INFO - === Search Completed ===
+2025-07-07 22:17:04,876 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,876 - INFO - Time taken: 0.001706s
+2025-07-07 22:17:04,876 - INFO - Positions/second: 7035.17
+2025-07-07 22:17:04,876 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,876 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,876 - INFO - Average branching factor: 3.25
+2025-07-07 22:17:04,876 - INFO - Cache hits: 8
+2025-07-07 22:17:04,876 - INFO - Cache misses: 4
+2025-07-07 22:17:04,876 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,876 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,876 - INFO - === Search Started ===
+2025-07-07 22:17:04,877 - INFO - Position: 3 legal moves available
+2025-07-07 22:17:04,877 - INFO - Max search depth: 3
+2025-07-07 22:17:04,877 - INFO - Depth 1 completed in 0.000514s
+2025-07-07 22:17:04,877 - INFO -   Nodes: 3, Terminal: 3, Pruned: 0
+2025-07-07 22:17:04,877 - INFO -   Best move: (CardPosition(rank=3, suit=2), (3, 12)), Score: 9.434
+2025-07-07 22:17:04,877 - INFO - Depth 2 completed in 0.000272s
+2025-07-07 22:17:04,878 - INFO -   Nodes: 3, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,878 - INFO -   Best move: (CardPosition(rank=3, suit=2), (3, 12)), Score: 9.434
+2025-07-07 22:17:04,878 - INFO - Depth 3 completed in 0.000231s
+2025-07-07 22:17:04,878 - INFO -   Nodes: 3, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,878 - INFO -   Best move: (CardPosition(rank=3, suit=2), (3, 12)), Score: 9.434
+2025-07-07 22:17:04,878 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,878 - INFO - === Search Completed ===
+2025-07-07 22:17:04,878 - INFO - Positions evaluated: 9
+2025-07-07 22:17:04,878 - INFO - Time taken: 0.001445s
+2025-07-07 22:17:04,878 - INFO - Positions/second: 6227.21
+2025-07-07 22:17:04,878 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,878 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,878 - INFO - Average branching factor: 2.67
+2025-07-07 22:17:04,878 - INFO - Cache hits: 6
+2025-07-07 22:17:04,878 - INFO - Cache misses: 3
+2025-07-07 22:17:04,878 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,878 - INFO - Transposition table size: 3
+2025-07-07 22:17:04,879 - INFO - === Search Started ===
+2025-07-07 22:17:04,879 - INFO - Position: 4 legal moves available
+2025-07-07 22:17:04,879 - INFO - Max search depth: 3
+2025-07-07 22:17:04,879 - INFO - Depth 1 completed in 0.000662s
+2025-07-07 22:17:04,879 - INFO -   Nodes: 4, Terminal: 4, Pruned: 0
+2025-07-07 22:17:04,879 - INFO -   Best move: (CardPosition(rank=2, suit=3), (2, 0)), Score: 11.321
+2025-07-07 22:17:04,880 - INFO - Depth 2 completed in 0.000309s
+2025-07-07 22:17:04,880 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,880 - INFO -   Best move: (CardPosition(rank=2, suit=3), (2, 0)), Score: 11.321
+2025-07-07 22:17:04,880 - INFO - Depth 3 completed in 0.000302s
+2025-07-07 22:17:04,880 - INFO -   Nodes: 4, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,880 - INFO -   Best move: (CardPosition(rank=2, suit=3), (2, 0)), Score: 11.321
+2025-07-07 22:17:04,880 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,880 - INFO - === Search Completed ===
+2025-07-07 22:17:04,880 - INFO - Positions evaluated: 12
+2025-07-07 22:17:04,880 - INFO - Time taken: 0.001691s
+2025-07-07 22:17:04,880 - INFO - Positions/second: 7097.83
+2025-07-07 22:17:04,880 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,880 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,880 - INFO - Average branching factor: 2.75
+2025-07-07 22:17:04,880 - INFO - Cache hits: 8
+2025-07-07 22:17:04,881 - INFO - Cache misses: 4
+2025-07-07 22:17:04,881 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,881 - INFO - Transposition table size: 4
+2025-07-07 22:17:04,881 - INFO - === Search Started ===
+2025-07-07 22:17:04,881 - INFO - Position: 2 legal moves available
+2025-07-07 22:17:04,881 - INFO - Max search depth: 3
+2025-07-07 22:17:04,881 - INFO - Depth 1 completed in 0.000325s
+2025-07-07 22:17:04,881 - INFO -   Nodes: 2, Terminal: 2, Pruned: 0
+2025-07-07 22:17:04,881 - INFO -   Best move: (CardPosition(rank=11, suit=1), (3, 4)), Score: 11.132
+2025-07-07 22:17:04,882 - INFO - Depth 2 completed in 0.000159s
+2025-07-07 22:17:04,882 - INFO -   Nodes: 2, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,882 - INFO -   Best move: (CardPosition(rank=11, suit=1), (3, 4)), Score: 11.132
+2025-07-07 22:17:04,882 - INFO - Depth 3 completed in 0.000177s
+2025-07-07 22:17:04,882 - INFO -   Nodes: 2, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,882 - INFO -   Best move: (CardPosition(rank=11, suit=1), (3, 4)), Score: 11.132
+2025-07-07 22:17:04,882 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,882 - INFO - === Search Completed ===
+2025-07-07 22:17:04,882 - INFO - Positions evaluated: 6
+2025-07-07 22:17:04,882 - INFO - Time taken: 0.001159s
+2025-07-07 22:17:04,882 - INFO - Positions/second: 5177.81
+2025-07-07 22:17:04,882 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,882 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,882 - INFO - Average branching factor: 1.00
+2025-07-07 22:17:04,882 - INFO - Cache hits: 4
+2025-07-07 22:17:04,882 - INFO - Cache misses: 2
+2025-07-07 22:17:04,882 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,882 - INFO - Transposition table size: 2
+2025-07-07 22:17:04,883 - INFO - === Search Started ===
+2025-07-07 22:17:04,883 - INFO - Position: 1 legal moves available
+2025-07-07 22:17:04,883 - INFO - Max search depth: 3
+2025-07-07 22:17:04,883 - INFO - Depth 1 completed in 0.000164s
+2025-07-07 22:17:04,883 - INFO -   Nodes: 1, Terminal: 1, Pruned: 0
+2025-07-07 22:17:04,883 - INFO -   Best move: (CardPosition(rank=10, suit=1), (2, 6)), Score: 10.943
+2025-07-07 22:17:04,883 - INFO - Depth 2 completed in 0.000085s
+2025-07-07 22:17:04,883 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,883 - INFO -   Best move: (CardPosition(rank=10, suit=1), (2, 6)), Score: 10.943
+2025-07-07 22:17:04,883 - INFO - Depth 3 completed in 0.000082s
+2025-07-07 22:17:04,883 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,883 - INFO -   Best move: (CardPosition(rank=10, suit=1), (2, 6)), Score: 10.943
+2025-07-07 22:17:04,883 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,883 - INFO - === Search Completed ===
+2025-07-07 22:17:04,883 - INFO - Positions evaluated: 3
+2025-07-07 22:17:04,883 - INFO - Time taken: 0.000768s
+2025-07-07 22:17:04,883 - INFO - Positions/second: 3908.52
+2025-07-07 22:17:04,884 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,884 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,884 - INFO - Average branching factor: 1.00
+2025-07-07 22:17:04,884 - INFO - Cache hits: 2
+2025-07-07 22:17:04,884 - INFO - Cache misses: 1
+2025-07-07 22:17:04,884 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,884 - INFO - Transposition table size: 1
+2025-07-07 22:17:04,884 - INFO - === Search Started ===
+2025-07-07 22:17:04,884 - INFO - Position: 1 legal moves available
+2025-07-07 22:17:04,884 - INFO - Max search depth: 3
+2025-07-07 22:17:04,884 - INFO - Depth 1 completed in 0.000244s
+2025-07-07 22:17:04,884 - INFO -   Nodes: 1, Terminal: 1, Pruned: 0
+2025-07-07 22:17:04,884 - INFO -   Best move: (CardPosition(rank=11, suit=1), (2, 7)), Score: 10.943
+2025-07-07 22:17:04,885 - INFO - Depth 2 completed in 0.000095s
+2025-07-07 22:17:04,885 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,885 - INFO -   Best move: (CardPosition(rank=11, suit=1), (2, 7)), Score: 10.943
+2025-07-07 22:17:04,885 - INFO - Depth 3 completed in 0.000087s
+2025-07-07 22:17:04,885 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,885 - INFO -   Best move: (CardPosition(rank=11, suit=1), (2, 7)), Score: 10.943
+2025-07-07 22:17:04,885 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,885 - INFO - === Search Completed ===
+2025-07-07 22:17:04,885 - INFO - Positions evaluated: 3
+2025-07-07 22:17:04,885 - INFO - Time taken: 0.000861s
+2025-07-07 22:17:04,885 - INFO - Positions/second: 3486.17
+2025-07-07 22:17:04,885 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,885 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,885 - INFO - Average branching factor: 1.00
+2025-07-07 22:17:04,885 - INFO - Cache hits: 2
+2025-07-07 22:17:04,885 - INFO - Cache misses: 1
+2025-07-07 22:17:04,885 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,885 - INFO - Transposition table size: 1
+2025-07-07 22:17:04,885 - INFO - === Search Started ===
+2025-07-07 22:17:04,885 - INFO - Position: 1 legal moves available
+2025-07-07 22:17:04,885 - INFO - Max search depth: 3
+2025-07-07 22:17:04,886 - INFO - Depth 1 completed in 0.000186s
+2025-07-07 22:17:04,886 - INFO -   Nodes: 1, Terminal: 1, Pruned: 0
+2025-07-07 22:17:04,886 - INFO -   Best move: (CardPosition(rank=12, suit=1), (2, 8)), Score: 10.943
+2025-07-07 22:17:04,886 - INFO - Depth 2 completed in 0.000084s
+2025-07-07 22:17:04,886 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,886 - INFO -   Best move: (CardPosition(rank=12, suit=1), (2, 8)), Score: 10.943
+2025-07-07 22:17:04,886 - INFO - Depth 3 completed in 0.000082s
+2025-07-07 22:17:04,886 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,886 - INFO -   Best move: (CardPosition(rank=12, suit=1), (2, 8)), Score: 10.943
+2025-07-07 22:17:04,886 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,886 - INFO - === Search Completed ===
+2025-07-07 22:17:04,886 - INFO - Positions evaluated: 3
+2025-07-07 22:17:04,886 - INFO - Time taken: 0.000778s
+2025-07-07 22:17:04,886 - INFO - Positions/second: 3856.78
+2025-07-07 22:17:04,886 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,886 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,886 - INFO - Average branching factor: 1.00
+2025-07-07 22:17:04,886 - INFO - Cache hits: 2
+2025-07-07 22:17:04,886 - INFO - Cache misses: 1
+2025-07-07 22:17:04,887 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,887 - INFO - Transposition table size: 1
+2025-07-07 22:17:04,887 - INFO - === Search Started ===
+2025-07-07 22:17:04,887 - INFO - Position: 1 legal moves available
+2025-07-07 22:17:04,887 - INFO - Max search depth: 3
+2025-07-07 22:17:04,887 - INFO - Depth 1 completed in 0.000161s
+2025-07-07 22:17:04,887 - INFO -   Nodes: 1, Terminal: 1, Pruned: 0
+2025-07-07 22:17:04,887 - INFO -   Best move: (CardPosition(rank=4, suit=3), (2, 10)), Score: 10.943
+2025-07-07 22:17:04,887 - INFO - Depth 2 completed in 0.000088s
+2025-07-07 22:17:04,887 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,887 - INFO -   Best move: (CardPosition(rank=4, suit=3), (2, 10)), Score: 10.943
+2025-07-07 22:17:04,887 - INFO - Depth 3 completed in 0.000073s
+2025-07-07 22:17:04,887 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,888 - INFO -   Best move: (CardPosition(rank=4, suit=3), (2, 10)), Score: 10.943
+2025-07-07 22:17:04,888 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,888 - INFO - === Search Completed ===
+2025-07-07 22:17:04,888 - INFO - Positions evaluated: 3
+2025-07-07 22:17:04,888 - INFO - Time taken: 0.000747s
+2025-07-07 22:17:04,888 - INFO - Positions/second: 4017.67
+2025-07-07 22:17:04,888 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,888 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,888 - INFO - Average branching factor: 1.00
+2025-07-07 22:17:04,888 - INFO - Cache hits: 2
+2025-07-07 22:17:04,888 - INFO - Cache misses: 1
+2025-07-07 22:17:04,888 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,888 - INFO - Transposition table size: 1
+2025-07-07 22:17:04,888 - INFO - === Search Started ===
+2025-07-07 22:17:04,888 - INFO - Position: 1 legal moves available
+2025-07-07 22:17:04,888 - INFO - Max search depth: 3
+2025-07-07 22:17:04,889 - INFO - Depth 1 completed in 0.000171s
+2025-07-07 22:17:04,889 - INFO -   Nodes: 1, Terminal: 1, Pruned: 0
+2025-07-07 22:17:04,889 - INFO -   Best move: (CardPosition(rank=6, suit=1), (0, 2)), Score: 10.943
+2025-07-07 22:17:04,889 - INFO - Depth 2 completed in 0.000093s
+2025-07-07 22:17:04,889 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,889 - INFO -   Best move: (CardPosition(rank=6, suit=1), (0, 2)), Score: 10.943
+2025-07-07 22:17:04,889 - INFO - Depth 3 completed in 0.000083s
+2025-07-07 22:17:04,889 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,889 - INFO -   Best move: (CardPosition(rank=6, suit=1), (0, 2)), Score: 10.943
+2025-07-07 22:17:04,889 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,889 - INFO - === Search Completed ===
+2025-07-07 22:17:04,889 - INFO - Positions evaluated: 3
+2025-07-07 22:17:04,889 - INFO - Time taken: 0.000899s
+2025-07-07 22:17:04,889 - INFO - Positions/second: 3338.18
+2025-07-07 22:17:04,889 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,889 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,889 - INFO - Average branching factor: 1.00
+2025-07-07 22:17:04,889 - INFO - Cache hits: 2
+2025-07-07 22:17:04,889 - INFO - Cache misses: 1
+2025-07-07 22:17:04,889 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,889 - INFO - Transposition table size: 1
+2025-07-07 22:17:04,890 - INFO - === Search Started ===
+2025-07-07 22:17:04,890 - INFO - Position: 1 legal moves available
+2025-07-07 22:17:04,890 - INFO - Max search depth: 3
+2025-07-07 22:17:04,890 - INFO - Depth 1 completed in 0.000240s
+2025-07-07 22:17:04,890 - INFO -   Nodes: 1, Terminal: 1, Pruned: 0
+2025-07-07 22:17:04,890 - INFO -   Best move: (CardPosition(rank=7, suit=0), (2, 4)), Score: 10.943
+2025-07-07 22:17:04,890 - INFO - Depth 2 completed in 0.000111s
+2025-07-07 22:17:04,890 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,890 - INFO -   Best move: (CardPosition(rank=7, suit=0), (2, 4)), Score: 10.943
+2025-07-07 22:17:04,891 - INFO - Depth 3 completed in 0.000087s
+2025-07-07 22:17:04,891 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,891 - INFO -   Best move: (CardPosition(rank=7, suit=0), (2, 4)), Score: 10.943
+2025-07-07 22:17:04,891 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,891 - INFO - === Search Completed ===
+2025-07-07 22:17:04,891 - INFO - Positions evaluated: 3
+2025-07-07 22:17:04,891 - INFO - Time taken: 0.000953s
+2025-07-07 22:17:04,891 - INFO - Positions/second: 3149.02
+2025-07-07 22:17:04,891 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,891 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,891 - INFO - Average branching factor: 1.00
+2025-07-07 22:17:04,891 - INFO - Cache hits: 2
+2025-07-07 22:17:04,891 - INFO - Cache misses: 1
+2025-07-07 22:17:04,891 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,891 - INFO - Transposition table size: 1
+2025-07-07 22:17:04,891 - INFO - === Search Started ===
+2025-07-07 22:17:04,891 - INFO - Position: 1 legal moves available
+2025-07-07 22:17:04,891 - INFO - Max search depth: 3
+2025-07-07 22:17:04,892 - INFO - Depth 1 completed in 0.000160s
+2025-07-07 22:17:04,892 - INFO -   Nodes: 1, Terminal: 1, Pruned: 0
+2025-07-07 22:17:04,892 - INFO -   Best move: (CardPosition(rank=2, suit=2), (3, 0)), Score: 12.830
+2025-07-07 22:17:04,892 - INFO - Depth 2 completed in 0.000082s
+2025-07-07 22:17:04,892 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,892 - INFO -   Best move: (CardPosition(rank=2, suit=2), (3, 0)), Score: 12.830
+2025-07-07 22:17:04,892 - INFO - Depth 3 completed in 0.000080s
+2025-07-07 22:17:04,892 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,892 - INFO -   Best move: (CardPosition(rank=2, suit=2), (3, 0)), Score: 12.830
+2025-07-07 22:17:04,892 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,892 - INFO - === Search Completed ===
+2025-07-07 22:17:04,892 - INFO - Positions evaluated: 3
+2025-07-07 22:17:04,892 - INFO - Time taken: 0.000730s
+2025-07-07 22:17:04,892 - INFO - Positions/second: 4112.27
+2025-07-07 22:17:04,892 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,892 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,892 - INFO - Average branching factor: 1.00
+2025-07-07 22:17:04,892 - INFO - Cache hits: 2
+2025-07-07 22:17:04,892 - INFO - Cache misses: 1
+2025-07-07 22:17:04,892 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,892 - INFO - Transposition table size: 1
+2025-07-07 22:17:04,893 - INFO - === Search Started ===
+2025-07-07 22:17:04,893 - INFO - Position: 1 legal moves available
+2025-07-07 22:17:04,893 - INFO - Max search depth: 3
+2025-07-07 22:17:04,893 - INFO - Depth 1 completed in 0.000160s
+2025-07-07 22:17:04,893 - INFO -   Nodes: 1, Terminal: 1, Pruned: 0
+2025-07-07 22:17:04,893 - INFO -   Best move: (CardPosition(rank=8, suit=3), (3, 11)), Score: 12.830
+2025-07-07 22:17:04,893 - INFO - Depth 2 completed in 0.000073s
+2025-07-07 22:17:04,893 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,893 - INFO -   Best move: (CardPosition(rank=8, suit=3), (3, 11)), Score: 12.830
+2025-07-07 22:17:04,893 - INFO - Depth 3 completed in 0.000071s
+2025-07-07 22:17:04,893 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,893 - INFO -   Best move: (CardPosition(rank=8, suit=3), (3, 11)), Score: 12.830
+2025-07-07 22:17:04,893 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,893 - INFO - === Search Completed ===
+2025-07-07 22:17:04,893 - INFO - Positions evaluated: 3
+2025-07-07 22:17:04,893 - INFO - Time taken: 0.000714s
+2025-07-07 22:17:04,893 - INFO - Positions/second: 4201.63
+2025-07-07 22:17:04,893 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,893 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,894 - INFO - Average branching factor: 1.00
+2025-07-07 22:17:04,894 - INFO - Cache hits: 2
+2025-07-07 22:17:04,894 - INFO - Cache misses: 1
+2025-07-07 22:17:04,894 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,894 - INFO - Transposition table size: 1
+2025-07-07 22:17:04,894 - INFO - === Search Started ===
+2025-07-07 22:17:04,894 - INFO - Position: 1 legal moves available
+2025-07-07 22:17:04,894 - INFO - Max search depth: 3
+2025-07-07 22:17:04,894 - INFO - Depth 1 completed in 0.000274s
+2025-07-07 22:17:04,894 - INFO -   Nodes: 1, Terminal: 1, Pruned: 0
+2025-07-07 22:17:04,894 - INFO -   Best move: (CardPosition(rank=13, suit=3), (0, 10)), Score: 12.830
+2025-07-07 22:17:04,895 - INFO - Depth 2 completed in 0.000084s
+2025-07-07 22:17:04,895 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,895 - INFO -   Best move: (CardPosition(rank=13, suit=3), (0, 10)), Score: 12.830
+2025-07-07 22:17:04,895 - INFO - Depth 3 completed in 0.000077s
+2025-07-07 22:17:04,895 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,895 - INFO -   Best move: (CardPosition(rank=13, suit=3), (0, 10)), Score: 12.830
+2025-07-07 22:17:04,895 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,895 - INFO - === Search Completed ===
+2025-07-07 22:17:04,896 - INFO - Positions evaluated: 3
+2025-07-07 22:17:04,896 - INFO - Time taken: 0.001442s
+2025-07-07 22:17:04,896 - INFO - Positions/second: 2080.17
+2025-07-07 22:17:04,896 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,896 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,896 - INFO - Average branching factor: 1.00
+2025-07-07 22:17:04,896 - INFO - Cache hits: 2
+2025-07-07 22:17:04,896 - INFO - Cache misses: 1
+2025-07-07 22:17:04,896 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,896 - INFO - Transposition table size: 1
+2025-07-07 22:17:04,896 - INFO - === Search Started ===
+2025-07-07 22:17:04,896 - INFO - Position: 1 legal moves available
+2025-07-07 22:17:04,896 - INFO - Max search depth: 3
+2025-07-07 22:17:04,897 - INFO - Depth 1 completed in 0.000155s
+2025-07-07 22:17:04,897 - INFO -   Nodes: 1, Terminal: 1, Pruned: 0
+2025-07-07 22:17:04,897 - INFO -   Best move: (CardPosition(rank=5, suit=1), (1, 3)), Score: 14.717
+2025-07-07 22:17:04,897 - INFO - Depth 2 completed in 0.000072s
+2025-07-07 22:17:04,897 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,897 - INFO -   Best move: (CardPosition(rank=5, suit=1), (1, 3)), Score: 14.717
+2025-07-07 22:17:04,897 - INFO - Depth 3 completed in 0.000071s
+2025-07-07 22:17:04,897 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,897 - INFO -   Best move: (CardPosition(rank=5, suit=1), (1, 3)), Score: 14.717
+2025-07-07 22:17:04,897 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,897 - INFO - === Search Completed ===
+2025-07-07 22:17:04,897 - INFO - Positions evaluated: 3
+2025-07-07 22:17:04,897 - INFO - Time taken: 0.000717s
+2025-07-07 22:17:04,897 - INFO - Positions/second: 4185.44
+2025-07-07 22:17:04,897 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,897 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,897 - INFO - Average branching factor: 1.00
+2025-07-07 22:17:04,897 - INFO - Cache hits: 2
+2025-07-07 22:17:04,897 - INFO - Cache misses: 1
+2025-07-07 22:17:04,897 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,897 - INFO - Transposition table size: 1
+2025-07-07 22:17:04,898 - INFO - === Search Started ===
+2025-07-07 22:17:04,898 - INFO - Position: 1 legal moves available
+2025-07-07 22:17:04,898 - INFO - Max search depth: 3
+2025-07-07 22:17:04,898 - INFO - Depth 1 completed in 0.000158s
+2025-07-07 22:17:04,898 - INFO -   Nodes: 1, Terminal: 1, Pruned: 0
+2025-07-07 22:17:04,898 - INFO -   Best move: (CardPosition(rank=3, suit=0), (0, 1)), Score: 16.604
+2025-07-07 22:17:04,898 - INFO - Depth 2 completed in 0.000084s
+2025-07-07 22:17:04,898 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,898 - INFO -   Best move: (CardPosition(rank=3, suit=0), (0, 1)), Score: 16.604
+2025-07-07 22:17:04,898 - INFO - Depth 3 completed in 0.000082s
+2025-07-07 22:17:04,898 - INFO -   Nodes: 1, Terminal: 0, Pruned: 0
+2025-07-07 22:17:04,898 - INFO -   Best move: (CardPosition(rank=3, suit=0), (0, 1)), Score: 16.604
+2025-07-07 22:17:04,898 - INFO - Iterative deepening completed: depth 3/3
+2025-07-07 22:17:04,898 - INFO - === Search Completed ===
+2025-07-07 22:17:04,898 - INFO - Positions evaluated: 3
+2025-07-07 22:17:04,898 - INFO - Time taken: 0.000739s
+2025-07-07 22:17:04,898 - INFO - Positions/second: 4060.56
+2025-07-07 22:17:04,899 - INFO - Max depth reached: 1
+2025-07-07 22:17:04,899 - INFO - Average depth reached: 1.00
+2025-07-07 22:17:04,899 - INFO - Average branching factor: 0.00
+2025-07-07 22:17:04,899 - INFO - Cache hits: 2
+2025-07-07 22:17:04,899 - INFO - Cache misses: 1
+2025-07-07 22:17:04,899 - INFO - Cache hit rate: 66.7%
+2025-07-07 22:17:04,899 - INFO - Transposition table size: 1

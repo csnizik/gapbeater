@@ -1,0 +1,120 @@
+2025-07-07 22:17:04,803 - INFO - === GameState Initialization ===
+2025-07-07 22:17:04,804 - INFO - Board configuration: empty
+2025-07-07 22:17:04,804 - INFO - ✓ Board structure validation passed
+2025-07-07 22:17:04,804 - INFO - Initial gap count: 0
+2025-07-07 22:17:04,804 - INFO - Initial immutable sequence count: 0
+2025-07-07 22:17:04,809 - INFO - === Immutable Sequence Detection ===
+2025-07-07 22:17:04,810 - DEBUG - Row 0: No immutable sequence found
+2025-07-07 22:17:04,810 - DEBUG - Row 1: No immutable sequence found
+2025-07-07 22:17:04,810 - DEBUG - Row 2: No immutable sequence found
+2025-07-07 22:17:04,810 - DEBUG - Row 3: No immutable sequence found
+2025-07-07 22:17:04,810 - INFO - === GameState Initialization ===
+2025-07-07 22:17:04,810 - INFO - Board configuration: loaded_from_flat_board
+2025-07-07 22:17:04,810 - INFO - ✓ Board structure validation passed
+2025-07-07 22:17:04,810 - INFO - Initial gap count: 4
+2025-07-07 22:17:04,810 - INFO - Initial immutable sequence count: 0
+2025-07-07 22:17:04,810 - DEBUG - === Board State after_loading ===
+2025-07-07 22:17:04,810 - DEBUG - Row 0: 3S 5D 4S 6H XH XS 8D QH JS 9S 8S JC 5H
+2025-07-07 22:17:04,810 - DEBUG - Row 1: 4D 4C QS 9H 7H 3D -- 7D 5S -- 4H 2D 8C
+2025-07-07 22:17:04,810 - DEBUG - Row 2: 3H XC -- 6C 6D 9D 8H 6S 2S KD QD KS JD
+2025-07-07 22:17:04,810 - DEBUG - Row 3: 7C 9C KH XD 2C -- 5C KC QC JH 7S 2H 3C
+2025-07-07 22:17:04,811 - INFO - Move generation: 4 legal moves in 0.000055s
+2025-07-07 22:17:04,811 - DEBUG - Average move generation time: 0.000055s
+2025-07-07 22:17:04,812 - DEBUG - Position copy time: 0.000014s
+2025-07-07 22:17:04,812 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,813 - DEBUG - Position copy time: 0.000012s
+2025-07-07 22:17:04,813 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,814 - DEBUG - Position copy time: 0.000009s
+2025-07-07 22:17:04,814 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,814 - DEBUG - Position copy time: 0.000009s
+2025-07-07 22:17:04,814 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,814 - DEBUG - Position copy time: 0.000009s
+2025-07-07 22:17:04,814 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,814 - DEBUG - Position copy time: 0.000009s
+2025-07-07 22:17:04,815 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,815 - DEBUG - Position copy time: 0.000009s
+2025-07-07 22:17:04,815 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,815 - DEBUG - Position copy time: 0.000008s
+2025-07-07 22:17:04,815 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,815 - DEBUG - Position copy time: 0.000008s
+2025-07-07 22:17:04,815 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,815 - DEBUG - Position copy time: 0.000008s
+2025-07-07 22:17:04,815 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,816 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,816 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,816 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,816 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,817 - DEBUG - Position copy time: 0.000008s
+2025-07-07 22:17:04,817 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,817 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,817 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,819 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,820 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,822 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,822 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,826 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,826 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,829 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,829 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,831 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,832 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,834 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,834 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,837 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,837 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,839 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,839 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,843 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,843 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,845 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,845 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,848 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,848 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,850 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,850 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,853 - DEBUG - Position copy time: 0.000006s
+2025-07-07 22:17:04,853 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,856 - DEBUG - Position copy time: 0.000009s
+2025-07-07 22:17:04,857 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,859 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,859 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,861 - DEBUG - Position copy time: 0.000006s
+2025-07-07 22:17:04,862 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,864 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,864 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,866 - DEBUG - Position copy time: 0.000006s
+2025-07-07 22:17:04,866 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,869 - DEBUG - Position copy time: 0.000006s
+2025-07-07 22:17:04,869 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,872 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,872 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,874 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,874 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,876 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,876 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,878 - DEBUG - Position copy time: 0.000006s
+2025-07-07 22:17:04,878 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,881 - DEBUG - Position copy time: 0.000006s
+2025-07-07 22:17:04,881 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,882 - DEBUG - Position copy time: 0.000006s
+2025-07-07 22:17:04,882 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,884 - DEBUG - Position copy time: 0.000006s
+2025-07-07 22:17:04,884 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,885 - DEBUG - Position copy time: 0.000006s
+2025-07-07 22:17:04,885 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,887 - DEBUG - Position copy time: 0.000006s
+2025-07-07 22:17:04,887 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,888 - DEBUG - Position copy time: 0.000006s
+2025-07-07 22:17:04,888 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,890 - DEBUG - Position copy time: 0.000006s
+2025-07-07 22:17:04,890 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,891 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,891 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,892 - DEBUG - Position copy time: 0.000006s
+2025-07-07 22:17:04,892 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,894 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,894 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,896 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,896 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:17:04,897 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:17:04,897 - DEBUG - Hash generation time: 0.000001s

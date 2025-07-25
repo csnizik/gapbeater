@@ -15,10 +15,9 @@ from dataclasses import dataclass
 from typing import Dict, Any, Union, Tuple, Optional
 from enum import Enum
 from ..settings import (
-    SEARCH_DEPTH, SEARCH_TIME_LIMIT, MAX_ITERATIONS, TARGET_SPEED,
-    RESPONSE_TIME_LIMIT, MEMORY_LIMIT, ALPHA_BETA_PRUNING, 
+    SEARCH_DEPTH, SEARCH_TIME_LIMIT, MAX_ITERATIONS, ALPHA_BETA_PRUNING, 
     TRANSPOSITION_TABLES, ITERATIVE_DEEPENING, MOVE_ORDERING,
-    GAP_CREATION_WEIGHT, SEQUENCE_WEIGHT, ENABLE_DIAGNOSTICS,
+    SEQUENCE_PREFERENCE_MULTIPLIER, ENABLE_DIAGNOSTICS,
     PERFORMANCE_TRACKING
 )
 
@@ -133,37 +132,6 @@ class SettingsManager:
             setting_type=SettingType.INTEGER
         )
         
-        # Performance target settings
-        self._settings["target_positions_per_sec"] = SettingDefinition(
-            name="Target Speed",
-            description="Target positions evaluated per second",
-            current_value=TARGET_SPEED,
-            default_value=TARGET_SPEED,
-            min_value=1000,
-            max_value=1000000,
-            setting_type=SettingType.INTEGER
-        )
-        
-        self._settings["max_response_time"] = SettingDefinition(
-            name="Response Time Limit",
-            description="Maximum acceptable response time (seconds)",
-            current_value=RESPONSE_TIME_LIMIT,
-            default_value=RESPONSE_TIME_LIMIT,
-            min_value=0.1,
-            max_value=10.0,
-            setting_type=SettingType.FLOAT
-        )
-        
-        self._settings["max_memory_usage"] = SettingDefinition(
-            name="Memory Limit",
-            description="Maximum memory usage (MB)",
-            current_value=MEMORY_LIMIT,
-            default_value=MEMORY_LIMIT,
-            min_value=10,
-            max_value=1000,
-            setting_type=SettingType.INTEGER
-        )
-        
         # Optimization technique toggles
         self._settings["alpha_beta_pruning"] = SettingDefinition(
             name="Alpha-Beta Pruning",
@@ -197,24 +165,14 @@ class SettingsManager:
             setting_type=SettingType.BOOLEAN
         )
         
-        # Evaluator weight constants
-        self._settings["gap_creation_weight"] = SettingDefinition(
-            name="Gap Creation Weight",
-            description="Weight for gap creation in position evaluation",
-            current_value=GAP_CREATION_WEIGHT,
-            default_value=GAP_CREATION_WEIGHT,
-            min_value=0.0,
-            max_value=1000.0,
-            setting_type=SettingType.FLOAT
-        )
-        
-        self._settings["sequence_weight"] = SettingDefinition(
-            name="Sequence Weight",
-            description="Weight for sequence building in evaluation",
-            current_value=SEQUENCE_WEIGHT,
-            default_value=SEQUENCE_WEIGHT,
-            min_value=0.0,
-            max_value=1000.0,
+        # Move evaluation constants
+        self._settings["sequence_preference_multiplier"] = SettingDefinition(
+            name="Sequence Preference Multiplier",
+            description="Preference multiplier for sequence-building moves over gap-creating moves",
+            current_value=SEQUENCE_PREFERENCE_MULTIPLIER,
+            default_value=SEQUENCE_PREFERENCE_MULTIPLIER,
+            min_value=1.0,
+            max_value=3.0,
             setting_type=SettingType.FLOAT
         )
         
@@ -455,11 +413,6 @@ class SettingsManager:
                 "SEARCH_TIME_LIMIT": self.get_setting("max_search_time"), 
                 "MAX_ITERATIONS": self.get_setting("max_iterations"),
                 
-                # Performance targets
-                "TARGET_SPEED": self.get_setting("target_positions_per_sec"),
-                "RESPONSE_TIME_LIMIT": self.get_setting("max_response_time"),
-                "MEMORY_LIMIT": self.get_setting("max_memory_usage"),
-                
                 # Optimization toggles
                 "ALPHA_BETA_PRUNING": self.get_setting("alpha_beta_pruning"),
                 "TRANSPOSITION_TABLES": self.get_setting("transposition_tables"),
@@ -467,8 +420,7 @@ class SettingsManager:
                 "MOVE_ORDERING": self.get_setting("move_ordering"),
                 
                 # Evaluation weights
-                "GAP_CREATION_WEIGHT": self.get_setting("gap_creation_weight"),
-                "SEQUENCE_WEIGHT": self.get_setting("sequence_weight")
+                "SEQUENCE_PREFERENCE_MULTIPLIER": self.get_setting("sequence_preference_multiplier")
             },
             "additional_performance_factors": {
                 # Board configuration (affects search space)
