@@ -1,0 +1,177 @@
+2025-07-07 21:51:29,678 - INFO - === GameState Initialization ===
+2025-07-07 21:51:29,678 - INFO - Board configuration: empty
+2025-07-07 21:51:29,678 - INFO - ✓ Board structure validation passed
+2025-07-07 21:51:29,678 - INFO - Initial gap count: 0
+2025-07-07 21:51:29,678 - INFO - Initial immutable sequence count: 0
+2025-07-07 21:51:29,681 - INFO - === Immutable Sequence Detection ===
+2025-07-07 21:51:29,681 - DEBUG - Row 0: No immutable sequence found
+2025-07-07 21:51:29,681 - DEBUG - Row 1: No immutable sequence found
+2025-07-07 21:51:29,681 - DEBUG - Row 2: No immutable sequence found
+2025-07-07 21:51:29,681 - DEBUG - Row 3: No immutable sequence found
+2025-07-07 21:51:29,681 - INFO - === GameState Initialization ===
+2025-07-07 21:51:29,681 - INFO - Board configuration: loaded_from_flat_board
+2025-07-07 21:51:29,681 - INFO - ✓ Board structure validation passed
+2025-07-07 21:51:29,681 - INFO - Initial gap count: 4
+2025-07-07 21:51:29,681 - INFO - Initial immutable sequence count: 0
+2025-07-07 21:51:29,681 - DEBUG - === Board State after_loading ===
+2025-07-07 21:51:29,681 - DEBUG - Row 0: XC 3H QD 8S -- KS 5S QH 4H KD 6D JS JH
+2025-07-07 21:51:29,682 - DEBUG - Row 1: KC 2D -- 3D 4C JC 5C -- KH 9D 8C -- 6S
+2025-07-07 21:51:29,682 - DEBUG - Row 2: XH 9H 2C 7D 2H 7S 6C QC 5H 9S 3C 7C QS
+2025-07-07 21:51:29,682 - DEBUG - Row 3: XD 4D 9C JD 8D 7H 4S 6H 5D XS 8H 3S 2S
+2025-07-07 21:51:29,682 - INFO - Move generation: 4 legal moves in 0.000032s
+2025-07-07 21:51:29,682 - DEBUG - Average move generation time: 0.000032s
+2025-07-07 21:51:29,683 - DEBUG - Position copy time: 0.000012s
+2025-07-07 21:51:29,683 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:51:29,684 - DEBUG - Position copy time: 0.000010s
+2025-07-07 21:51:29,684 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:51:29,684 - DEBUG - Position copy time: 0.000008s
+2025-07-07 21:51:29,684 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:51:29,685 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:51:29,685 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:51:29,685 - DEBUG - Position copy time: 0.000008s
+2025-07-07 21:51:29,685 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:51:29,685 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:51:29,685 - DEBUG - Hash generation time: 0.000000s
+2025-07-07 21:51:29,686 - DEBUG - Position copy time: 0.000008s
+2025-07-07 21:51:29,686 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:51:29,686 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:51:29,686 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:51:29,686 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:51:29,686 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:51:29,686 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:51:29,686 - DEBUG - Hash generation time: 0.000000s
+2025-07-07 21:51:29,687 - DEBUG - Position copy time: 0.000006s
+2025-07-07 21:51:29,687 - DEBUG - Hash generation time: 0.000000s
+2025-07-07 21:51:29,687 - DEBUG - Position copy time: 0.000006s
+2025-07-07 21:51:29,687 - DEBUG - Hash generation time: 0.000000s
+2025-07-07 21:51:29,688 - DEBUG - Position copy time: 0.000008s
+2025-07-07 21:51:29,688 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:55:46,163 - INFO - === Immutable Sequence Detection ===
+2025-07-07 21:55:46,163 - INFO - Row 0: Found immutable sequence of 3 cards
+2025-07-07 21:55:46,163 - DEBUG -   Positions: [(0, 0), (0, 1), (0, 2)]
+2025-07-07 21:55:46,163 - INFO - Row 1: Found immutable sequence of 6 cards
+2025-07-07 21:55:46,163 - DEBUG -   Positions: [(1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5)]
+2025-07-07 21:55:46,163 - INFO - Row 2: Found immutable sequence of 4 cards
+2025-07-07 21:55:46,163 - DEBUG -   Positions: [(2, 0), (2, 1), (2, 2), (2, 3)]
+2025-07-07 21:55:46,163 - INFO - Row 3: Found immutable sequence of 1 cards
+2025-07-07 21:55:46,163 - DEBUG -   Positions: [(3, 0)]
+2025-07-07 21:55:46,163 - INFO - === GameState Initialization ===
+2025-07-07 21:55:46,163 - INFO - Board configuration: loaded_from_flat_board
+2025-07-07 21:55:46,163 - INFO - ✓ Board structure validation passed
+2025-07-07 21:55:46,163 - INFO - Initial gap count: 4
+2025-07-07 21:55:46,163 - INFO - Initial immutable sequence count: 14
+2025-07-07 21:55:46,163 - DEBUG - === Board State after_loading ===
+2025-07-07 21:55:46,164 - DEBUG - Row 0: 2H 3H 4H KH 8H -- JD QS 8D JC 8S -- 9S
+2025-07-07 21:55:46,164 - DEBUG - Row 1: 2D 3D 4D 5D 6D 7D XH QD 6H 5H 9D KD 5C
+2025-07-07 21:55:46,164 - DEBUG - Row 2: 2S 3S 4S 5S -- 9C XS 7H KC 7C 9H 7S XC
+2025-07-07 21:55:46,164 - DEBUG - Row 3: 2C QH 6S JS XD JH 8C QC 6C 4C 3C KS --
+2025-07-07 21:55:46,164 - INFO - Move generation: 3 legal moves in 0.000022s
+2025-07-07 21:55:46,164 - DEBUG - Average move generation time: 0.000027s
+2025-07-07 21:55:46,165 - DEBUG - Position copy time: 0.000009s
+2025-07-07 21:55:46,165 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:55:46,165 - DEBUG - Position copy time: 0.000008s
+2025-07-07 21:55:46,165 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:55:46,166 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:55:46,166 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:55:46,166 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:55:46,166 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:55:46,166 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:55:46,166 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:55:46,166 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:55:46,166 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:55:46,167 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:55:46,167 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:55:46,167 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:55:46,167 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:55:46,167 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:55:46,167 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:55:46,168 - DEBUG - Position copy time: 0.000009s
+2025-07-07 21:55:46,168 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:58:40,494 - INFO - === Immutable Sequence Detection ===
+2025-07-07 21:58:40,494 - INFO - Row 0: Found immutable sequence of 6 cards
+2025-07-07 21:58:40,495 - DEBUG -   Positions: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5)]
+2025-07-07 21:58:40,495 - INFO - Row 1: Found immutable sequence of 8 cards
+2025-07-07 21:58:40,495 - DEBUG -   Positions: [(1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7)]
+2025-07-07 21:58:40,495 - INFO - Row 2: Found immutable sequence of 5 cards
+2025-07-07 21:58:40,495 - DEBUG -   Positions: [(2, 0), (2, 1), (2, 2), (2, 3), (2, 4)]
+2025-07-07 21:58:40,495 - INFO - Row 3: Found immutable sequence of 3 cards
+2025-07-07 21:58:40,495 - DEBUG -   Positions: [(3, 0), (3, 1), (3, 2)]
+2025-07-07 21:58:40,495 - INFO - === GameState Initialization ===
+2025-07-07 21:58:40,495 - INFO - Board configuration: loaded_from_flat_board
+2025-07-07 21:58:40,495 - INFO - ✓ Board structure validation passed
+2025-07-07 21:58:40,495 - INFO - Initial gap count: 4
+2025-07-07 21:58:40,495 - INFO - Initial immutable sequence count: 22
+2025-07-07 21:58:40,495 - DEBUG - === Board State after_loading ===
+2025-07-07 21:58:40,495 - DEBUG - Row 0: 2H 3H 4H 5H 6H 7H 6C 9C JH 8H -- KC KH
+2025-07-07 21:58:40,495 - DEBUG - Row 1: 2D 3D 4D 5D 6D 7D 8D 9D JC 7S XH XD 8S
+2025-07-07 21:58:40,495 - DEBUG - Row 2: 2S 3S 4S 5S 6S KS QD -- QH -- -- 8C JS
+2025-07-07 21:58:40,495 - DEBUG - Row 3: 2C 3C 4C 9H XC 7C 9S QS QC JD KD XS 5C
+2025-07-07 21:58:40,495 - INFO - Move generation: 3 legal moves in 0.000022s
+2025-07-07 21:58:40,495 - DEBUG - Average move generation time: 0.000025s
+2025-07-07 21:58:40,497 - DEBUG - Position copy time: 0.000009s
+2025-07-07 21:58:40,497 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:58:40,497 - DEBUG - Position copy time: 0.000008s
+2025-07-07 21:58:40,497 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:58:40,497 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:58:40,497 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:58:40,498 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:58:40,498 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:58:40,498 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:58:40,498 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:58:40,498 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:58:40,498 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:58:40,498 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:58:40,498 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:58:40,499 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:58:40,499 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:58:40,499 - DEBUG - Position copy time: 0.000007s
+2025-07-07 21:58:40,499 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 21:58:40,500 - DEBUG - Position copy time: 0.000009s
+2025-07-07 21:58:40,500 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:00:13,219 - INFO - === Immutable Sequence Detection ===
+2025-07-07 22:00:13,220 - INFO - Row 0: Found immutable sequence of 6 cards
+2025-07-07 22:00:13,220 - DEBUG -   Positions: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5)]
+2025-07-07 22:00:13,220 - INFO - Row 1: Found immutable sequence of 9 cards
+2025-07-07 22:00:13,220 - DEBUG -   Positions: [(1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7), (1, 8)]
+2025-07-07 22:00:13,220 - INFO - Row 2: Found immutable sequence of 5 cards
+2025-07-07 22:00:13,220 - DEBUG -   Positions: [(2, 0), (2, 1), (2, 2), (2, 3), (2, 4)]
+2025-07-07 22:00:13,220 - INFO - Row 3: Found immutable sequence of 4 cards
+2025-07-07 22:00:13,220 - DEBUG -   Positions: [(3, 0), (3, 1), (3, 2), (3, 3)]
+2025-07-07 22:00:13,220 - INFO - === GameState Initialization ===
+2025-07-07 22:00:13,220 - INFO - Board configuration: loaded_from_flat_board
+2025-07-07 22:00:13,220 - INFO - ✓ Board structure validation passed
+2025-07-07 22:00:13,220 - INFO - Initial gap count: 4
+2025-07-07 22:00:13,221 - INFO - Initial immutable sequence count: 24
+2025-07-07 22:00:13,221 - DEBUG - === Board State after_loading ===
+2025-07-07 22:00:13,221 - DEBUG - Row 0: 2H 3H 4H 5H 6H 7H KS KC XH 9H JH 8S --
+2025-07-07 22:00:13,221 - DEBUG - Row 1: 2D 3D 4D 5D 6D 7D 8D 9D XD 6C XC XS 9C
+2025-07-07 22:00:13,221 - DEBUG - Row 2: 2S 3S 4S 5S 6S 7C QS JC JD 7S KD JS KH
+2025-07-07 22:00:13,221 - DEBUG - Row 3: 2C 3C 4C 5C -- QD 8C QH -- QC 8H -- 9S
+2025-07-07 22:00:13,221 - INFO - Move generation: 4 legal moves in 0.000027s
+2025-07-07 22:00:13,221 - DEBUG - Average move generation time: 0.000026s
+2025-07-07 22:00:13,222 - DEBUG - Position copy time: 0.000009s
+2025-07-07 22:00:13,222 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:00:13,222 - DEBUG - Position copy time: 0.000008s
+2025-07-07 22:00:13,222 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:00:13,223 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:00:13,223 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:00:13,223 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:00:13,223 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:00:13,223 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:00:13,223 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:00:13,224 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:00:13,224 - DEBUG - Hash generation time: 0.000000s
+2025-07-07 22:00:13,224 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:00:13,224 - DEBUG - Hash generation time: 0.000000s
+2025-07-07 22:00:13,224 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:00:13,224 - DEBUG - Hash generation time: 0.000000s
+2025-07-07 22:00:13,224 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:00:13,224 - DEBUG - Hash generation time: 0.000001s
+2025-07-07 22:00:13,224 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:00:13,224 - DEBUG - Hash generation time: 0.000000s
+2025-07-07 22:00:13,225 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:00:13,225 - DEBUG - Hash generation time: 0.000000s
+2025-07-07 22:00:13,225 - DEBUG - Position copy time: 0.000007s
+2025-07-07 22:00:13,225 - DEBUG - Hash generation time: 0.000000s
+2025-07-07 22:00:13,226 - DEBUG - Position copy time: 0.000009s
+2025-07-07 22:00:13,226 - DEBUG - Hash generation time: 0.000001s

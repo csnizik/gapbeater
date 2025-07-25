@@ -11,7 +11,7 @@ from src.simulator.move_executor import MoveExecutor
 from src.simulator.evaluator import PositionEvaluator
 from src.config.settings_manager import SettingsManager
 from constants import RANK_MAP, SUIT_MAP
-from src.settings import MAX_ITERATIONS
+from src.settings import MAX_ITERATIONS, SEARCH_DEPTH
 
 class GameManager:
     def __init__(self):
@@ -22,7 +22,7 @@ class GameManager:
         """Display performance settings and return to main menu"""
         settings_manager = SettingsManager()
         settings_manager.display()
-        
+
         print("\nPress Enter to return to main menu...")
         input()  # Wait for user to press Enter
 
@@ -30,20 +30,20 @@ class GameManager:
         """Interactive menu for configuring diagnostic logging"""
         settings_manager = SettingsManager()
         current_state = settings_manager.get_setting("logging_enabled")
-        
+
         print("\n" + "="*50)
         print("DIAGNOSTIC LOGGING CONFIGURATION")
         print("="*50)
         print(f"Current status: {'ENABLED' if current_state else 'DISABLED'}")
         print("\nDiagnostic loggers controlled:")
         print("  • GameState operations")
-        print("  • Search algorithms") 
+        print("  • Search algorithms")
         print("  • Move execution")
         print("  • Position evaluation")
         print("\nLog files written to debug/ directory when enabled")
-        
+
         choice = input(f"\n[E]nable logging, [D]isable logging, or [T]oggle? ").strip().lower()
-        
+
         if choice == 'e':
             settings_manager.set_setting("logging_enabled", True)
             settings_manager.configure_global_logging()
@@ -55,7 +55,7 @@ class GameManager:
         elif choice == 't':
             new_state = settings_manager.toggle_logging()
             print(f"✓ Diagnostic logging {'ENABLED' if new_state else 'DISABLED'}")
-        
+
         print("\nReturning to main menu...")
 
     def user_review_layout(self, board, game_id, layout, handler, validator, is_loaded_game=False):
@@ -150,7 +150,7 @@ class GameManager:
         # Call user_review_layout with loaded data
         settings_manager = SettingsManager()
         settings_manager.update_manifest_with_game_id(game_id)
-        
+
         self.user_review_layout(board_data, game_id, layout, handler, validator, is_loaded_game=True)
 
     def create_new_game(self):
@@ -255,46 +255,54 @@ class GameManager:
 
         # Build optimal move sequence until no more beneficial moves
         move_sequence = []
+        move_objects = []
         current_state = game_state
-        seen_positions = set()  # Prevent infinite loops by tracking positions
+        seen_positions = set()
+        prev_immutables = set(current_state.immutable_sequences)
+        last_valuable_index = -1  # No valuable moves yet
 
         for iteration in range(MAX_ITERATIONS):
-            # Check for position repetition to prevent infinite loops
             position_hash = hash(current_state)
             if position_hash in seen_positions:
                 break
             seen_positions.add(position_hash)
 
-            # Find best move from current position
-            best_move = search.search(current_state, max_depth=3)
+            best_move = search.search(current_state, max_depth=SEARCH_DEPTH)
             if not best_move:
                 break
 
-            # Add move to sequence
-            card, (target_row, target_col) = best_move
-            card_str = f"{RANK_MAP[card.rank]}{SUIT_MAP[card.suit]}"
-            move_sequence.append(f"{card_str} -> R{target_row+1}C{target_col+1}")
-
-            # Execute move to get new state for next iteration
             try:
-                current_state = search.move_executor.execute_move(current_state, best_move)
+                next_state = search.move_executor.execute_move(current_state, best_move)
 
-                # Check if game is won
-                if len(current_state.gaps) == 0:
+                # Check for increase in immutable sequences
+                new_immutables = set(next_state.immutable_sequences)
+                if len(new_immutables) > len(prev_immutables):
+                    last_valuable_index = len(move_sequence)  # This move adds value
+                    prev_immutables = new_immutables
+
+                # Record move
+                card, (target_row, target_col) = best_move
+                card_str = f"{RANK_MAP[card.rank]}{SUIT_MAP[card.suit]}"
+                move_sequence.append(f"{card_str} -> R{target_row+1}C{target_col+1}")
+                move_objects.append(best_move)
+
+                current_state = next_state
+
+                if len(current_state.gaps) == 0 or not current_state.get_legal_moves():
                     break
 
-                # Check if we can continue - need legal moves
-                if not current_state.get_legal_moves():
-                    break
             except Exception:
                 break
-
         if move_sequence:
             print(f"{phase_name}: Optimal move sequence:")
-            # Group moves into rows of three
-            for i in range(0, len(move_sequence), 3):
-                group = move_sequence[i:i+3]
-                print(", ".join(group))
+
+            if last_valuable_index >= 0:
+                valuable_moves = move_sequence[:last_valuable_index + 1]
+                for i in range(0, len(valuable_moves), 3):
+                    print(", ".join(valuable_moves[i:i+3]))
+                print("No more valuable moves found before next reshuffle.")
+            else:
+                print("No valuable moves found before next reshuffle.")
         else:
             print(f"{phase_name}: No optimal sequence found")
 
